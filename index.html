@@ -1,1991 +1,624 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AYOUB BACCARAT PRO - النسخة الكاملة مع الحفظ التلقائي</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
-:root{--gold:#d4af37;--gold-2:#b8871d;--bg-dark:#070606;--card:#0f0e10;--muted:#bfb7a6;--player:#2d7ef7;--banker:#e03b3b;--tie:#28a745;}
-:root[data-theme="light"]{--gold:#d4af37;--gold-2:#b8871d;--bg-dark:#f5f5f5;--card:#ffffff;--muted:#666666;--player:#2d7ef7;--banker:#e03b3b;--tie:#28a745;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:Inter,sans-serif;margin:0;background:linear-gradient(180deg,var(--bg-dark),#0b0b0b);color:#fff;padding:18px;transition:background 0.3s, color 0.3s;min-height:100vh;}
-:root[data-theme="light"] body{color:#333;}
-.app{max-width:1200px;margin:0 auto;width:100%;}
-.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap;}
-.logo{font-weight:800;background:linear-gradient(90deg,var(--gold),#fff3b0);color:#000;padding:8px 12px;border-radius:12px;display:inline-block;font-size:1.2rem;}
-.subtitle{font-size:14px;color:var(--muted);margin-top:4px;}
-.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
-.card{background:linear-gradient(180deg,var(--card),#0b0b0b);border-radius:12px;padding:12px;box-shadow:0 8px 30px rgba(0,0,0,0.6);border:1px solid rgba(212,175,55,0.08);margin-bottom:10px;}
-:root[data-theme="light"] .card{background:linear-gradient(180deg,var(--card),#f0f0f0);box-shadow:0 8px 30px rgba(0,0,0,0.1);border:1px solid rgba(0,0,0,0.05);}
-.layout{display:flex;gap:12px;flex-wrap:wrap;}
-.left{width:360px;min-width:300px;display:flex;flex-direction:column;gap:10px;flex:1;}
-.right{flex:2;display:flex;flex-direction:column;gap:12px;min-width:300px;}
-.panel{padding:10px;}
-.row{display:flex;gap:8px;align-items:center;margin-top:8px;}
-input[type=number], select{background:rgba(255,255,255,0.1);border:2px solid rgba(255,255,255,0.3);padding:10px;border-radius:8px;color:#fff;font-weight:600;font-size:14px;width:100%;}
-:root[data-theme="light"] input[type=number], :root[data-theme="light"] select{background:rgba(255,255,255,0.9);border:2px solid rgba(0,0,0,0.2);color:#333;}
-.btn{padding:12px 16px;border-radius:8px;border:0;color:#fff;cursor:pointer;font-weight:600;font-size:16px;transition:all 0.3s;text-align:center;min-width:70px;}
-.btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.3);}
-.btn:active{transform:translateY(0);}
-.btn.gold{background:linear-gradient(90deg,var(--gold),var(--gold-2));color:#000;font-weight:700;box-shadow:0 6px 20px rgba(212,175,55,0.3);}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🇲🇦 باكارات التنبؤ · كوري سبيد · بدون عمولة</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
 
-/* ألوان واضحة للوضع الليلي */
-.btn.player{background:linear-gradient(135deg, #3a86ff, #2667cc); color:white; border:2px solid #3a86ff;}
-.btn.banker{background:linear-gradient(135deg, #ff006e, #cc0058); color:white; border:2px solid #ff006e;}
-.btn.tie{background:linear-gradient(135deg, #38b000, #2c8a00); color:white; border:2px solid #38b000;}
+    body {
+      background: #0c0f14;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+    }
 
-/* ألوان الوضع النهاري */
-:root[data-theme="light"] .btn.player{background:linear-gradient(135deg, #2d7ef7, #1a67d8); color:white;}
-:root[data-theme="light"] .btn.banker{background:linear-gradient(135deg, #e03b3b, #c53232); color:white;}
-:root[data-theme="light"] .btn.tie{background:linear-gradient(135deg, #28a745, #218838); color:white;}
+    .baccarat-predictor {
+      max-width: 900px;
+      width: 100%;
+      background: #1a1e24;
+      border-radius: 32px;
+      padding: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 0 1px #3d3f45 inset;
+      color: #eceef2;
+    }
 
-:root[data-theme="light"] .btn{background:rgba(0,0,0,0.1);color:#333; border:1px solid rgba(0,0,0,0.1)}
+    /* شريط العنوان العلوي */
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0f1217;
+      padding: 14px 22px;
+      border-radius: 60px;
+      border: 1px solid #3e434b;
+      margin-bottom: 28px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
 
-.small{font-size:13px;color:var(--muted);}
-.muted{color:var(--muted);font-size:12px;}
-.pattern-list{list-style:none;padding:6px;margin:6px 0 0 0;max-height:200px;overflow:auto;}
-.pattern-list li{padding:8px;border-radius:8px;margin-bottom:6px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);display:flex;justify-content:space-between;align-items:center;}
-:root[data-theme="light"] .pattern-list li{background:linear-gradient(180deg,rgba(0,0,0,0.02),transparent);}
-.section-title{font-weight:700;margin-bottom:6px;color:var(--gold);font-size:1.1rem;}
-.stat-table{width:100%;border-collapse:collapse;font-size:13px;}
-.stat-table th,.stat-table td{border:1px solid rgba(255,255,255,0.05);padding:6px;text-align:center;}
-:root[data-theme="light"] .stat-table th, :root[data-theme="light"] .stat-table td{border:1px solid rgba(0,0,0,0.05);}
-.stat-table th{background:rgba(212,175,55,0.1);font-weight:600;}
-.player{color:#3a86ff;font-weight:700;}
-.banker{color:#ff006e;font-weight:700;}
-.tie{color:#38b000;font-weight:700;}
-.pred-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
-.final{font-size:22px;font-weight:800;text-align:center;padding:12px;background:linear-gradient(90deg,rgba(212,175,55,0.06),transparent);border-radius:10px;margin:10px 0;}
-:root[data-theme="light"] .final{background:linear-gradient(90deg,rgba(212,175,55,0.1),transparent);}
-.foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;flex-wrap:wrap;gap:10px;}
-.credits{opacity:0.85;font-size:12px;}
-canvas{border-radius:10px;background:#0f0e10;width:100% !important;height:auto !important;max-height:450px;}
-:root[data-theme="light"] canvas{background:#f0f0f0;}
-.color-legend{display:flex;gap:15px;justify-content:center;margin-bottom:10px;font-size:14px;flex-wrap:wrap;}
-.color-legend span{padding:4px 8px;border-radius:6px; font-weight:600;}
-.prediction-cards{display:flex;gap:10px;justify-content:center;margin:10px 0;flex-wrap:wrap;}
-.pred-card{padding:10px;border-radius:8px;text-align:center;min-width:80px; font-weight:600;flex:1;}
-.pred-card.active{transform:scale(1.05);border:2px solid var(--gold); box-shadow:0 4px 15px rgba(212,175,55,0.4);}
-.win-effect{animation:winPulse 0.5s ease-in-out;}
-.loss-effect{animation:lossShake 0.5s ease-in-out;}
-@keyframes winPulse{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
-@keyframes lossShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
-.analysis-result{margin-top:10px;padding:10px;background:rgba(255,255,255,0.03);border-radius:8px;text-align:center;}
-:root[data-theme="light"] .analysis-result{background:rgba(0,0,0,0.03);}
-.theme-toggle{background:transparent;border:none;font-size:24px;cursor:pointer;padding:5px;border-radius:50%;transition:background 0.3s;width:40px;height:40px;display:flex;align-items:center;justify-content:center;}
-.theme-toggle:hover{background:rgba(255,255,255,0.1);}
-:root[data-theme="light"] .theme-toggle:hover{background:rgba(0,0,0,0.05);}
+    .game-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-/* تحسينات إضافية للحقول */
-.input-group {display: flex; gap: 8px; align-items: center;}
-.input-group input {flex: 1;}
-.input-label {font-weight: 600; margin-bottom: 6px; display: block;}
+    .game-name {
+      font-size: 1.4rem;
+      color: #f5d742;
+      text-shadow: 0 0 6px #ffb34750;
+    }
 
-/* ألوان البطاقات في التوقع */
-.pred-card.player {background: linear-gradient(135deg, #3a86ff, #2667cc); color: white;}
-.pred-card.banker {background: linear-gradient(135deg, #ff006e, #cc0058); color: white;}
-.pred-card.tie {background: linear-gradient(135deg, #38b000, #2c8a00); color: white;}
+    .badge-no-comm {
+      background: #2f3a3f;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 1rem;
+      color: #b9f5b9;
+      border: 1px solid #5f9f6f;
+    }
 
-/* أنماط لمنحنى التوقعات */
-.accuracy-panel {margin-top: 12px;}
-.accuracy-stats {display: flex; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 10px;}
-.accuracy-stats > div {flex: 1; min-width: 120px;}
-.accuracy-value {font-weight: 700; font-size: 18px;}
-.accuracy-label {font-size: 12px; color: var(--muted);}
-.accuracy-chart-container {position: relative; height: 80px; margin-top: 8px; width: 100%;}
-.accuracy-line {stroke: var(--gold); stroke-width: 2; fill: none;}
-.accuracy-point {fill: var(--gold); r: 3; transition: r 0.2s;}
-.accuracy-point:hover {r: 5;}
-.accuracy-grid {stroke: rgba(255,255,255,0.1); stroke-width: 1;}
-:root[data-theme="light"] .accuracy-grid {stroke: rgba(0,0,0,0.1);}
-.accuracy-tooltip {position: absolute; background: rgba(0,0,0,0.9); color: white; padding: 5px 8px; border-radius: 4px; font-size: 12px; pointer-events: none; opacity: 0; transition: opacity 0.2s; z-index: 100;}
+    .limit-info {
+      font-size: 1.1rem;
+      background: #282e36;
+      padding: 6px 18px;
+      border-radius: 40px;
+      color: #f0e6c5;
+    }
 
-/* أنماط جديدة للواجهة المحسنة */
-.advanced-controls {background: rgba(212,175,55,0.05); border-radius: 8px; padding: 10px; margin-top: 8px;}
-.control-group {display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap;}
-.control-group:last-child {margin-bottom: 0;}
-.slider-container {flex: 1; margin-left: 10px; min-width: 150px;}
-.slider {width: 100%;}
-.model-badge {display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: 600; margin-left: 5px;}
-.badge-basic {background: #3a86ff; color: white;}
-.badge-advanced {background: #ff006e; color: white;}
-.badge-pattern {background: #38b000; color: white;}
-.badge-ml {background: #9d4edd; color: white;}
-.pattern-info {font-size: 11px; color: var(--muted); margin-top: 4px; line-height: 1.4;}
-.confidence-meter {height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; margin-top: 4px; overflow: hidden;}
-.confidence-fill {height: 100%; background: linear-gradient(90deg, #38b000, #ff006e); border-radius: 3px; transition: width 0.3s;}
-.high-confidence {background: linear-gradient(90deg, #38b000, #d4af37);}
-.medium-confidence {background: linear-gradient(90deg, #d4af37, #ff006e);}
+    /* منطقة النقاط + 2 (الجزء الصغير) */
+    .pts-area {
+      display: flex;
+      align-items: baseline;
+      justify-content: flex-end;
+      background: #1b2128;
+      padding: 10px 30px;
+      border-radius: 60px;
+      width: fit-content;
+      margin-left: auto;
+      margin-bottom: 24px;
+      border: 1px solid #515a66;
+    }
 
-/* تبديل زر التعلم الآلي */
-.switch {position: relative; display: inline-block; width: 50px; height: 24px; flex-shrink: 0;}
-.switch input {opacity: 0; width: 0; height: 0;}
-.switch .slider {position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px;}
-.switch .slider:before {position: absolute; content: ""; height: 16px; width: 16px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%;}
-.switch input:checked + .slider {background: linear-gradient(90deg, #9d4edd, #7b2cbf);}
-.switch input:checked + .slider:before {transform: translateX(26px);}
+    .pts-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #f8d95c;
+      line-height: 1;
+    }
 
-/* مؤشر تدريب ML */
-.ml-training-indicator {display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px;}
-.ml-training {background: #38b000; animation: pulse 1.5s infinite;}
-.ml-not-trained {background: #ff006e;}
-@keyframes pulse {0% {opacity: 1;} 50% {opacity: 0.5;} 100% {opacity: 1;}}
+    .pts-plus {
+      font-size: 1.8rem;
+      margin-right: 10px;
+      color: #bbbbbb;
+    }
 
-/* تحسينات للواجهة */
-.ml-info-panel {background: rgba(157, 78, 221, 0.05); border-left: 3px solid #9d4edd;}
+    .small-pts {
+      font-size: 1.8rem;
+      margin-left: 15px;
+      color: #c0b280;
+      background: #2c313a;
+      padding: 4px 16px;
+      border-radius: 40px;
+    }
 
-/* أزرار التحكم في البيانات */
-.data-controls {display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;}
-.data-controls .btn {padding: 6px 10px; font-size: 12px; flex: 1; min-width: 100px;}
+    /* صف الإحصائيات الرئيسية (مثل #16 P 8 B 8 T 0 0 1) */
+    .stats-row {
+      background: #11161d;
+      border-radius: 60px;
+      padding: 16px 26px;
+      margin-bottom: 24px;
+      border: 1px solid #4f5865;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: #f2e9c2;
+      flex-wrap: wrap;
+    }
 
-/* تحسينات للاستجابة */
-@media (max-width: 768px) {
-    .layout {flex-direction: column;}
-    .left, .right {width: 100%;}
-    .top {flex-direction: column; align-items: flex-start;}
-    .controls {width: 100%; justify-content: space-between;}
-    .accuracy-stats > div {min-width: 100px;}
-    .prediction-cards {flex-direction: column;}
-    .pred-card {width: 100%;}
-    .color-legend {justify-content: flex-start;}
-    .row {flex-wrap: wrap;}
-    .btn {flex: 1; min-width: 60px;}
-}
+    .stats-left {
+      display: flex;
+      gap: 30px;
+      align-items: baseline;
+    }
 
-@media (max-width: 480px) {
-    body {padding: 10px;}
-    .card {padding: 8px;}
-    .btn {padding: 10px 12px; font-size: 14px;}
-    .accuracy-stats {flex-direction: column;}
-    .accuracy-stats > div {min-width: 100%;}
-}
-</style>
+    .stats-right-pairs {
+      display: flex;
+      gap: 16px;
+      font-size: 1.2rem;
+      background: #232a34;
+      padding: 6px 18px;
+      border-radius: 40px;
+      color: #cbd5e6;
+    }
+
+    /* منطقة الاحتمالات / الرهانات (يسار) والرصيد (يمين) */
+    .betting-panel {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .odds-box {
+      flex: 3;
+      min-width: 300px;
+      background: #151b23;
+      border-radius: 28px;
+      padding: 22px 20px;
+      border: 1px solid #49515d;
+      box-shadow: inset 0 2px 5px #00000055;
+    }
+
+    .balance-box {
+      flex: 1;
+      min-width: 180px;
+      background: #151b23;
+      border-radius: 28px;
+      padding: 22px 20px;
+      border: 1px solid #49515d;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    .grid-odds {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .odd-item {
+      background: #1f2832;
+      border-radius: 18px;
+      padding: 12px 8px;
+      text-align: center;
+      border-left: 5px solid;
+      box-shadow: 0 5px 0 #0b0e11;
+    }
+
+    .odd-player {
+      border-left-color: #4b96e9;
+    }
+    .odd-tie {
+      border-left-color: #9e8b5c;
+    }
+    .odd-banker {
+      border-left-color: #e05a5a;
+    }
+
+    .odd-label {
+      font-size: 1rem;
+      text-transform: uppercase;
+      color: #acb8c9;
+    }
+    .odd-value {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    .odd-small {
+      font-size: 1rem;
+      color: #b4bbcc;
+    }
+
+    .pair-row {
+      display: flex;
+      justify-content: space-around;
+      background: #1b232d;
+      border-radius: 40px;
+      padding: 12px;
+      margin-top: 12px;
+      border: 1px solid #58626f;
+    }
+
+    .pair-item {
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.3rem;
+    }
+    .pair-item span {
+      display: block;
+      font-size: 0.9rem;
+      color: #94a3b8;
+    }
+
+    .money-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      background: #10161e;
+      border-radius: 60px;
+      padding: 15px 18px;
+      border: 1px solid #3e4652;
+    }
+
+    .money-item {
+      text-align: center;
+    }
+    .money-amount {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+    .money-percent {
+      font-size: 1.1rem;
+      background: #2c343f;
+      padding: 4px 8px;
+      border-radius: 40px;
+      margin-left: 6px;
+    }
+    .money-label {
+      font-size: 0.9rem;
+      color: #9aa9bb;
+      margin-top: 4px;
+    }
+
+    .balance-line {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #f1d87f;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .balance-line small {
+      font-size: 1rem;
+      color: #a5b2c4;
+    }
+    .total-bet {
+      font-size: 1.4rem;
+      color: #dbddb5;
+      border-top: 2px dashed #465260;
+      padding-top: 14px;
+      width: 100%;
+      text-align: right;
+    }
+
+    /* قسم التنبؤ وزر التشغيل */
+    .prediction-area {
+      background: #1e242c;
+      border-radius: 50px;
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      border: 1px solid #6b7788;
+      margin-top: 8px;
+    }
+
+    .next-prediction {
+      background: #2d3643;
+      padding: 12px 30px;
+      border-radius: 40px;
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #ffdb7c;
+      box-shadow: 0 0 12px #f5b74260;
+    }
+
+    .prediction-desc {
+      font-size: 1rem;
+      color: #cbd5e1;
+      margin-left: 10px;
+    }
+
+    .btn-round {
+      background: #3a4553;
+      border: none;
+      color: white;
+      font-size: 1.6rem;
+      padding: 12px 36px;
+      border-radius: 60px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      border-bottom: 5px solid #1e262f;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-round:hover {
+      background: #546479;
+      border-bottom-width: 2px;
+      transform: translateY(2px);
+    }
+
+    .btn-round:active {
+      transform: translateY(5px);
+      border-bottom-width: 0;
+    }
+
+    /* تنسيقات صغيرة */
+    .text-gold {
+      color: #f3cd81;
+    }
+    .separator {
+      color: #5b6b7e;
+      margin: 0 8px;
+    }
+  </style>
 </head>
 <body>
-<div class="app">
-<header class="top card">
-  <div class="brand">
-    <div class="logo">AYOUB BACCARAT PRO <span class="model-badge badge-ml">نسخة كاملة</span></div>
-    <div class="subtitle">نظام تنبؤ ذكي مع خوارزميات تعلم آلة وحفظ تلقائي 🧠💾🚀</div>
-  </div>
-  <div class="controls">
-    <button id="themeToggle" class="theme-toggle" title="تبديل الوضع">🌚</button>
-    <button id="btnReset" class="btn gold">إعادة تعيين</button>
-  </div>
-</header>
+<div class="baccarat-predictor">
 
-<main class="layout">
-<aside class="left">
-  <div class="panel card">
-    <label class="input-label">نافذة التحليل (5 - 15)</label>
-    <div class="input-group">
-      <input id="windowSize" type="number" min="5" max="15" value="8">
-      <button id="applyWindow" class="btn gold">تطبيق</button>
+  <!-- العنوان العلوي -->
+  <div class="header-bar">
+    <div class="game-title">
+      <span class="game-name">⚡ Korean Speed Baccarat 1</span>
+      <span class="badge-no-comm">🚫 NO COMM.</span>
     </div>
-    <div class="muted small">يحلل آخر 5-15 جولة باستخدام خوارزميات متقدمة</div>
+    <div class="limit-info">
+      🇲🇦 MAD 2 – 50,000
+    </div>
   </div>
 
-  <!-- إعدادات التنبؤ المتقدم -->
-  <div class="panel card">
-    <div class="section-title">إعدادات التنبؤ المتقدم</div>
-    <div class="advanced-controls">
-      <div class="control-group">
-        <label for="analysisMode">نمط التحليل:</label>
-        <select id="analysisMode">
-          <option value="basic">أساسي <span class="model-badge badge-basic">+5%</span></option>
-          <option value="advanced" selected>متقدم <span class="model-badge badge-advanced">+15%</span></option>
-          <option value="pattern">تحليل الأنماط <span class="model-badge badge-pattern">+25%</span></option>
-          <option value="ml">تعلم الآلة <span class="model-badge badge-ml">+35%</span></option>
-        </select>
-      </div>
-      <div class="control-group">
-        <label for="confidenceSensitivity">حساسية الثقة:</label>
-        <div class="slider-container">
-          <input type="range" id="confidenceSensitivity" class="slider" min="30" max="60" value="45">
-          <div class="muted small" id="sensitivityValue">45%</div>
+  <!-- 0.75 pts + 2 -->
+  <div class="pts-area">
+    <span class="pts-number">0.75</span>
+    <span class="pts-plus"> pts +</span>
+    <span class="small-pts">2</span>
+  </div>
+
+  <!-- إحصائيات الجولات (مستوى ثاني) -->
+  <div class="stats-row" id="statsRow">
+    <div class="stats-left">
+      <span id="roundNumber">#16</span>
+      <span>P <span id="playerWins">8</span></span>
+      <span>B <span id="bankerWins">8</span></span>
+      <span>T <span id="ties">0</span></span>
+    </div>
+    <div class="stats-right-pairs">
+      <span>👤 Pair <span id="playerPairs">0</span></span>
+      <span>🏦 Pair <span id="bankerPairs">1</span></span>
+    </div>
+  </div>
+
+  <!-- لوحة الرهانات الرئيسية والرصيد -->
+  <div class="betting-panel">
+    <!-- الجدول الأيسر للاحتمالات -->
+    <div class="odds-box">
+      <div class="grid-odds">
+        <div class="odd-item odd-player">
+          <div class="odd-label">PLAYER</div>
+          <div class="odd-value">1:1</div>
+          <div class="odd-small"></div>
+        </div>
+        <div class="odd-item odd-tie">
+          <div class="odd-label">TIE</div>
+          <div class="odd-value">8:1</div>
+          <div class="odd-small"></div>
+        </div>
+        <div class="odd-item odd-banker">
+          <div class="odd-label">BANKER</div>
+          <div class="odd-value">0.95:1</div>
+          <div class="odd-small"></div>
         </div>
       </div>
-      <div class="control-group">
-        <label for="timeWeighting">المرجحة الزمنية:</label>
-        <select id="timeWeighting">
-          <option value="none">بدون</option>
-          <option value="linear" selected>خطي</option>
-          <option value="exponential">أسّي</option>
-        </select>
+
+      <!-- أزواج 11:1 -->
+      <div class="pair-row">
+        <div class="pair-item"><span>PLAYER PAIR</span> 11:1</div>
+        <div class="pair-item"><span>BANKER PAIR</span> 11:1</div>
+      </div>
+
+      <!-- المبالغ والنسب المئوية (كما في الصورة) -->
+      <div class="money-stats">
+        <div class="money-item">
+          <div><span class="money-amount">MAD 19,879.99</span> <span class="money-percent">66%</span></div>
+          <div class="money-label">PLAYER</div>
+        </div>
+        <div class="money-item">
+          <div><span class="money-amount">MAD 134.12</span> <span class="money-percent">0%</span></div>
+          <div class="money-label">TIE</div>
+        </div>
+        <div class="money-item">
+          <div><span class="money-amount">MAD 9,969.52</span> <span class="money-percent">34%</span></div>
+          <div class="money-label">BANKER</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- الرصيد والرهان الكلي (يمين) -->
+    <div class="balance-box">
+      <div class="balance-line">
+        BALANCE <span id="balanceAmount">MAD 0.75</span>
+      </div>
+      <div class="total-bet">
+        TOTAL BET <span id="totalBetAmount">MAD 0.00</span>
       </div>
     </div>
   </div>
 
-  <!-- قسم تعلم الآلة -->
-  <div class="panel card ml-info-panel">
-    <div class="section-title">⚙️ تعلم الآلة</div>
-    <div class="row">
-      <label class="switch">
-        <input type="checkbox" id="mlToggle" checked>
-        <span class="slider"></span>
-      </label>
-      <span>تفعيل تعلم الآلة</span>
+  <!-- منطقة التنبؤ والتحكم -->
+  <div class="prediction-area">
+    <div style="display: flex; align-items: center; gap: 20px;">
+      <span class="next-prediction" id="predictionText">⚡ BANKER</span>
+      <span class="prediction-desc" id="predictionDetails">(مرجح بنسبة 48%)</span>
     </div>
-    <div class="row">
-      <select id="mlModelSelect" style="flex:1; margin-top: 5px;">
-        <option value="knn">K-الجيران الأقرب</option>
-        <option value="logistic">الانحدار اللوجستي</option>
-        <option value="ensemble" selected>المجمع (جميع النماذج)</option>
-      </select>
-    </div>
-    <div class="row">
-      <div id="mlStatus" class="muted small">
-        <span class="ml-training-indicator ml-training"></span> 
-        النموذج يتعلم من البيانات...
-      </div>
-    </div>
-    <div class="pattern-info">
-      <span id="mlTrainingCount">0</span> عينة تدريب • 
-      <span id="mlAccuracy">0%</span> دقة • 
-      <span id="mlWeight">30%</span> تأثير
-    </div>
+    <button class="btn-round" id="playRoundBtn">▶ جولة جديدة</button>
   </div>
 
-  <!-- إدخال النتائج -->
-  <div class="panel card">
-    <div class="section-title">إدخال النتائج</div>
-    <div class="row">
-      <button class="btn player" id="btnP">لاعب 🔵</button>
-      <button class="btn banker" id="btnB">مصرفي 🔴</button>
-      <button class="btn tie" id="btnT">تعادل 🟢</button>
-    </div>
-    <div class="row">
-      <button class="btn" id="btnUndo" style="flex:1; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2)">تراجع</button>
-    </div>
-    <div class="muted small" style="margin-top: 8px; text-align: center;">
-      أدخل نتيجة كل جولة بالضغط على الزر المناسب
-    </div>
-  </div>
-
-  <!-- الإحصاءات -->
-  <div class="panel card stats">
-    <div class="section-title">الإحصاءات المتقدمة</div>
-    <table class="stat-table">
-      <thead>
-        <tr><th>الجهة</th><th>المجموع</th><th>فوز</th><th>خسارة</th><th>نسبة %</th><th>دقة</th><th>ML دقة</th></tr>
-      </thead>
-      <tbody>
-        <tr><td class="player">لاعب</td><td id="pTotal">0</td><td id="pWin">0</td><td id="pLoss">0</td><td id="pPct">0%</td><td id="pAccuracy">0%</td><td id="pMLAccuracy">0%</td></tr>
-        <tr><td class="banker">مصرفي</td><td id="bTotal">0</td><td id="bWin">0</td><td id="bLoss">0</td><td id="bPct">0%</td><td id="bAccuracy">0%</td><td id="bMLAccuracy">0%</td></tr>
-        <tr><td class="tie">تعادل</td><td id="tTotal">0</td><td id="tWin">0</td><td id="tLoss">0</td><td id="tPct">0%</td><td id="tAccuracy">0%</td><td id="tMLAccuracy">0%</td></tr>
-      </tbody>
-    </table>
-    <div class="pattern-info" id="patternInfo">لا توجد أنماط مكتشفة بعد</div>
-  </div>
-
-  <!-- مؤشر الثقة -->
-  <div class="panel card">
-    <div class="section-title">مؤشر الثقة</div>
-    <div class="muted small" id="confidenceLabel">ثقة منخفضة</div>
-    <div class="confidence-meter">
-      <div class="confidence-fill" id="confidenceFill" style="width: 0%"></div>
-    </div>
-    <div class="pattern-info" id="modelInfo">النموذج: أساسي</div>
-  </div>
-</aside>
-
-<section class="right">
-  <div class="card prediction">
-    <div class="pred-head">
-      <div class="pred-title">توقع الجولة القادمة <span id="predModel" class="model-badge badge-basic">أساسي</span></div>
-      <div class="pred-sub">نظام تنبؤ متعدد النماذج مع خوارزميات تعلم آلة</div>
-    </div>
-
-    <div class="color-legend">
-      <span style="background:linear-gradient(135deg, #3a86ff, #2667cc);">🔵 لاعب</span>
-      <span style="background:linear-gradient(135deg, #ff006e, #cc0058);">🔴 مصرفي</span>
-      <span style="background:linear-gradient(135deg, #38b000, #2c8a00);">🟢 تعادل</span>
-    </div>
-    
-    <canvas id="bigRoad" width="800" height="450"></canvas>
-
-    <div class="prediction-cards">
-      <div class="pred-card player" id="predP">
-        <div>لاعب</div>
-        <div id="predPctP">0%</div>
-        <div class="muted small" id="predTrendP">→</div>
-      </div>
-      <div class="pred-card banker" id="predB">
-        <div>مصرفي</div>
-        <div id="predPctB">0%</div>
-        <div class="muted small" id="predTrendB">→</div>
-      </div>
-      <div class="pred-card tie" id="predT">
-        <div>تعادل</div>
-        <div id="predPctT">0%</div>
-        <div class="muted small" id="predTrendT">→</div>
-      </div>
-    </div>
-
-    <div class="analysis-result">
-      <div class="muted">التوقع الحالي:</div>
-      <div class="final" id="finalCard">—</div>
-      <div class="muted small" id="predictionReason">بانتظار بيانات كافية للتحليل</div>
-      <div class="muted small" id="mlContribution" style="margin-top: 5px; color: #9d4edd;"></div>
-    </div>
-  </div>
-
-  <!-- منحنى التوقعات -->
-  <div class="panel card accuracy-panel">
-    <div class="section-title">منحنى دقة التوقعات المتقدم</div>
-    <div class="accuracy-stats">
-      <div>
-        <div class="accuracy-label">الدقة الحالية</div>
-        <div class="accuracy-value" id="currentAccuracy">0%</div>
-      </div>
-      <div>
-        <div class="accuracy-label">أفضل دقة</div>
-        <div class="accuracy-value" id="bestAccuracy">0%</div>
-      </div>
-      <div>
-        <div class="accuracy-label">متوسط الدقة</div>
-        <div class="accuracy-value" id="averageAccuracy">0%</div>
-      </div>
-      <div>
-        <div class="accuracy-label">دقة ML</div>
-        <div class="accuracy-value" id="mlOverallAccuracy">0%</div>
-      </div>
-    </div>
-    <div class="accuracy-chart-container">
-      <svg id="accuracyChart" width="100%" height="100%"></svg>
-      <div id="accuracyTooltip" class="accuracy-tooltip"></div>
-    </div>
-    <div class="muted small">تتبع دقة توقعاتك مع تحليل أداء النماذج المختلفة</div>
-  </div>
-</section>
-</main>
-
-<footer class="foot card">
-  <div style="flex: 1;">
-    <div>تصميم: Ayoub • النسخة الكاملة مع الحفظ التلقائي</div>
-    <div class="credits small">نظام متعدد النماذج • تعلم آلة • تحليل الأنماط • حفظ تلقائي • مؤشرات متقدمة</div>
-  </div>
-  <div class="data-controls">
-    <button id="btnExport" class="btn" style="background: rgba(59, 130, 246, 0.2); border: 1px solid #3a86ff;">📥 تصدير</button>
-    <button id="btnImport" class="btn" style="background: rgba(16, 185, 129, 0.2); border: 1px solid #10b981;">📤 استيراد</button>
-    <button id="btnClearData" class="btn" style="background: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444;">🗑️ مسح</button>
-  </div>
-  <div class="muted small" style="text-align: center; width: 100%; margin-top: 10px;">
-    <span id="autoSaveStatus">💾 الحفظ التلقائي مفعل</span> • 
-    <span id="dataStats">0 جولة • 0 عينة تدريب</span>
-  </div>
-</footer>
 </div>
 
 <script>
-// ========== خوارزميات تعلم الآلة ==========
+  (function() {
+    // بيانات المحاكاة
+    let round = 16;                // رقم الجولة الحالية
+    let pWins = 8;
+    let bWins = 8;
+    let ties = 0;
+    let pPairs = 0;
+    let bPairs = 1;
 
-class SimpleKNN {
-  constructor(k = 3) {
-    this.k = k;
-    this.trainingData = [];
-    this.predictions = { correct: 0, total: 0 };
-  }
+    // نسب تقريبية حقيقية للباكارات (لاعب 44.6%، بنك 45.8%، تعادل 9.6%)
+    // مع إضافة احتمالية صغيرة للزوج (حوالي 5% لكل زوج تقريباً)
+    function generateRoundResult() {
+      // أولاً: من سيربح الجولة (لاعب/بنك/تعادل)
+      const r = Math.random() * 100;
+      let winner = '';
+      if (r < 44.6) winner = 'PLAYER';
+      else if (r < 44.6 + 45.8) winner = 'BANKER';
+      else winner = 'TIE';
 
-  train(features, labels) {
-    if (!features || !labels || features.length === 0) return;
-    
-    features.forEach((f, i) => {
-      if (f && labels[i]) {
-        this.trainingData.push({
-          features: f,
-          label: labels[i]
-        });
+      // ثانياً: هل حدث زوج لاعب؟ (حوالي 5%، مستقل)
+      const pairPlayer = Math.random() < 0.05;   // 5%
+      const pairBanker = Math.random() < 0.05;   // 5%
+
+      return { winner, pairPlayer, pairBanker };
+    }
+
+    // تحديث واجهة الإحصائيات
+    function updateStats() {
+      document.getElementById('roundNumber').innerText = `#${round}`;
+      document.getElementById('playerWins').innerText = pWins;
+      document.getElementById('bankerWins').innerText = bWins;
+      document.getElementById('ties').innerText = ties;
+      document.getElementById('playerPairs').innerText = pPairs;
+      document.getElementById('bankerPairs').innerText = bPairs;
+    }
+
+    // دالة بسيطة للتنبؤ بناءً على آخر النتائج (ميل إلى الأكثر تكراراً)
+    function generatePrediction() {
+      // إذا كان عدد انتصارات البنك أعلى من اللاعب + هامش، نتوقع بنك
+      // وإذا كانت ties مرتفعة بشكل استثنائي، نأخذها بعين الاعتبار
+      const total = pWins + bWins + ties;
+      if (total === 0) return { prediction: 'PLAYER', confidence: '40%' }; // افتراضي
+
+      const pRatio = pWins / total;
+      const bRatio = bWins / total;
+      const tRatio = ties / total;
+
+      let pred = '';
+      let conf = '';
+
+      // منطق بسيط: الأعلى نسبة هو التوقع مع بعض التعديل
+      if (pRatio > bRatio && pRatio > tRatio) {
+        pred = 'PLAYER';
+        conf = Math.round(pRatio * 80 + 20) + '%'; // شيء بين 50-100
+      } else if (bRatio > pRatio && bRatio > tRatio) {
+        pred = 'BANKER';
+        conf = Math.round(bRatio * 80 + 20) + '%';
+      } else if (tRatio > 0.12) { // إذا التعادل فوق 12% نرجحه
+        pred = 'TIE';
+        conf = Math.round(tRatio * 70 + 15) + '%';
+      } else {
+        // إذا قريبة جداً، نعطي البنك الأفضلية الهامشية (كما في الواقع)
+        pred = bRatio >= pRatio ? 'BANKER' : 'PLAYER';
+        conf = '52%';
       }
-    });
-    
-    // الحفاظ على حجم معقول
-    if (this.trainingData.length > 100) {
-      this.trainingData = this.trainingData.slice(-100);
-    }
-  }
 
-  predict(newFeatures) {
-    if (!newFeatures || this.trainingData.length === 0) {
-      return { P: 33.3, B: 33.3, T: 33.3 };
+      // إضافة إمكانية توقع زوج بشكل عشوائي (للتنبيه)
+      if (Math.random() < 0.25) { // 25% يظهر تلميح زوج
+        if (Math.random() < 0.5) pred = 'PLAYER PAIR';
+        else pred = 'BANKER PAIR';
+        conf = '≈5%';
+      }
+
+      return { prediction: pred, confidence: conf };
     }
 
-    try {
-      const distances = this.trainingData.map((dataPoint, index) => ({
-        index,
-        distance: this.euclideanDistance(newFeatures, dataPoint.features),
-        label: dataPoint.label
-      }));
+    // عرض التنبؤ في الواجهة
+    function updatePredictionDisplay() {
+      const predObj = generatePrediction();
+      const predText = document.getElementById('predictionText');
+      const predDetail = document.getElementById('predictionDetails');
 
-      distances.sort((a, b) => a.distance - b.distance);
-      const nearestNeighbors = distances.slice(0, this.k);
-      
-      const votes = { P: 0, B: 0, T: 0 };
-      nearestNeighbors.forEach(n => {
-        if (n.label in votes) {
-          votes[n.label] += 1 / (n.distance + 1);
-        }
+      let emoji = '';
+      if (predObj.prediction.includes('PLAYER')) emoji = '👤';
+      else if (predObj.prediction.includes('BANKER')) emoji = '🏦';
+      else if (predObj.prediction.includes('TIE')) emoji = '🤝';
+      else emoji = '🎴';
+
+      predText.innerText = `${emoji} ${predObj.prediction}`;
+      predDetail.innerText = `(تقدير ${predObj.confidence})`;
+    }
+
+    // تنفيذ جولة جديدة: تحديث الأرقام وإعادة التوقع
+    function playRound() {
+      const result = generateRoundResult();
+
+      // زيادة رقم الجولة
+      round += 1;
+
+      // تحديث الإحصائيات حسب الفائز
+      if (result.winner === 'PLAYER') pWins += 1;
+      else if (result.winner === 'BANKER') bWins += 1;
+      else if (result.winner === 'TIE') ties += 1;
+
+      // الأزواج
+      if (result.pairPlayer) pPairs += 1;
+      if (result.pairBanker) bPairs += 1;
+
+      // تحديث الأرقام على الشاشة
+      updateStats();
+
+      // ** محاكاة تغير طفيف في المبالغ / الرصيد (لإضفاء الحيوية) **
+      // BALANCE يتغير بشكل عشوائي بين 0.5 و 2.5 درهم
+      const newBalance = (0.5 + Math.random() * 2).toFixed(2);
+      document.getElementById('balanceAmount').innerText = `MAD ${newBalance}`;
+
+      // TOTAL BET يتغير بشكل عشوائي بين 0 و 20
+      const newBet = (Math.random() * 20).toFixed(2);
+      document.getElementById('totalBetAmount').innerText = `MAD ${newBet}`;
+
+      // اختيارياً: تعديل النسب المئوية قليلاً (الأرقام الكبيرة ثابتة ولكن نغير النسب بشكل طفيف)
+      // فقط للعرض: نغير نسب الـ 66%،0%،34% إلى قريب منها عشوائي
+      const playerPercent = (40 + Math.floor(Math.random() * 30)).toString() + '%';
+      const tiePercent = (Math.floor(Math.random() * 8)).toString() + '%';
+      const bankerPercent = (100 - parseInt(playerPercent) - parseInt(tiePercent) > 0 ? (100 - parseInt(playerPercent) - parseInt(tiePercent)) : 30).toString() + '%';
+
+      // كتابة القيم الجديدة في الـ money-stats (بما أنها ثابتة في HTML نعيد تعيينها)
+      const moneyDivs = document.querySelectorAll('.money-item .money-percent');
+      if (moneyDivs.length >= 3) {
+        moneyDivs[0].innerText = playerPercent;
+        moneyDivs[1].innerText = tiePercent;
+        moneyDivs[2].innerText = bankerPercent;
+      }
+
+      // تعديل المبالغ بشكل عشوائي (تبقى قريبة من الأصل)
+      document.querySelectorAll('.money-item .money-amount')[0].innerHTML = `MAD ${(15000 + Math.random()*8000).toFixed(2)}`;
+      document.querySelectorAll('.money-item .money-amount')[1].innerHTML = `MAD ${(50 + Math.random()*200).toFixed(2)}`;
+      document.querySelectorAll('.money-item .money-amount')[2].innerHTML = `MAD ${(7000 + Math.random()*4000).toFixed(2)}`;
+
+      // تحديث pts (الرقم الصغير 0.75 pts + 2) يتغير بشكل خفيف
+      const newPts = (0.5 + Math.random() * 1.5).toFixed(2);
+      document.querySelector('.pts-number').innerText = newPts;
+      const newSmall = Math.floor(Math.random() * 5) + 1;
+      document.querySelector('.small-pts').innerText = newSmall;
+
+      // تجديد التنبؤ
+      updatePredictionDisplay();
+    }
+
+    // تهيئة أولى + ربط الزر
+    window.addEventListener('load', function() {
+      updateStats();
+      updatePredictionDisplay();
+
+      document.getElementById('playRoundBtn').addEventListener('click', function() {
+        playRound();
       });
 
-      const total = votes.P + votes.B + votes.T;
-      if (total === 0) return { P: 33.3, B: 33.3, T: 33.3 };
-      
-      return {
-        P: (votes.P / total) * 100,
-        B: (votes.B / total) * 100,
-        T: (votes.T / total) * 100
-      };
-    } catch (e) {
-      console.error('KNN prediction error:', e);
-      return { P: 33.3, B: 33.3, T: 33.3 };
-    }
-  }
-
-  euclideanDistance(a, b) {
-    if (!a || !b || a.length !== b.length) return 1000;
-    
-    let sum = 0;
-    for (let i = 0; i < a.length; i++) {
-      sum += Math.pow((a[i] || 0) - (b[i] || 0), 2);
-    }
-    return Math.sqrt(sum);
-  }
-
-  updateAccuracy(prediction, actual) {
-    this.predictions.total++;
-    if (prediction === actual) this.predictions.correct++;
-  }
-
-  getAccuracy() {
-    return this.predictions.total > 0 ? 
-      (this.predictions.correct / this.predictions.total) * 100 : 0;
-  }
-}
-
-class SimpleLogisticRegression {
-  constructor() {
-    this.weights = { P: 0.1, B: 0.1, T: 0.1 };
-    this.bias = 0;
-    this.learningRate = 0.05;
-    this.predictions = { correct: 0, total: 0 };
-  }
-
-  sigmoid(x) {
-    return 1 / (1 + Math.exp(-x));
-  }
-
-  trainOne(features, label) {
-    if (!features || !label || features.length === 0) return;
-    
-    try {
-      const labelNum = { P: 0, B: 1, T: 2 }[label];
-      if (labelNum === undefined) return;
-      
-      const score = features[0] * this.weights.P + features[1] * this.weights.B + features[2] * this.weights.T + this.bias;
-      const prediction = this.sigmoid(score);
-      const error = (labelNum / 2) - prediction;
-      
-      this.weights.P += this.learningRate * error * features[0];
-      this.weights.B += this.learningRate * error * features[1];
-      this.weights.T += this.learningRate * error * features[2];
-      this.bias += this.learningRate * error;
-    } catch (e) {
-      console.error('Logistic regression training error:', e);
-    }
-  }
-
-  predict(features) {
-    if (!features || features.length === 0) {
-      return { P: 33.3, B: 33.3, T: 33.3 };
-    }
-    
-    try {
-      const pScore = this.sigmoid(features[0] * this.weights.P + this.bias);
-      const bScore = this.sigmoid(features[1] * this.weights.B + this.bias);
-      const tScore = this.sigmoid(features[2] * this.weights.T + this.bias);
-      
-      const total = pScore + bScore + tScore;
-      if (total === 0) return { P: 33.3, B: 33.3, T: 33.3 };
-      
-      return {
-        P: (pScore / total) * 100,
-        B: (bScore / total) * 100,
-        T: (tScore / total) * 100
-      };
-    } catch (e) {
-      console.error('Logistic regression prediction error:', e);
-      return { P: 33.3, B: 33.3, T: 33.3 };
-    }
-  }
-
-  updateAccuracy(prediction, actual) {
-    this.predictions.total++;
-    if (prediction === actual) this.predictions.correct++;
-  }
-
-  getAccuracy() {
-    return this.predictions.total > 0 ? 
-      (this.predictions.correct / this.predictions.total) * 100 : 0;
-  }
-}
-
-class EnsembleModel {
-  constructor() {
-    this.models = {
-      knn: new SimpleKNN(5),
-      logistic: new SimpleLogisticRegression()
-    };
-    this.weights = { knn: 0.5, logistic: 0.5 };
-    this.predictions = { correct: 0, total: 0 };
-  }
-
-  train(features, label) {
-    if (!features || !label) return;
-    
-    try {
-      this.models.knn.train([features], [label]);
-      this.models.logistic.trainOne(features, label);
-      
-      const knnAcc = this.models.knn.getAccuracy();
-      const logisticAcc = this.models.logistic.getAccuracy();
-      
-      const totalAcc = knnAcc + logisticAcc;
-      if (totalAcc > 0) {
-        this.weights.knn = knnAcc / totalAcc;
-        this.weights.logistic = logisticAcc / totalAcc;
-      }
-    } catch (e) {
-      console.error('Ensemble training error:', e);
-    }
-  }
-
-  predict(features) {
-    if (!features) return { P: 33.3, B: 33.3, T: 33.3 };
-    
-    try {
-      const knnPred = this.models.knn.predict(features);
-      const logisticPred = this.models.logistic.predict(features);
-      
-      return {
-        P: (knnPred.P * this.weights.knn + logisticPred.P * this.weights.logistic),
-        B: (knnPred.B * this.weights.knn + logisticPred.B * this.weights.logistic),
-        T: (knnPred.T * this.weights.knn + logisticPred.T * this.weights.logistic)
-      };
-    } catch (e) {
-      console.error('Ensemble prediction error:', e);
-      return { P: 33.3, B: 33.3, T: 33.3 };
-    }
-  }
-
-  updateAccuracy(prediction, actual) {
-    this.predictions.total++;
-    if (prediction === actual) this.predictions.correct++;
-    
-    this.models.knn.updateAccuracy(prediction, actual);
-    this.models.logistic.updateAccuracy(prediction, actual);
-  }
-
-  getAccuracy() {
-    return this.predictions.total > 0 ? 
-      (this.predictions.correct / this.predictions.total) * 100 : 0;
-  }
-}
-
-class BaccaratMachineLearning {
-  constructor() {
-    this.models = {
-      knn: new SimpleKNN(5),
-      logistic: new SimpleLogisticRegression(),
-      ensemble: new EnsembleModel()
-    };
-    this.activeModel = 'ensemble';
-    this.featureHistory = [];
-    this.mlPredictions = [];
-    this.isEnabled = true;
-    this.trainingData = [];
-  }
-
-  extractFeatures(rounds, windowSize) {
-    if (!rounds || rounds.length < windowSize) return null;
-    
-    try {
-      const recent = rounds.slice(-windowSize);
-      const pRatio = recent.filter(r => r === 'P').length / windowSize;
-      const bRatio = recent.filter(r => r === 'B').length / windowSize;
-      const tRatio = recent.filter(r => r === 'T').length / windowSize;
-      
-      let pStreak = 0, bStreak = 0;
-      for (let i = recent.length - 1; i >= 0; i--) {
-        if (recent[i] === 'P') pStreak++; else break;
-      }
-      for (let i = recent.length - 1; i >= 0; i--) {
-        if (recent[i] === 'B') bStreak++; else break;
-      }
-      
-      const volatility = this.calculateVolatility(recent);
-      const patternType = this.getPatternType(recent);
-      
-      return [
-        pRatio, bRatio, tRatio,
-        pStreak / windowSize,
-        bStreak / windowSize,
-        recent[recent.length - 1] === recent[recent.length - 2] ? 1 : 0,
-        volatility,
-        patternType
-      ];
-    } catch (e) {
-      console.error('Feature extraction error:', e);
-      return null;
-    }
-  }
-
-  calculateVolatility(rounds) {
-    if (rounds.length < 2) return 0;
-    let changes = 0;
-    for (let i = 1; i < rounds.length; i++) {
-      if (rounds[i] !== rounds[i-1]) changes++;
-    }
-    return changes / (rounds.length - 1);
-  }
-
-  getPatternType(rounds) {
-    if (rounds.length < 3) return 0;
-    const lastThree = rounds.slice(-3);
-    if (lastThree[0] === lastThree[1] && lastThree[1] === lastThree[2]) return 1;
-    if (lastThree[0] !== lastThree[1] && lastThree[1] !== lastThree[2]) return 2;
-    return 0;
-  }
-
-  updateModel(rounds, windowSize, actualResult) {
-    if (!this.isEnabled || !rounds || !actualResult) return;
-    
-    const features = this.extractFeatures(rounds, windowSize);
-    if (!features) return;
-    
-    try {
-      this.featureHistory.push({ features, label: actualResult, timestamp: Date.now() });
-      
-      if (this.featureHistory.length > 100) {
-        this.featureHistory = this.featureHistory.slice(-100);
-      }
-      
-      if (this.featureHistory.length > 5) {
-        const trainingBatch = this.featureHistory.slice(-10);
-        
-        trainingBatch.forEach(({ features, label }) => {
-          if (features && label) {
-            this.models.knn.train([features], [label]);
-            this.models.logistic.trainOne(features, label);
-            this.models.ensemble.train(features, label);
-          }
-        });
-      }
-    } catch (e) {
-      console.error('ML update error:', e);
-    }
-  }
-
-  predict(rounds, windowSize) {
-    if (!this.isEnabled || !rounds || rounds.length < windowSize) {
-      return null;
-    }
-    
-    const features = this.extractFeatures(rounds, windowSize);
-    if (!features) return null;
-    
-    try {
-      let prediction;
-      switch(this.activeModel) {
-        case 'knn':
-          prediction = this.models.knn.predict(features);
-          break;
-        case 'logistic':
-          prediction = this.models.logistic.predict(features);
-          break;
-        case 'ensemble':
-        default:
-          prediction = this.models.ensemble.predict(features);
-          break;
-      }
-      
-      if (prediction) {
-        this.mlPredictions.push({
-          features,
-          prediction: this.getPredictedClass(prediction),
-          timestamp: Date.now()
-        });
-        
-        if (this.mlPredictions.length > 50) {
-          this.mlPredictions = this.mlPredictions.slice(-50);
-        }
-      }
-      
-      return prediction;
-    } catch (e) {
-      console.error('ML prediction error:', e);
-      return null;
-    }
-  }
-
-  getPredictedClass(prediction) {
-    if (!prediction) return null;
-    const entries = Object.entries(prediction);
-    if (entries.length === 0) return null;
-    
-    entries.sort((a, b) => b[1] - a[1]);
-    return entries[0][0];
-  }
-
-  getModelAccuracy(modelName) {
-    const model = this.models[modelName];
-    return model && model.getAccuracy ? model.getAccuracy() : 0;
-  }
-
-  getTrainingDataCount() {
-    return this.featureHistory.length;
-  }
-
-  getMLWeight() {
-    const minWeight = 0.1;
-    const maxWeight = 0.6;
-    const dataPoints = this.getTrainingDataCount();
-    const weight = minWeight + (maxWeight - minWeight) * (dataPoints / 100);
-    return Math.min(weight, maxWeight);
-  }
-
-  enable() {
-    this.isEnabled = true;
-  }
-
-  disable() {
-    this.isEnabled = false;
-  }
-
-  setActiveModel(modelName) {
-    if (this.models[modelName]) {
-      this.activeModel = modelName;
-    }
-  }
-
-  reset() {
-    this.models = {
-      knn: new SimpleKNN(5),
-      logistic: new SimpleLogisticRegression(),
-      ensemble: new EnsembleModel()
-    };
-    this.featureHistory = [];
-    this.mlPredictions = [];
-    this.trainingData = [];
-  }
-
-  getStats() {
-    return {
-      trainingCount: this.featureHistory.length,
-      accuracy: this.getModelAccuracy(this.activeModel),
-      weight: this.getMLWeight(),
-      isEnabled: this.isEnabled,
-      activeModel: this.activeModel
-    };
-  }
-}
-
-// ========== نظام حفظ البيانات ==========
-
-class DataManager {
-  constructor() {
-    this.storageKey = 'baccaratPro_v3';
-    this.autoSaveInterval = null;
-    this.lastSaveTime = null;
-    this.isSaving = false;
-  }
-
-  saveAllData() {
-    if (this.isSaving) return false;
-    
-    this.isSaving = true;
-    try {
-      const saveData = {
-        state: {
-          rounds: state.rounds,
-          count: state.count,
-          win: state.win,
-          loss: state.loss,
-          windowSize: state.windowSize,
-          analysisMode: state.analysisMode,
-          confidenceThreshold: state.confidenceThreshold,
-          timeWeighting: state.timeWeighting,
-          useML: state.useML,
-          mlModel: state.mlModel,
-          modelPerformance: state.modelPerformance,
-          previousPredictions: state.previousPredictions,
-          lastPrediction: state.lastPrediction
-        },
-        history: {
-          accuracyHistory: state.accuracyHistory,
-          predictionsHistory: state.predictionsHistory
-        },
-        mlData: {
-          featureHistory: state.ml.featureHistory,
-          mlPredictions: state.ml.mlPredictions,
-          activeModel: state.ml.activeModel,
-          isEnabled: state.ml.isEnabled
-        },
-        meta: {
-          version: '3.0',
-          lastSave: new Date().toISOString(),
-          totalRounds: state.rounds.length,
-          sessionStart: this.getSessionStartTime()
-        }
-      };
-
-      localStorage.setItem(this.storageKey, JSON.stringify(saveData));
-      this.lastSaveTime = new Date();
-      this.updateSaveStatus(true);
-      return true;
-    } catch (e) {
-      console.error('Error saving data:', e);
-      this.updateSaveStatus(false, 'خطأ في الحفظ');
-      return false;
-    } finally {
-      this.isSaving = false;
-    }
-  }
-
-  loadAllData() {
-    try {
-      const saved = localStorage.getItem(this.storageKey);
-      if (!saved) {
-        this.updateSaveStatus(true, 'بدون بيانات سابقة');
-        return false;
-      }
-
-      const data = JSON.parse(saved);
-      
-      // تحميل بيانات الحالة
-      if (data.state) {
-        state.rounds = Array.isArray(data.state.rounds) ? data.state.rounds : [];
-        state.count = data.state.count || { P: 0, B: 0, T: 0 };
-        state.win = data.state.win || { P: 0, B: 0, T: 0 };
-        state.loss = data.state.loss || { P: 0, B: 0, T: 0 };
-        state.windowSize = data.state.windowSize || 8;
-        state.analysisMode = data.state.analysisMode || 'advanced';
-        state.confidenceThreshold = data.state.confidenceThreshold || 45;
-        state.timeWeighting = data.state.timeWeighting || 'linear';
-        state.useML = data.state.useML !== false;
-        state.mlModel = data.state.mlModel || 'ensemble';
-        state.modelPerformance = data.state.modelPerformance || { basic: 0, advanced: 0, pattern: 0, ml: 0 };
-        state.previousPredictions = data.state.previousPredictions || { P: 0, B: 0, T: 0 };
-        state.lastPrediction = data.state.lastPrediction || null;
-      }
-
-      // تحميل التاريخ
-      if (data.history) {
-        state.accuracyHistory = Array.isArray(data.history.accuracyHistory) ? data.history.accuracyHistory : [];
-        state.predictionsHistory = Array.isArray(data.history.predictionsHistory) ? data.history.predictionsHistory : [];
-      }
-
-      // تحميل ML
-      if (data.mlData) {
-        state.ml.featureHistory = Array.isArray(data.mlData.featureHistory) ? data.mlData.featureHistory : [];
-        state.ml.mlPredictions = Array.isArray(data.mlData.mlPredictions) ? data.mlData.mlPredictions : [];
-        state.ml.activeModel = data.mlData.activeModel || 'ensemble';
-        state.ml.isEnabled = data.mlData.isEnabled !== false;
-        
-        // إعادة تدريب النماذج
-        setTimeout(() => {
-          if (state.ml.featureHistory.length > 0) {
-            state.ml.featureHistory.forEach((item, index) => {
-              if (index > 0 && item.features && item.label) {
-                state.ml.models.knn.train([item.features], [item.label]);
-                state.ml.models.logistic.trainOne(item.features, item.label);
-                state.ml.models.ensemble.train(item.features, item.label);
-              }
-            });
-          }
-        }, 500);
-      }
-
-      this.lastSaveTime = new Date();
-      this.updateSaveStatus(true, 'تم تحميل البيانات');
-      return true;
-    } catch (e) {
-      console.error('Error loading data:', e);
-      this.updateSaveStatus(false, 'خطأ في التحميل');
-      return false;
-    }
-  }
-
-  exportData() {
-    try {
-      const exportData = {
-        state: {
-          rounds: state.rounds,
-          count: state.count,
-          win: state.win,
-          loss: state.loss,
-          windowSize: state.windowSize
-        },
-        ml: {
-          featureHistory: state.ml.featureHistory,
-          trainingCount: state.ml.getTrainingDataCount()
-        },
-        meta: {
-          exportDate: new Date().toISOString(),
-          version: 'AYOUB_BACCARAT_PRO_v3.0',
-          totalRounds: state.rounds.length
-        }
-      };
-
-      const dataStr = JSON.stringify(exportData, null, 2);
-      const dataBlob = new Blob([dataStr], { type: 'application/json' });
-      const url = URL.createObjectURL(dataBlob);
-      
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `baccarat_data_${new Date().toISOString().split('T')[0]}.json`;
-      document.body.appendChild(a);
-      a.click();
-      
-      setTimeout(() => {
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-      }, 100);
-      
-      alert(`✅ تم تصدير ${state.rounds.length} جولة و ${state.ml.featureHistory.length} عينة تدريب`);
-    } catch (e) {
-      alert('❌ خطأ في تصدير البيانات: ' + e.message);
-    }
-  }
-
-  importData(file) {
-    const reader = new FileReader();
-    
-    reader.onload = (e) => {
-      try {
-        const importedData = JSON.parse(e.target.result);
-        
-        if (!confirm(`هل تريد استيراد ${importedData.state?.rounds?.length || 0} جولة؟\nسيتم مسح البيانات الحالية.`)) {
-          return;
-        }
-
-        // مسح البيانات الحالية
-        resetAll();
-        
-        // تحميل البيانات المستوردة
-        if (importedData.state) {
-          state.rounds = Array.isArray(importedData.state.rounds) ? importedData.state.rounds : [];
-          state.count = importedData.state.count || { P: 0, B: 0, T: 0 };
-          state.win = importedData.state.win || { P: 0, B: 0, T: 0 };
-          state.loss = importedData.state.loss || { P: 0, B: 0, T: 0 };
-          state.windowSize = importedData.state.windowSize || 8;
-          
-          // حساب الإحصاءات من الجولات
-          state.rounds.forEach(round => {
-            state.count[round]++;
-          });
-        }
-
-        if (importedData.ml && Array.isArray(importedData.ml.featureHistory)) {
-          state.ml.featureHistory = importedData.ml.featureHistory;
-          
-          // إعادة تدريب ML
-          setTimeout(() => {
-            if (state.ml.featureHistory.length > 0) {
-              state.ml.featureHistory.forEach((item, index) => {
-                if (index > 0 && item.features && item.label) {
-                  state.ml.models.knn.train([item.features], [item.label]);
-                  state.ml.models.logistic.trainOne(item.features, item.label);
-                  state.ml.models.ensemble.train(item.features, item.label);
-                }
-              });
-            }
-          }, 500);
-        }
-
-        // تحديث الواجهة
-        updateAll();
-        updateMLStatus();
-        this.saveAllData();
-        
-        alert(`✅ تم استيراد ${state.rounds.length} جولة بنجاح!`);
-      } catch (error) {
-        alert('❌ خطأ في تنسيق الملف: ' + error.message);
-      }
-    };
-    
-    reader.onerror = () => {
-      alert('❌ خطأ في قراءة الملف');
-    };
-    
-    reader.readAsText(file);
-  }
-
-  clearAllData() {
-    if (confirm('⚠️ هل أنت متأكد من مسح جميع البيانات؟\nلا يمكن التراجع عن هذا الإجراء.')) {
-      localStorage.removeItem(this.storageKey);
-      resetAll();
-      alert('✅ تم مسح جميع البيانات.');
-    }
-  }
-
-  startAutoSave(intervalSeconds = 30) {
-    if (this.autoSaveInterval) {
-      clearInterval(this.autoSaveInterval);
-    }
-    
-    this.autoSaveInterval = setInterval(() => {
-      if (state.rounds.length > 0 && !this.isSaving) {
-        this.saveAllData();
-      }
-    }, intervalSeconds * 1000);
-    
-    // حفظ عند إغلاق الصفحة
-    window.addEventListener('beforeunload', () => {
-      if (!this.isSaving) {
-        this.saveAllData();
-      }
+      // إضافة تأثير بسيط: كل 25 ثانية جولة تلقائية (اختياري)
+      // setInterval(playRound, 25000);  // لو أردنا تلقائي
     });
-  }
 
-  updateSaveStatus(success, message = '') {
-    const statusEl = document.getElementById('autoSaveStatus');
-    if (statusEl) {
-      if (success) {
-        const timeStr = this.lastSaveTime ? 
-          `💾 آخر حفظ: ${this.lastSaveTime.toLocaleTimeString('ar-EG', {hour: '2-digit', minute:'2-digit'})}` : 
-          '💾 الحفظ التلقائي مفعل';
-        statusEl.textContent = message || timeStr;
-        statusEl.style.color = '#38b000';
-      } else {
-        statusEl.textContent = message || '❌ خطأ في الحفظ';
-        statusEl.style.color = '#ff006e';
-      }
-    }
-  }
-
-  getSessionStartTime() {
-    const saved = localStorage.getItem('session_start');
-    if (!saved) {
-      const startTime = new Date().toISOString();
-      localStorage.setItem('session_start', startTime);
-      return startTime;
-    }
-    return saved;
-  }
-
-  updateDataStats() {
-    const statsEl = document.getElementById('dataStats');
-    if (statsEl) {
-      statsEl.textContent = `${state.rounds.length} جولة • ${state.ml.featureHistory.length} عينة تدريب`;
-    }
-  }
-}
-
-// ========== الحالة العامة للتطبيق ==========
-const state = {
-  rounds: [],
-  windowSize: 8,
-  count: { P: 0, B: 0, T: 0 },
-  win: { P: 0, B: 0, T: 0 },
-  loss: { P: 0, B: 0, T: 0 },
-  lastPrediction: null,
-  accuracyHistory: [],
-  predictionsHistory: [],
-  analysisMode: 'advanced',
-  confidenceThreshold: 45,
-  timeWeighting: 'linear',
-  modelPerformance: { basic: 0, advanced: 0, pattern: 0, ml: 0 },
-  previousPredictions: { P: 0, B: 0, T: 0 },
-  ml: new BaccaratMachineLearning(),
-  useML: true,
-  mlModel: 'ensemble'
-};
-
-// إنشاء مدير البيانات
-const dataManager = new DataManager();
-
-// ========== الوظائف المساعدة ==========
-const el = id => document.getElementById(id);
-
-// ========== الوظائف الرئيسية ==========
-
-function init() {
-  console.log('Initializing Baccarat Pro...');
-  
-  // تحميل البيانات المحفوظة
-  dataManager.loadAllData();
-  
-  // إعداد عناصر الواجهة
-  el('windowSize').value = state.windowSize;
-  
-  el('applyWindow').onclick = () => {
-    const v = parseInt(el('windowSize').value);
-    if (v >= 5 && v <= 15) {
-      state.windowSize = v;
-      updateAll();
-      showToast(`تم تغيير نافذة التحليل إلى ${v} جولات`);
-    } else {
-      showToast('النافذة يجب أن تكون بين 5 و 15', 'error');
-    }
-  };
-
-  el('analysisMode').value = state.analysisMode;
-  el('analysisMode').onchange = (e) => {
-    state.analysisMode = e.target.value;
-    updateAll();
-    showToast(`تم تغيير نمط التحليل إلى ${getModeName(state.analysisMode)}`);
-  };
-
-  el('confidenceSensitivity').value = state.confidenceThreshold;
-  el('confidenceSensitivity').oninput = (e) => {
-    state.confidenceThreshold = parseInt(e.target.value);
-    el('sensitivityValue').textContent = state.confidenceThreshold + '%';
-    updateAll();
-  };
-
-  el('timeWeighting').value = state.timeWeighting;
-  el('timeWeighting').onchange = (e) => {
-    state.timeWeighting = e.target.value;
-    updateAll();
-    showToast(`تم تغيير المرجحة الزمنية إلى ${getWeightingName(state.timeWeighting)}`);
-  };
-
-  // إعدادات تعلم الآلة
-  el('mlToggle').checked = state.useML;
-  el('mlToggle').onchange = (e) => {
-    state.useML = e.target.checked;
-    state.ml.isEnabled = state.useML;
-    updateMLStatus();
-    updateAll();
-    showToast(`تعلم الآلة ${state.useML ? 'مفعل' : 'معطل'}`);
-  };
-
-  el('mlModelSelect').value = state.mlModel;
-  el('mlModelSelect').onchange = (e) => {
-    state.mlModel = e.target.value;
-    state.ml.setActiveModel(state.mlModel);
-    updateMLStatus();
-    updateAll();
-    showToast(`تم تغيير نموذج ML إلى ${getMLModelName(state.mlModel)}`);
-  };
-
-  // أزرار الإدخال
-  el('btnP').onclick = () => pushRound('P');
-  el('btnB').onclick = () => pushRound('B');
-  el('btnT').onclick = () => pushRound('T');
-  el('btnUndo').onclick = undoRound;
-  el('btnReset').onclick = resetAll;
-  
-  // أزرار البيانات
-  el('btnExport').onclick = () => dataManager.exportData();
-  el('btnImport').onclick = () => {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = '.json';
-    input.onchange = (e) => {
-      if (e.target.files && e.target.files[0]) {
-        dataManager.importData(e.target.files[0]);
-      }
-    };
-    input.click();
-  };
-  el('btnClearData').onclick = () => dataManager.clearAllData();
-  
-  // تبديل الوضع
-  el('themeToggle').onclick = toggleTheme;
-  
-  // تعيين الوضع الافتراضي
-  if (!document.documentElement.hasAttribute('data-theme')) {
-    document.documentElement.setAttribute('data-theme', 'dark');
-  }
-  
-  // بدء الحفظ التلقائي
-  dataManager.startAutoSave(30);
-  
-  // تحديث الواجهة
-  updateAll();
-  updateMLStatus();
-  dataManager.updateDataStats();
-  
-  console.log('Initialization complete');
-}
-
-function toggleTheme() {
-  const currentTheme = document.documentElement.getAttribute('data-theme');
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', newTheme);
-  el('themeToggle').textContent = newTheme === 'dark' ? '🌚' : '🌕';
-  updateAccuracyChart();
-  showToast(`تم التبديل إلى الوضع ${newTheme === 'dark' ? 'الليلي' : 'النهاري'}`);
-}
-
-function getModeName(mode) {
-  const names = {
-    basic: 'أساسي',
-    advanced: 'متقدم',
-    pattern: 'تحليل الأنماط',
-    ml: 'تعلم الآلة'
-  };
-  return names[mode] || mode;
-}
-
-function getWeightingName(weighting) {
-  const names = {
-    none: 'بدون',
-    linear: 'خطي',
-    exponential: 'أسّي'
-  };
-  return names[weighting] || weighting;
-}
-
-function getMLModelName(model) {
-  const names = {
-    knn: 'K-الجيران الأقرب',
-    logistic: 'الانحدار اللوجستي',
-    ensemble: 'المجمع'
-  };
-  return names[model] || model;
-}
-
-function showToast(message, type = 'success') {
-  // إنشاء عنصر التوست
-  const toast = document.createElement('div');
-  toast.textContent = message;
-  toast.style.cssText = `
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: ${type === 'error' ? '#ef4444' : '#10b981'};
-    color: white;
-    padding: 12px 20px;
-    border-radius: 8px;
-    z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    animation: slideIn 0.3s ease-out;
-  `;
-  
-  document.body.appendChild(toast);
-  
-  // إزالة التوست بعد 3 ثواني
-  setTimeout(() => {
-    toast.style.animation = 'slideOut 0.3s ease-in';
-    setTimeout(() => {
-      if (toast.parentNode) {
-        document.body.removeChild(toast);
-      }
-    }, 300);
-  }, 3000);
-}
-
-// إضافة أنيميشن للتوست
-const style = document.createElement('style');
-style.textContent = `
-@keyframes slideIn {
-  from { transform: translateX(100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
-}
-@keyframes slideOut {
-  from { transform: translateX(0); opacity: 1; }
-  to { transform: translateX(100%); opacity: 0; }
-}
-`;
-document.head.appendChild(style);
-
-// ========== خوارزميات التحليل ==========
-
-function frequencyAnalysis(rounds) {
-  if (!rounds || rounds.length === 0) {
-    return { P: 33.3, B: 33.3, T: 33.3 };
-  }
-  
-  const counts = { P: 0, B: 0, T: 0 };
-  rounds.forEach(x => {
-    if (x in counts) counts[x]++;
-  });
-  
-  const total = rounds.length;
-  return {
-    P: (counts.P / total) * 100,
-    B: (counts.B / total) * 100,
-    T: (counts.T / total) * 100
-  };
-}
-
-function patternAnalysis(rounds) {
-  if (!rounds || rounds.length < 3) {
-    return { P: 0, B: 0, T: 0 };
-  }
-
-  const patterns = {};
-  for (let i = 2; i < rounds.length; i++) {
-    const pattern = rounds.slice(i-2, i).join('');
-    const next = rounds[i];
-    
-    if (!patterns[pattern]) {
-      patterns[pattern] = { P: 0, B: 0, T: 0, total: 0 };
-    }
-    
-    if (next in patterns[pattern]) {
-      patterns[pattern][next]++;
-      patterns[pattern].total++;
-    }
-  }
-
-  if (rounds.length >= 2) {
-    const lastPattern = rounds.slice(-2).join('');
-    const patternData = patterns[lastPattern];
-    
-    if (patternData && patternData.total >= 1) {
-      return {
-        P: (patternData.P / patternData.total) * 100,
-        B: (patternData.B / patternData.total) * 100,
-        T: (patternData.T / patternData.total) * 100
-      };
-    }
-  }
-
-  return { P: 0, B: 0, T: 0 };
-}
-
-function applyTimeWeighting(rounds, basePrediction) {
-  if (state.timeWeighting === 'none' || !rounds || rounds.length < 2) {
-    return basePrediction;
-  }
-
-  const n = rounds.length;
-  let weightFactor = 1;
-  
-  if (state.timeWeighting === 'linear') {
-    weightFactor = 0.8 + (0.4 * (1 / n));
-  } else if (state.timeWeighting === 'exponential') {
-    weightFactor = 0.7 + (0.6 * Math.pow(0.9, n));
-  }
-
-  return {
-    P: basePrediction.P * weightFactor,
-    B: basePrediction.B * weightFactor,
-    T: basePrediction.T * weightFactor
-  };
-}
-
-function enhancedPredict() {
-  const n = Math.min(state.windowSize, state.rounds.length);
-  const recent = state.rounds.slice(-n);
-  
-  if (recent.length === 0) {
-    return { 
-      P: 33.3, B: 33.3, T: 33.3, 
-      final: '—',
-      confidence: 0,
-      model: 'basic',
-      mlContribution: 0
-    };
-  }
-
-  let basePrediction, patternBoost, finalPrediction;
-  let modelUsed = state.analysisMode;
-  let mlContribution = 0;
-
-  switch(state.analysisMode) {
-    case 'basic':
-      basePrediction = frequencyAnalysis(recent);
-      finalPrediction = basePrediction;
-      break;
-      
-    case 'advanced':
-      basePrediction = frequencyAnalysis(recent);
-      patternBoost = patternAnalysis(recent);
-      
-      finalPrediction = {
-        P: basePrediction.P * 0.7 + patternBoost.P * 0.3,
-        B: basePrediction.B * 0.7 + patternBoost.B * 0.3,
-        T: basePrediction.T * 0.7 + patternBoost.T * 0.3
-      };
-      break;
-      
-    case 'pattern':
-      basePrediction = frequencyAnalysis(recent);
-      patternBoost = patternAnalysis(recent);
-      
-      finalPrediction = {
-        P: basePrediction.P * 0.4 + patternBoost.P * 0.6,
-        B: basePrediction.B * 0.4 + patternBoost.B * 0.6,
-        T: basePrediction.T * 0.4 + patternBoost.T * 0.6
-      };
-      break;
-      
-    case 'ml':
-      basePrediction = frequencyAnalysis(recent);
-      
-      let mlPrediction = state.ml.predict(state.rounds, state.windowSize);
-      if (!mlPrediction) {
-        mlPrediction = { P: 33.3, B: 33.3, T: 33.3 };
-      }
-      
-      const mlWeight = state.ml.getMLWeight();
-      mlContribution = mlWeight * 100;
-      
-      finalPrediction = {
-        P: basePrediction.P * (1 - mlWeight) + mlPrediction.P * mlWeight,
-        B: basePrediction.B * (1 - mlWeight) + mlPrediction.B * mlWeight,
-        T: basePrediction.T * (1 - mlWeight) + mlPrediction.T * mlWeight
-      };
-      break;
-  }
-
-  finalPrediction = applyTimeWeighting(recent, finalPrediction);
-
-  const sum = finalPrediction.P + finalPrediction.B + finalPrediction.T;
-  if (sum > 0) {
-    finalPrediction.P = (finalPrediction.P / sum) * 100;
-    finalPrediction.B = (finalPrediction.B / sum) * 100;
-    finalPrediction.T = (finalPrediction.T / sum) * 100;
-  }
-
-  const entries = Object.entries(finalPrediction);
-  const sorted = entries.sort((a, b) => b[1] - a[1]);
-  
-  const confidence = sorted[0][1] - (sorted[1] ? sorted[1][1] : 0);
-  let final = sorted[0][0];
-  
-  if (sorted[0][1] < state.confidenceThreshold) {
-    final = '—';
-  }
-
-  return {
-    P: finalPrediction.P.toFixed(1),
-    B: finalPrediction.B.toFixed(1),
-    T: finalPrediction.T.toFixed(1),
-    final,
-    confidence: Math.min(100, Math.max(0, confidence * 2)),
-    model: modelUsed,
-    mlContribution: mlContribution.toFixed(1)
-  };
-}
-
-function pushRound(r) {
-  if (!['P', 'B', 'T'].includes(r)) return;
-  
-  const pred = enhancedPredict();
-  state.lastPrediction = pred.final;
-  
-  state.ml.updateModel(state.rounds, state.windowSize, r);
-  
-  state.rounds.push(r);
-  state.count[r]++;
-  
-  if (state.lastPrediction !== '—' && state.lastPrediction !== null) {
-    const didWin = (r === state.lastPrediction);
-    
-    if (didWin) {
-      state.win[state.lastPrediction]++;
-      state.modelPerformance[state.analysisMode] = (state.modelPerformance[state.analysisMode] || 0) + 1;
-    } else {
-      state.loss[state.lastPrediction] = (state.loss[state.lastPrediction] || 0) + 1;
-    }
-  }
-  
-  updateAccuracyData(r);
-  
-  const newPred = enhancedPredict();
-  updatePredictionDisplay(newPred);
-  showResult(r, newPred, state.lastPrediction === r);
-  updateAll();
-  dataManager.saveAllData();
-  dataManager.updateDataStats();
-  
-  // إشعار صوتي بسيط
-  playSound('click');
-}
-
-function undoRound() {
-  if (state.rounds.length === 0) return;
-  
-  const lastRound = state.rounds.pop();
-  state.count[lastRound] = Math.max(0, state.count[lastRound] - 1);
-  
-  if (state.rounds.length > 0) {
-    const previousPrediction = enhancedPredict();
-    if (lastRound === previousPrediction.final) {
-      state.win[previousPrediction.final] = Math.max(0, state.win[previousPrediction.final] - 1);
-      state.modelPerformance[state.analysisMode] = Math.max(0, state.modelPerformance[state.analysisMode] - 1);
-    } else {
-      state.loss[previousPrediction.final] = Math.max(0, state.loss[previousPrediction.final] - 1);
-    }
-  }
-  
-  if (state.accuracyHistory.length > 0) {
-    state.accuracyHistory.pop();
-    state.predictionsHistory.pop();
-  }
-  
-  state.lastPrediction = null;
-  
-  // إعادة تدريب ML مع البيانات المحدثة
-  state.ml.reset();
-  for (let i = 0; i < state.rounds.length; i++) {
-    if (i >= state.windowSize) {
-      const recent = state.rounds.slice(i - state.windowSize, i);
-      state.ml.updateModel(recent, state.windowSize, state.rounds[i]);
-    }
-  }
-  
-  updateAll();
-  dataManager.saveAllData();
-  dataManager.updateDataStats();
-  playSound('undo');
-}
-
-function resetAll() {
-  if (state.rounds.length === 0) return;
-  
-  if (!confirm('هل تريد إعادة تعيين جميع البيانات؟')) return;
-  
-  state.rounds = [];
-  state.count = { P: 0, B: 0, T: 0 };
-  state.win = { P: 0, B: 0, T: 0 };
-  state.loss = { P: 0, B: 0, T: 0 };
-  state.lastPrediction = null;
-  state.accuracyHistory = [];
-  state.predictionsHistory = [];
-  state.modelPerformance = { basic: 0, advanced: 0, pattern: 0, ml: 0 };
-  state.previousPredictions = { P: 0, B: 0, T: 0 };
-  
-  state.ml.reset();
-  
-  updateAll();
-  dataManager.saveAllData();
-  dataManager.updateDataStats();
-  playSound('reset');
-}
-
-function playSound(type) {
-  try {
-    if (type === 'click') {
-      const audio = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==');
-      audio.volume = 0.1;
-      audio.play();
-    }
-  } catch (e) {
-    // تجاهل أخطاء الصوت
-  }
-}
-
-function updatePredictionDisplay(pred) {
-  el('predPctP').textContent = pred.P + '%';
-  el('predPctB').textContent = pred.B + '%';
-  el('predPctT').textContent = pred.T + '%';
-  
-  updateTrendIndicators(pred);
-  
-  ['predP', 'predB', 'predT'].forEach(id => {
-    el(id).classList.remove('active');
-  });
-  
-  if (pred.final !== '—') {
-    const finalEl = el('pred' + pred.final);
-    if (finalEl) finalEl.classList.add('active');
-  }
-  
-  let finalText = '—';
-  if (pred.final === 'P') finalText = 'لاعب';
-  else if (pred.final === 'B') finalText = 'مصرفي';
-  else if (pred.final === 'T') finalText = 'تعادل';
-  
-  el('finalCard').textContent = finalText;
-  
-  el('mlContribution').textContent = pred.mlContribution > 0 ? 
-    `📊 مساهمة تعلم الآلة: ${pred.mlContribution}%` : '';
-  
-  updateConfidenceMeter(pred.confidence);
-  updateModelInfo(pred);
-}
-
-function updateTrendIndicators(pred) {
-  const current = { 
-    P: parseFloat(pred.P) || 0, 
-    B: parseFloat(pred.B) || 0, 
-    T: parseFloat(pred.T) || 0 
-  };
-  const previous = state.previousPredictions;
-  
-  ['P', 'B', 'T'].forEach(type => {
-    const trendEl = el('predTrend' + type);
-    if (!trendEl) return;
-    
-    if (previous[type] > 0) {
-      const diff = current[type] - previous[type];
-      if (diff > 2) trendEl.textContent = '↗';
-      else if (diff < -2) trendEl.textContent = '↘';
-      else trendEl.textContent = '→';
-      trendEl.style.color = diff > 0 ? '#38b000' : diff < 0 ? '#ff006e' : '#bfb7a6';
-    } else {
-      trendEl.textContent = '→';
-    }
-  });
-  
-  state.previousPredictions = current;
-}
-
-function updateConfidenceMeter(confidence) {
-  const fill = el('confidenceFill');
-  const label = el('confidenceLabel');
-  
-  if (!fill || !label) return;
-  
-  fill.style.width = confidence + '%';
-  
-  if (confidence >= 70) {
-    fill.className = 'confidence-fill high-confidence';
-    label.textContent = 'ثقة عالية';
-    label.style.color = '#38b000';
-  } else if (confidence >= 40) {
-    fill.className = 'confidence-fill medium-confidence';
-    label.textContent = 'ثقة متوسطة';
-    label.style.color = '#d4af37';
-  } else {
-    fill.className = 'confidence-fill';
-    label.textContent = 'ثقة منخفضة';
-    label.style.color = '#ff006e';
-  }
-}
-
-function updateModelInfo(pred) {
-  const modelEl = el('predModel');
-  const modelInfoEl = el('modelInfo');
-  const reasonEl = el('predictionReason');
-  
-  if (!modelEl || !modelInfoEl || !reasonEl) return;
-  
-  let modelName, modelClass, reason;
-  
-  switch(pred.model) {
-    case 'basic':
-      modelName = 'أساسي';
-      modelClass = 'badge-basic';
-      reason = 'يعتمد على تحليل التردد الأساسي';
-      break;
-    case 'advanced':
-      modelName = 'متقدم';
-      modelClass = 'badge-advanced';
-      reason = 'يجمع بين تحليل التردد والأنماط';
-      break;
-    case 'pattern':
-      modelName = 'الأنماط';
-      modelClass = 'badge-pattern';
-      reason = 'يركز على تحليل التسلسلات والأنماط';
-      break;
-    case 'ml':
-      modelName = 'تعلم الآلة';
-      modelClass = 'badge-ml';
-      reason = 'يستخدم خوارزميات ML مع التدريب التلقائي';
-      break;
-    default:
-      modelName = 'أساسي';
-      modelClass = 'badge-basic';
-      reason = 'يعتمد على تحليل التردد الأساسي';
-  }
-  
-  modelEl.textContent = modelName;
-  modelEl.className = 'model-badge ' + modelClass;
-  
-  const efficiency = calculateModelEfficiency();
-  modelInfoEl.textContent = `النموذج: ${modelName} - الكفاءة: ${efficiency}%`;
-  
-  if (pred.final === '—') {
-    reasonEl.textContent = 'عدم كفاية الثقة للتنبؤ (تحت ' + state.confidenceThreshold + '%)';
-  } else {
-    reasonEl.textContent = reason + ` - الثقة: ${pred.confidence.toFixed(1)}%`;
-  }
-}
-
-function calculateModelEfficiency() {
-  const total = Object.values(state.modelPerformance).reduce((a, b) => a + b, 0);
-  const current = state.modelPerformance[state.analysisMode] || 0;
-  return total > 0 ? Math.round((current / total) * 100) : 0;
-}
-
-function showResult(r, pred, didWin) {
-  const finalCard = el('finalCard');
-  if (!finalCard) return;
-  
-  finalCard.classList.remove('win-effect', 'loss-effect');
-  setTimeout(() => {
-    finalCard.classList.add(didWin ? 'win-effect' : 'loss-effect');
-  }, 10);
-}
-
-function updateMLStatus() {
-  const trainingCount = state.ml.getTrainingDataCount();
-  const mlWeight = state.ml.getMLWeight() * 100;
-  const mlAccuracy = state.ml.getModelAccuracy(state.mlModel);
-  
-  el('mlTrainingCount').textContent = trainingCount;
-  el('mlWeight').textContent = mlWeight.toFixed(0) + '%';
-  el('mlAccuracy').textContent = mlAccuracy.toFixed(1) + '%';
-  
-  const statusEl = el('mlStatus');
-  if (!statusEl) return;
-  
-  if (trainingCount < 5) {
-    statusEl.innerHTML = '<span class="ml-training-indicator ml-not-trained"></span> يحتاج المزيد من البيانات';
-    statusEl.style.color = '#ff006e';
-  } else if (trainingCount < 15) {
-    statusEl.innerHTML = '<span class="ml-training-indicator ml-training"></span> يتعلم...';
-    statusEl.style.color = '#d4af37';
-  } else {
-    statusEl.innerHTML = '<span class="ml-training-indicator ml-training"></span> جاهز للتنبؤ';
-    statusEl.style.color = '#38b000';
-  }
-  
-  el('mlOverallAccuracy').textContent = mlAccuracy.toFixed(1) + '%';
-}
-
-function updateAll() {
-  renderStats();
-  renderBigRoad();
-  updatePredictionCounts();
-  updateAccuracyStats();
-  updateAccuracyChart();
-  updatePatternInfo();
-  updateMLStats();
-  updateDataStatsDisplay();
-}
-
-function updateDataStatsDisplay() {
-  dataManager.updateDataStats();
-}
-
-function updateMLStats() {
-  const mlAccuracy = state.ml.getModelAccuracy(state.mlModel);
-  el('mlOverallAccuracy').textContent = mlAccuracy.toFixed(1) + '%';
-  
-  // تحديث دقة ML لكل نوع (مبسطة)
-  const mlOverall = mlAccuracy;
-  el('pMLAccuracy').textContent = (mlOverall * 0.9).toFixed(1) + '%';
-  el('bMLAccuracy').textContent = (mlOverall * 0.95).toFixed(1) + '%';
-  el('tMLAccuracy').textContent = (mlOverall * 0.7).toFixed(1) + '%';
-}
-
-function renderStats() {
-  el('pTotal').textContent = state.count.P;
-  el('bTotal').textContent = state.count.B;
-  el('tTotal').textContent = state.count.T;
-  
-  el('pWin').textContent = state.win.P;
-  el('bWin').textContent = state.win.B;
-  el('tWin').textContent = state.win.T;
-  
-  el('pLoss').textContent = state.loss.P;
-  el('bLoss').textContent = state.loss.B;
-  el('tLoss').textContent = state.loss.T;
-  
-  el('pPct').textContent = calculatePercentage(state.win.P, state.loss.P);
-  el('bPct').textContent = calculatePercentage(state.win.B, state.loss.B);
-  el('tPct').textContent = calculatePercentage(state.win.T, state.loss.T);
-  
-  el('pAccuracy').textContent = calculateAccuracy('P');
-  el('bAccuracy').textContent = calculateAccuracy('B');
-  el('tAccuracy').textContent = calculateAccuracy('T');
-}
-
-function calculatePercentage(win, loss) {
-  const total = win + loss;
-  return total > 0 ? ((win / total) * 100).toFixed(1) + '%' : '0%';
-}
-
-function calculateAccuracy(type) {
-  const totalPredictions = state.predictionsHistory.filter(p => p.prediction === type).length;
-  const correctPredictions = state.predictionsHistory.filter(p => p.prediction === type && p.correct).length;
-  return totalPredictions > 0 ? ((correctPredictions / totalPredictions) * 100).toFixed(1) + '%' : '0%';
-}
-
-function renderBigRoad() {
-  const canvas = el('bigRoad');
-  if (!canvas) return;
-  
-  const ctx = canvas.getContext('2d');
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-  const size = 35;
-  let x = 0, y = 0;
-  const maxCols = Math.floor(canvas.width / size);
-  
-  for (let i = 0; i < state.rounds.length; i++) {
-    const r = state.rounds[i];
-    
-    ctx.fillStyle = r === 'P' ? '#3a86ff' : r === 'B' ? '#ff006e' : '#38b000';
-    ctx.fillRect(x * size, y * size, size - 2, size - 2);
-    
-    ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 14px Inter';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText((i+1).toString(), x * size + size/2, y * size + size/2);
-    
-    y++;
-    if (y * size >= canvas.height) {
-      y = 0;
-      x++;
-      if (x >= maxCols) break;
-    }
-  }
-}
-
-function updatePredictionCounts() {
-  const pred = enhancedPredict();
-  updatePredictionDisplay(pred);
-}
-
-function updatePatternInfo() {
-  const infoEl = el('patternInfo');
-  if (!infoEl) return;
-  
-  if (state.rounds.length < 3) {
-    infoEl.textContent = 'لا توجد أنماط مكتشفة بعد';
-    return;
-  }
-  
-  const trend = calculateTrend(state.rounds);
-  const recent = state.rounds.slice(-5);
-  const pCount = recent.filter(r => r === 'P').length;
-  const bCount = recent.filter(r => r === 'B').length;
-  const tCount = recent.filter(r => r === 'T').length;
-  
-  let info = `الاتجاه: ${trend.direction === 'volatile' ? 'متقلب' : trend.direction === 'mixed' ? 'مختلط' : 'مستقر'}`;
-  info += ` | آخر 5: 🔵${pCount} 🔴${bCount} 🟢${tCount}`;
-  
-  infoEl.textContent = info;
-}
-
-function calculateTrend(rounds) {
-  if (rounds.length < 2) return { direction: 'stable', strength: 0 };
-  
-  const changes = [];
-  for (let i = 1; i < rounds.length; i++) {
-    changes.push(rounds[i] === rounds[i-1] ? 0 : 1);
-  }
-  
-  const changeRate = changes.reduce((a, b) => a + b, 0) / changes.length;
-  return {
-    direction: changeRate > 0.6 ? 'volatile' : changeRate > 0.4 ? 'mixed' : 'stable',
-    strength: Math.abs(changeRate - 0.5) * 2
-  };
-}
-
-function updateAccuracyData(actualResult) {
-  if (state.lastPrediction && state.lastPrediction !== '—') {
-    const isCorrect = state.lastPrediction === actualResult;
-    state.predictionsHistory.push({
-      prediction: state.lastPrediction,
-      actual: actualResult,
-      correct: isCorrect,
-      model: state.analysisMode
-    });
-    
-    const correctPredictions = state.predictionsHistory.filter(p => p.correct).length;
-    const totalPredictions = state.predictionsHistory.length;
-    const accuracy = totalPredictions > 0 ? (correctPredictions / totalPredictions) * 100 : 0;
-    
-    state.accuracyHistory.push(accuracy);
-  }
-}
-
-function updateAccuracyStats() {
-  if (state.accuracyHistory.length === 0) {
-    el('currentAccuracy').textContent = '0%';
-    el('bestAccuracy').textContent = '0%';
-    el('averageAccuracy').textContent = '0%';
-    return;
-  }
-  
-  const currentAccuracy = state.accuracyHistory[state.accuracyHistory.length - 1];
-  const bestAccuracy = Math.max(...state.accuracyHistory);
-  const averageAccuracy = state.accuracyHistory.reduce((a, b) => a + b, 0) / state.accuracyHistory.length;
-  
-  el('currentAccuracy').textContent = currentAccuracy.toFixed(1) + '%';
-  el('bestAccuracy').textContent = bestAccuracy.toFixed(1) + '%';
-  el('averageAccuracy').textContent = averageAccuracy.toFixed(1) + '%';
-}
-
-function updateAccuracyChart() {
-  const svg = el('accuracyChart');
-  const tooltip = el('accuracyTooltip');
-  if (!svg || !tooltip) return;
-  
-  svg.innerHTML = '';
-  
-  if (state.accuracyHistory.length < 2) return;
-  
-  const width = svg.clientWidth || 600;
-  const height = svg.clientHeight || 80;
-  const padding = 20;
-  
-  // رسم الشبكة
-  for (let i = 0; i <= 100; i += 20) {
-    const y = height - padding - (i / 100) * (height - 2 * padding);
-    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-    line.setAttribute('class', 'accuracy-grid');
-    line.setAttribute('x1', padding);
-    line.setAttribute('y1', y);
-    line.setAttribute('x2', width - padding);
-    line.setAttribute('y2', y);
-    svg.appendChild(line);
-    
-    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    text.setAttribute('x', padding - 5);
-    text.setAttribute('y', y + 4);
-    text.setAttribute('text-anchor', 'end');
-    text.setAttribute('fill', 'var(--muted)');
-    text.setAttribute('font-size', '10px');
-    text.textContent = i + '%';
-    svg.appendChild(text);
-  }
-  
-  // رسم الخط
-  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-  let pathData = '';
-  
-  state.accuracyHistory.forEach((accuracy, index) => {
-    const x = padding + (index / (state.accuracyHistory.length - 1)) * (width - 2 * padding);
-    const y = height - padding - (accuracy / 100) * (height - 2 * padding);
-    
-    if (index === 0) {
-      pathData = `M ${x} ${y}`;
-    } else {
-      pathData += ` L ${x} ${y}`;
-    }
-    
-    // نقاط تفاعلية
-    const point = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    point.setAttribute('class', 'accuracy-point');
-    point.setAttribute('cx', x);
-    point.setAttribute('cy', y);
-    point.setAttribute('r', 3);
-    
-    point.addEventListener('mouseover', (e) => {
-      const rect = svg.getBoundingClientRect();
-      tooltip.style.left = (e.clientX - rect.left + 10) + 'px';
-      tooltip.style.top = (e.clientY - rect.top - 30) + 'px';
-      tooltip.textContent = `الجولة ${index + 1}: ${accuracy.toFixed(1)}%`;
-      tooltip.style.opacity = '1';
-    });
-    
-    point.addEventListener('mouseout', () => {
-      tooltip.style.opacity = '0';
-    });
-    
-    svg.appendChild(point);
-  });
-  
-  path.setAttribute('d', pathData);
-  path.setAttribute('class', 'accuracy-line');
-  svg.appendChild(path);
-}
-
-// تهيئة التطبيق عند تحميل الصفحة
-window.addEventListener('DOMContentLoaded', init);
+  })();
 </script>
 </body>
 </html>
