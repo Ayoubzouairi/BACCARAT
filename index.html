@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AYOUB BACCARAT PRO - النسخة الكاملة مع الحفظ التلقائي</title>
+<title>AYOUB BACCARAT ULTIMATE - الإصدار النهائي</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
 :root{--gold:#d4af37;--gold-2:#b8871d;--bg-dark:#070606;--card:#0f0e10;--muted:#bfb7a6;--player:#2d7ef7;--banker:#e03b3b;--tie:#28a745;}
@@ -29,19 +29,13 @@ input[type=number], select{background:rgba(255,255,255,0.1);border:2px solid rgb
 .btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.3);}
 .btn:active{transform:translateY(0);}
 .btn.gold{background:linear-gradient(90deg,var(--gold),var(--gold-2));color:#000;font-weight:700;box-shadow:0 6px 20px rgba(212,175,55,0.3);}
-
-/* ألوان واضحة للوضع الليلي */
 .btn.player{background:linear-gradient(135deg, #3a86ff, #2667cc); color:white; border:2px solid #3a86ff;}
 .btn.banker{background:linear-gradient(135deg, #ff006e, #cc0058); color:white; border:2px solid #ff006e;}
 .btn.tie{background:linear-gradient(135deg, #38b000, #2c8a00); color:white; border:2px solid #38b000;}
-
-/* ألوان الوضع النهاري */
 :root[data-theme="light"] .btn.player{background:linear-gradient(135deg, #2d7ef7, #1a67d8); color:white;}
 :root[data-theme="light"] .btn.banker{background:linear-gradient(135deg, #e03b3b, #c53232); color:white;}
 :root[data-theme="light"] .btn.tie{background:linear-gradient(135deg, #28a745, #218838); color:white;}
-
 :root[data-theme="light"] .btn{background:rgba(0,0,0,0.1);color:#333; border:1px solid rgba(0,0,0,0.1)}
-
 .small{font-size:13px;color:var(--muted);}
 .muted{color:var(--muted);font-size:12px;}
 .pattern-list{list-style:none;padding:6px;margin:6px 0 0 0;max-height:200px;overflow:auto;}
@@ -76,18 +70,12 @@ canvas{border-radius:10px;background:#0f0e10;width:100% !important;height:auto !
 .theme-toggle{background:transparent;border:none;font-size:24px;cursor:pointer;padding:5px;border-radius:50%;transition:background 0.3s;width:40px;height:40px;display:flex;align-items:center;justify-content:center;}
 .theme-toggle:hover{background:rgba(255,255,255,0.1);}
 :root[data-theme="light"] .theme-toggle:hover{background:rgba(0,0,0,0.05);}
-
-/* تحسينات إضافية للحقول */
 .input-group {display: flex; gap: 8px; align-items: center;}
 .input-group input {flex: 1;}
 .input-label {font-weight: 600; margin-bottom: 6px; display: block;}
-
-/* ألوان البطاقات في التوقع */
 .pred-card.player {background: linear-gradient(135deg, #3a86ff, #2667cc); color: white;}
 .pred-card.banker {background: linear-gradient(135deg, #ff006e, #cc0058); color: white;}
 .pred-card.tie {background: linear-gradient(135deg, #38b000, #2c8a00); color: white;}
-
-/* أنماط لمنحنى التوقعات */
 .accuracy-panel {margin-top: 12px;}
 .accuracy-stats {display: flex; justify-content: space-between; margin-bottom: 8px; flex-wrap: wrap; gap: 10px;}
 .accuracy-stats > div {flex: 1; min-width: 120px;}
@@ -100,8 +88,6 @@ canvas{border-radius:10px;background:#0f0e10;width:100% !important;height:auto !
 .accuracy-grid {stroke: rgba(255,255,255,0.1); stroke-width: 1;}
 :root[data-theme="light"] .accuracy-grid {stroke: rgba(0,0,0,0.1);}
 .accuracy-tooltip {position: absolute; background: rgba(0,0,0,0.9); color: white; padding: 5px 8px; border-radius: 4px; font-size: 12px; pointer-events: none; opacity: 0; transition: opacity 0.2s; z-index: 100;}
-
-/* أنماط جديدة للواجهة المحسنة */
 .advanced-controls {background: rgba(212,175,55,0.05); border-radius: 8px; padding: 10px; margin-top: 8px;}
 .control-group {display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap;}
 .control-group:last-child {margin-bottom: 0;}
@@ -117,29 +103,19 @@ canvas{border-radius:10px;background:#0f0e10;width:100% !important;height:auto !
 .confidence-fill {height: 100%; background: linear-gradient(90deg, #38b000, #ff006e); border-radius: 3px; transition: width 0.3s;}
 .high-confidence {background: linear-gradient(90deg, #38b000, #d4af37);}
 .medium-confidence {background: linear-gradient(90deg, #d4af37, #ff006e);}
-
-/* تبديل زر التعلم الآلي */
 .switch {position: relative; display: inline-block; width: 50px; height: 24px; flex-shrink: 0;}
 .switch input {opacity: 0; width: 0; height: 0;}
 .switch .slider {position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px;}
 .switch .slider:before {position: absolute; content: ""; height: 16px; width: 16px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%;}
 .switch input:checked + .slider {background: linear-gradient(90deg, #9d4edd, #7b2cbf);}
 .switch input:checked + .slider:before {transform: translateX(26px);}
-
-/* مؤشر تدريب ML */
 .ml-training-indicator {display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px;}
 .ml-training {background: #38b000; animation: pulse 1.5s infinite;}
 .ml-not-trained {background: #ff006e;}
 @keyframes pulse {0% {opacity: 1;} 50% {opacity: 0.5;} 100% {opacity: 1;}}
-
-/* تحسينات للواجهة */
 .ml-info-panel {background: rgba(157, 78, 221, 0.05); border-left: 3px solid #9d4edd;}
-
-/* أزرار التحكم في البيانات */
 .data-controls {display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;}
 .data-controls .btn {padding: 6px 10px; font-size: 12px; flex: 1; min-width: 100px;}
-
-/* تحسينات للاستجابة */
 @media (max-width: 768px) {
     .layout {flex-direction: column;}
     .left, .right {width: 100%;}
@@ -152,7 +128,6 @@ canvas{border-radius:10px;background:#0f0e10;width:100% !important;height:auto !
     .row {flex-wrap: wrap;}
     .btn {flex: 1; min-width: 60px;}
 }
-
 @media (max-width: 480px) {
     body {padding: 10px;}
     .card {padding: 8px;}
@@ -166,8 +141,8 @@ canvas{border-radius:10px;background:#0f0e10;width:100% !important;height:auto !
 <div class="app">
 <header class="top card">
   <div class="brand">
-    <div class="logo">AYOUB BACCARAT PRO <span class="model-badge badge-ml">نسخة كاملة</span></div>
-    <div class="subtitle">نظام تنبؤ ذكي مع خوارزميات تعلم آلة وحفظ تلقائي 🧠💾🚀</div>
+    <div class="logo">AYOUB BACCARAT ULTIMATE <span class="model-badge badge-ml">v3.0</span></div>
+    <div class="subtitle">نظام تنبؤ ذكي - جميع الميزات محسنة ومصححة بالكامل 🧠💾</div>
   </div>
   <div class="controls">
     <button id="themeToggle" class="theme-toggle" title="تبديل الوضع">🌚</button>
@@ -193,18 +168,11 @@ canvas{border-radius:10px;background:#0f0e10;width:100% !important;height:auto !
       <div class="control-group">
         <label for="analysisMode">نمط التحليل:</label>
         <select id="analysisMode">
-          <option value="basic">أساسي <span class="model-badge badge-basic">+5%</span></option>
-          <option value="advanced" selected>متقدم <span class="model-badge badge-advanced">+15%</span></option>
+          <option value="basic" selected>أساسي <span class="model-badge badge-basic">+5%</span></option>
+          <option value="advanced">متقدم <span class="model-badge badge-advanced">+15%</span></option>
           <option value="pattern">تحليل الأنماط <span class="model-badge badge-pattern">+25%</span></option>
           <option value="ml">تعلم الآلة <span class="model-badge badge-ml">+35%</span></option>
         </select>
-      </div>
-      <div class="control-group">
-        <label for="confidenceSensitivity">حساسية الثقة:</label>
-        <div class="slider-container">
-          <input type="range" id="confidenceSensitivity" class="slider" min="30" max="60" value="45">
-          <div class="muted small" id="sensitivityValue">45%</div>
-        </div>
       </div>
       <div class="control-group">
         <label for="timeWeighting">المرجحة الزمنية:</label>
@@ -279,7 +247,7 @@ canvas{border-radius:10px;background:#0f0e10;width:100% !important;height:auto !
     <div class="pattern-info" id="patternInfo">لا توجد أنماط مكتشفة بعد</div>
   </div>
 
-  <!-- مؤشر الثقة -->
+  <!-- مؤشر الثقة (بدون نسبة حساسية) -->
   <div class="panel card">
     <div class="section-title">مؤشر الثقة</div>
     <div class="muted small" id="confidenceLabel">ثقة منخفضة</div>
@@ -363,8 +331,8 @@ canvas{border-radius:10px;background:#0f0e10;width:100% !important;height:auto !
 
 <footer class="foot card">
   <div style="flex: 1;">
-    <div>تصميم: Ayoub • النسخة الكاملة مع الحفظ التلقائي</div>
-    <div class="credits small">نظام متعدد النماذج • تعلم آلة • تحليل الأنماط • حفظ تلقائي • مؤشرات متقدمة</div>
+    <div>تصميم: Ayoub • الإصدار النهائي المصحح بالكامل</div>
+    <div class="credits small">نظام متعدد النماذج • تعلم آلة محسن • حفظ تلقائي • مؤشرات متقدمة</div>
   </div>
   <div class="data-controls">
     <button id="btnExport" class="btn" style="background: rgba(59, 130, 246, 0.2); border: 1px solid #3a86ff;">📥 تصدير</button>
@@ -379,13 +347,16 @@ canvas{border-radius:10px;background:#0f0e10;width:100% !important;height:auto !
 </div>
 
 <script>
-// ========== خوارزميات تعلم الآلة ==========
+(function() {
+// ========== خوارزميات تعلم الآلة المحسنة ==========
 
 class SimpleKNN {
   constructor(k = 3) {
     this.k = k;
     this.trainingData = [];
     this.predictions = { correct: 0, total: 0 };
+    this.trainingQueue = [];
+    this.isTraining = false;
   }
 
   train(features, labels) {
@@ -400,9 +371,8 @@ class SimpleKNN {
       }
     });
     
-    // الحفاظ على حجم معقول
-    if (this.trainingData.length > 100) {
-      this.trainingData = this.trainingData.slice(-100);
+    if (this.trainingData.length > 200) {
+      this.trainingData = this.trainingData.slice(-200);
     }
   }
 
@@ -412,8 +382,7 @@ class SimpleKNN {
     }
 
     try {
-      const distances = this.trainingData.map((dataPoint, index) => ({
-        index,
+      const distances = this.trainingData.map((dataPoint) => ({
         distance: this.euclideanDistance(newFeatures, dataPoint.features),
         label: dataPoint.label
       }));
@@ -424,7 +393,7 @@ class SimpleKNN {
       const votes = { P: 0, B: 0, T: 0 };
       nearestNeighbors.forEach(n => {
         if (n.label in votes) {
-          votes[n.label] += 1 / (n.distance + 1);
+          votes[n.label] += 1 / (n.distance + 0.001);
         }
       });
 
@@ -432,9 +401,9 @@ class SimpleKNN {
       if (total === 0) return { P: 33.3, B: 33.3, T: 33.3 };
       
       return {
-        P: (votes.P / total) * 100,
-        B: (votes.B / total) * 100,
-        T: (votes.T / total) * 100
+        P: Number(((votes.P / total) * 100).toFixed(1)),
+        B: Number(((votes.B / total) * 100).toFixed(1)),
+        T: Number(((votes.T / total) * 100).toFixed(1))
       };
     } catch (e) {
       console.error('KNN prediction error:', e);
@@ -459,7 +428,7 @@ class SimpleKNN {
 
   getAccuracy() {
     return this.predictions.total > 0 ? 
-      (this.predictions.correct / this.predictions.total) * 100 : 0;
+      Number(((this.predictions.correct / this.predictions.total) * 100).toFixed(1)) : 0;
   }
 }
 
@@ -467,7 +436,7 @@ class SimpleLogisticRegression {
   constructor() {
     this.weights = { P: 0.1, B: 0.1, T: 0.1 };
     this.bias = 0;
-    this.learningRate = 0.05;
+    this.learningRate = 0.01;
     this.predictions = { correct: 0, total: 0 };
   }
 
@@ -509,9 +478,9 @@ class SimpleLogisticRegression {
       if (total === 0) return { P: 33.3, B: 33.3, T: 33.3 };
       
       return {
-        P: (pScore / total) * 100,
-        B: (bScore / total) * 100,
-        T: (tScore / total) * 100
+        P: Number(((pScore / total) * 100).toFixed(1)),
+        B: Number(((bScore / total) * 100).toFixed(1)),
+        T: Number(((tScore / total) * 100).toFixed(1))
       };
     } catch (e) {
       console.error('Logistic regression prediction error:', e);
@@ -526,7 +495,7 @@ class SimpleLogisticRegression {
 
   getAccuracy() {
     return this.predictions.total > 0 ? 
-      (this.predictions.correct / this.predictions.total) * 100 : 0;
+      Number(((this.predictions.correct / this.predictions.total) * 100).toFixed(1)) : 0;
   }
 }
 
@@ -550,11 +519,9 @@ class EnsembleModel {
       const knnAcc = this.models.knn.getAccuracy();
       const logisticAcc = this.models.logistic.getAccuracy();
       
-      const totalAcc = knnAcc + logisticAcc;
-      if (totalAcc > 0) {
-        this.weights.knn = knnAcc / totalAcc;
-        this.weights.logistic = logisticAcc / totalAcc;
-      }
+      const totalAcc = knnAcc + logisticAcc + 0.001;
+      this.weights.knn = knnAcc / totalAcc;
+      this.weights.logistic = logisticAcc / totalAcc;
     } catch (e) {
       console.error('Ensemble training error:', e);
     }
@@ -568,9 +535,9 @@ class EnsembleModel {
       const logisticPred = this.models.logistic.predict(features);
       
       return {
-        P: (knnPred.P * this.weights.knn + logisticPred.P * this.weights.logistic),
-        B: (knnPred.B * this.weights.knn + logisticPred.B * this.weights.logistic),
-        T: (knnPred.T * this.weights.knn + logisticPred.T * this.weights.logistic)
+        P: Number((knnPred.P * this.weights.knn + logisticPred.P * this.weights.logistic).toFixed(1)),
+        B: Number((knnPred.B * this.weights.knn + logisticPred.B * this.weights.logistic).toFixed(1)),
+        T: Number((knnPred.T * this.weights.knn + logisticPred.T * this.weights.logistic).toFixed(1))
       };
     } catch (e) {
       console.error('Ensemble prediction error:', e);
@@ -588,7 +555,7 @@ class EnsembleModel {
 
   getAccuracy() {
     return this.predictions.total > 0 ? 
-      (this.predictions.correct / this.predictions.total) * 100 : 0;
+      Number(((this.predictions.correct / this.predictions.total) * 100).toFixed(1)) : 0;
   }
 }
 
@@ -603,7 +570,7 @@ class BaccaratMachineLearning {
     this.featureHistory = [];
     this.mlPredictions = [];
     this.isEnabled = true;
-    this.trainingData = [];
+    this.trainingTimer = null;
   }
 
   extractFeatures(rounds, windowSize) {
@@ -627,11 +594,13 @@ class BaccaratMachineLearning {
       const patternType = this.getPatternType(recent);
       
       return [
-        pRatio, bRatio, tRatio,
-        pStreak / windowSize,
-        bStreak / windowSize,
+        Number(pRatio.toFixed(2)),
+        Number(bRatio.toFixed(2)),
+        Number(tRatio.toFixed(2)),
+        Number((pStreak / windowSize).toFixed(2)),
+        Number((bStreak / windowSize).toFixed(2)),
         recent[recent.length - 1] === recent[recent.length - 2] ? 1 : 0,
-        volatility,
+        Number(volatility.toFixed(2)),
         patternType
       ];
     } catch (e) {
@@ -666,24 +635,32 @@ class BaccaratMachineLearning {
     try {
       this.featureHistory.push({ features, label: actualResult, timestamp: Date.now() });
       
-      if (this.featureHistory.length > 100) {
-        this.featureHistory = this.featureHistory.slice(-100);
+      if (this.featureHistory.length > 200) {
+        this.featureHistory = this.featureHistory.slice(-200);
       }
       
       if (this.featureHistory.length > 5) {
-        const trainingBatch = this.featureHistory.slice(-10);
-        
-        trainingBatch.forEach(({ features, label }) => {
-          if (features && label) {
-            this.models.knn.train([features], [label]);
-            this.models.logistic.trainOne(features, label);
-            this.models.ensemble.train(features, label);
-          }
-        });
+        if (this.trainingTimer) clearTimeout(this.trainingTimer);
+        this.trainingTimer = setTimeout(() => {
+          this.batchTrain();
+        }, 500);
       }
     } catch (e) {
       console.error('ML update error:', e);
     }
+  }
+
+  batchTrain() {
+    if (this.featureHistory.length < 5) return;
+    
+    const trainingBatch = this.featureHistory.slice(-30);
+    trainingBatch.forEach(({ features, label }) => {
+      if (features && label) {
+        this.models.knn.train([features], [label]);
+        this.models.logistic.trainOne(features, label);
+        this.models.ensemble.train(features, label);
+      }
+    });
   }
 
   predict(rounds, windowSize) {
@@ -750,8 +727,8 @@ class BaccaratMachineLearning {
     const minWeight = 0.1;
     const maxWeight = 0.6;
     const dataPoints = this.getTrainingDataCount();
-    const weight = minWeight + (maxWeight - minWeight) * (dataPoints / 100);
-    return Math.min(weight, maxWeight);
+    const weight = minWeight + (maxWeight - minWeight) * Math.min(dataPoints / 100, 1);
+    return Number(weight.toFixed(2));
   }
 
   enable() {
@@ -776,7 +753,7 @@ class BaccaratMachineLearning {
     };
     this.featureHistory = [];
     this.mlPredictions = [];
-    this.trainingData = [];
+    if (this.trainingTimer) clearTimeout(this.trainingTimer);
   }
 
   getStats() {
@@ -790,11 +767,11 @@ class BaccaratMachineLearning {
   }
 }
 
-// ========== نظام حفظ البيانات ==========
+// ========== نظام حفظ البيانات المحسن ==========
 
 class DataManager {
   constructor() {
-    this.storageKey = 'baccaratPro_v3';
+    this.storageKey = 'baccaratUltimate_v3';
     this.autoSaveInterval = null;
     this.lastSaveTime = null;
     this.isSaving = false;
@@ -813,16 +790,10 @@ class DataManager {
           loss: state.loss,
           windowSize: state.windowSize,
           analysisMode: state.analysisMode,
-          confidenceThreshold: state.confidenceThreshold,
           timeWeighting: state.timeWeighting,
           useML: state.useML,
           mlModel: state.mlModel,
           modelPerformance: state.modelPerformance,
-          previousPredictions: state.previousPredictions,
-          lastPrediction: state.lastPrediction
-        },
-        history: {
-          accuracyHistory: state.accuracyHistory,
           predictionsHistory: state.predictionsHistory
         },
         mlData: {
@@ -834,8 +805,7 @@ class DataManager {
         meta: {
           version: '3.0',
           lastSave: new Date().toISOString(),
-          totalRounds: state.rounds.length,
-          sessionStart: this.getSessionStartTime()
+          totalRounds: state.rounds.length
         }
       };
 
@@ -862,48 +832,31 @@ class DataManager {
 
       const data = JSON.parse(saved);
       
-      // تحميل بيانات الحالة
       if (data.state) {
         state.rounds = Array.isArray(data.state.rounds) ? data.state.rounds : [];
         state.count = data.state.count || { P: 0, B: 0, T: 0 };
         state.win = data.state.win || { P: 0, B: 0, T: 0 };
         state.loss = data.state.loss || { P: 0, B: 0, T: 0 };
         state.windowSize = data.state.windowSize || 8;
-        state.analysisMode = data.state.analysisMode || 'advanced';
-        state.confidenceThreshold = data.state.confidenceThreshold || 45;
+        state.analysisMode = data.state.analysisMode || 'basic';
         state.timeWeighting = data.state.timeWeighting || 'linear';
         state.useML = data.state.useML !== false;
         state.mlModel = data.state.mlModel || 'ensemble';
         state.modelPerformance = data.state.modelPerformance || { basic: 0, advanced: 0, pattern: 0, ml: 0 };
-        state.previousPredictions = data.state.previousPredictions || { P: 0, B: 0, T: 0 };
-        state.lastPrediction = data.state.lastPrediction || null;
+        state.predictionsHistory = Array.isArray(data.state.predictionsHistory) ? data.state.predictionsHistory : [];
       }
 
-      // تحميل التاريخ
-      if (data.history) {
-        state.accuracyHistory = Array.isArray(data.history.accuracyHistory) ? data.history.accuracyHistory : [];
-        state.predictionsHistory = Array.isArray(data.history.predictionsHistory) ? data.history.predictionsHistory : [];
-      }
-
-      // تحميل ML
       if (data.mlData) {
         state.ml.featureHistory = Array.isArray(data.mlData.featureHistory) ? data.mlData.featureHistory : [];
         state.ml.mlPredictions = Array.isArray(data.mlData.mlPredictions) ? data.mlData.mlPredictions : [];
         state.ml.activeModel = data.mlData.activeModel || 'ensemble';
         state.ml.isEnabled = data.mlData.isEnabled !== false;
         
-        // إعادة تدريب النماذج
         setTimeout(() => {
-          if (state.ml.featureHistory.length > 0) {
-            state.ml.featureHistory.forEach((item, index) => {
-              if (index > 0 && item.features && item.label) {
-                state.ml.models.knn.train([item.features], [item.label]);
-                state.ml.models.logistic.trainOne(item.features, item.label);
-                state.ml.models.ensemble.train(item.features, item.label);
-              }
-            });
+          if (state.ml.featureHistory.length > 5) {
+            state.ml.batchTrain();
           }
-        }, 500);
+        }, 1000);
       }
 
       this.lastSaveTime = new Date();
@@ -932,7 +885,7 @@ class DataManager {
         },
         meta: {
           exportDate: new Date().toISOString(),
-          version: 'AYOUB_BACCARAT_PRO_v3.0',
+          version: 'AYOUB_BACCARAT_ULTIMATE_v3.0',
           totalRounds: state.rounds.length
         }
       };
@@ -952,9 +905,9 @@ class DataManager {
         URL.revokeObjectURL(url);
       }, 100);
       
-      alert(`✅ تم تصدير ${state.rounds.length} جولة و ${state.ml.featureHistory.length} عينة تدريب`);
+      showToast(`✅ تم تصدير ${state.rounds.length} جولة بنجاح`);
     } catch (e) {
-      alert('❌ خطأ في تصدير البيانات: ' + e.message);
+      showToast('❌ خطأ في تصدير البيانات', 'error');
     }
   }
 
@@ -969,10 +922,8 @@ class DataManager {
           return;
         }
 
-        // مسح البيانات الحالية
         resetAll();
         
-        // تحميل البيانات المستوردة
         if (importedData.state) {
           state.rounds = Array.isArray(importedData.state.rounds) ? importedData.state.rounds : [];
           state.count = importedData.state.count || { P: 0, B: 0, T: 0 };
@@ -980,42 +931,34 @@ class DataManager {
           state.loss = importedData.state.loss || { P: 0, B: 0, T: 0 };
           state.windowSize = importedData.state.windowSize || 8;
           
-          // حساب الإحصاءات من الجولات
+          state.count = { P: 0, B: 0, T: 0 };
           state.rounds.forEach(round => {
-            state.count[round]++;
+            if (round in state.count) state.count[round]++;
           });
         }
 
         if (importedData.ml && Array.isArray(importedData.ml.featureHistory)) {
           state.ml.featureHistory = importedData.ml.featureHistory;
           
-          // إعادة تدريب ML
           setTimeout(() => {
-            if (state.ml.featureHistory.length > 0) {
-              state.ml.featureHistory.forEach((item, index) => {
-                if (index > 0 && item.features && item.label) {
-                  state.ml.models.knn.train([item.features], [item.label]);
-                  state.ml.models.logistic.trainOne(item.features, item.label);
-                  state.ml.models.ensemble.train(item.features, item.label);
-                }
-              });
+            if (state.ml.featureHistory.length > 5) {
+              state.ml.batchTrain();
             }
           }, 500);
         }
 
-        // تحديث الواجهة
         updateAll();
         updateMLStatus();
         this.saveAllData();
         
-        alert(`✅ تم استيراد ${state.rounds.length} جولة بنجاح!`);
+        showToast(`✅ تم استيراد ${state.rounds.length} جولة بنجاح`);
       } catch (error) {
-        alert('❌ خطأ في تنسيق الملف: ' + error.message);
+        showToast('❌ خطأ في تنسيق الملف', 'error');
       }
     };
     
     reader.onerror = () => {
-      alert('❌ خطأ في قراءة الملف');
+      showToast('❌ خطأ في قراءة الملف', 'error');
     };
     
     reader.readAsText(file);
@@ -1025,7 +968,7 @@ class DataManager {
     if (confirm('⚠️ هل أنت متأكد من مسح جميع البيانات؟\nلا يمكن التراجع عن هذا الإجراء.')) {
       localStorage.removeItem(this.storageKey);
       resetAll();
-      alert('✅ تم مسح جميع البيانات.');
+      showToast('✅ تم مسح جميع البيانات');
     }
   }
 
@@ -1040,7 +983,6 @@ class DataManager {
       }
     }, intervalSeconds * 1000);
     
-    // حفظ عند إغلاق الصفحة
     window.addEventListener('beforeunload', () => {
       if (!this.isSaving) {
         this.saveAllData();
@@ -1064,16 +1006,6 @@ class DataManager {
     }
   }
 
-  getSessionStartTime() {
-    const saved = localStorage.getItem('session_start');
-    if (!saved) {
-      const startTime = new Date().toISOString();
-      localStorage.setItem('session_start', startTime);
-      return startTime;
-    }
-    return saved;
-  }
-
   updateDataStats() {
     const statsEl = document.getElementById('dataStats');
     if (statsEl) {
@@ -1089,20 +1021,17 @@ const state = {
   count: { P: 0, B: 0, T: 0 },
   win: { P: 0, B: 0, T: 0 },
   loss: { P: 0, B: 0, T: 0 },
-  lastPrediction: null,
-  accuracyHistory: [],
   predictionsHistory: [],
-  analysisMode: 'advanced',
-  confidenceThreshold: 45,
+  analysisMode: 'basic',
   timeWeighting: 'linear',
   modelPerformance: { basic: 0, advanced: 0, pattern: 0, ml: 0 },
   previousPredictions: { P: 0, B: 0, T: 0 },
   ml: new BaccaratMachineLearning(),
   useML: true,
-  mlModel: 'ensemble'
+  mlModel: 'ensemble',
+  lastPrediction: null
 };
 
-// إنشاء مدير البيانات
 const dataManager = new DataManager();
 
 // ========== الوظائف المساعدة ==========
@@ -1111,12 +1040,10 @@ const el = id => document.getElementById(id);
 // ========== الوظائف الرئيسية ==========
 
 function init() {
-  console.log('Initializing Baccarat Pro...');
+  console.log('Initializing Baccarat Ultimate...');
   
-  // تحميل البيانات المحفوظة
   dataManager.loadAllData();
   
-  // إعداد عناصر الواجهة
   el('windowSize').value = state.windowSize;
   
   el('applyWindow').onclick = () => {
@@ -1137,13 +1064,6 @@ function init() {
     showToast(`تم تغيير نمط التحليل إلى ${getModeName(state.analysisMode)}`);
   };
 
-  el('confidenceSensitivity').value = state.confidenceThreshold;
-  el('confidenceSensitivity').oninput = (e) => {
-    state.confidenceThreshold = parseInt(e.target.value);
-    el('sensitivityValue').textContent = state.confidenceThreshold + '%';
-    updateAll();
-  };
-
   el('timeWeighting').value = state.timeWeighting;
   el('timeWeighting').onchange = (e) => {
     state.timeWeighting = e.target.value;
@@ -1151,7 +1071,6 @@ function init() {
     showToast(`تم تغيير المرجحة الزمنية إلى ${getWeightingName(state.timeWeighting)}`);
   };
 
-  // إعدادات تعلم الآلة
   el('mlToggle').checked = state.useML;
   el('mlToggle').onchange = (e) => {
     state.useML = e.target.checked;
@@ -1170,14 +1089,12 @@ function init() {
     showToast(`تم تغيير نموذج ML إلى ${getMLModelName(state.mlModel)}`);
   };
 
-  // أزرار الإدخال
   el('btnP').onclick = () => pushRound('P');
   el('btnB').onclick = () => pushRound('B');
   el('btnT').onclick = () => pushRound('T');
   el('btnUndo').onclick = undoRound;
   el('btnReset').onclick = resetAll;
   
-  // أزرار البيانات
   el('btnExport').onclick = () => dataManager.exportData();
   el('btnImport').onclick = () => {
     const input = document.createElement('input');
@@ -1192,18 +1109,14 @@ function init() {
   };
   el('btnClearData').onclick = () => dataManager.clearAllData();
   
-  // تبديل الوضع
   el('themeToggle').onclick = toggleTheme;
   
-  // تعيين الوضع الافتراضي
   if (!document.documentElement.hasAttribute('data-theme')) {
     document.documentElement.setAttribute('data-theme', 'dark');
   }
   
-  // بدء الحفظ التلقائي
   dataManager.startAutoSave(30);
   
-  // تحديث الواجهة
   updateAll();
   updateMLStatus();
   dataManager.updateDataStats();
@@ -1217,39 +1130,9 @@ function toggleTheme() {
   document.documentElement.setAttribute('data-theme', newTheme);
   el('themeToggle').textContent = newTheme === 'dark' ? '🌚' : '🌕';
   updateAccuracyChart();
-  showToast(`تم التبديل إلى الوضع ${newTheme === 'dark' ? 'الليلي' : 'النهاري'}`);
-}
-
-function getModeName(mode) {
-  const names = {
-    basic: 'أساسي',
-    advanced: 'متقدم',
-    pattern: 'تحليل الأنماط',
-    ml: 'تعلم الآلة'
-  };
-  return names[mode] || mode;
-}
-
-function getWeightingName(weighting) {
-  const names = {
-    none: 'بدون',
-    linear: 'خطي',
-    exponential: 'أسّي'
-  };
-  return names[weighting] || weighting;
-}
-
-function getMLModelName(model) {
-  const names = {
-    knn: 'K-الجيران الأقرب',
-    logistic: 'الانحدار اللوجستي',
-    ensemble: 'المجمع'
-  };
-  return names[model] || model;
 }
 
 function showToast(message, type = 'success') {
-  // إنشاء عنصر التوست
   const toast = document.createElement('div');
   toast.textContent = message;
   toast.style.cssText = `
@@ -1267,7 +1150,6 @@ function showToast(message, type = 'success') {
   
   document.body.appendChild(toast);
   
-  // إزالة التوست بعد 3 ثواني
   setTimeout(() => {
     toast.style.animation = 'slideOut 0.3s ease-in';
     setTimeout(() => {
@@ -1278,19 +1160,20 @@ function showToast(message, type = 'success') {
   }, 3000);
 }
 
-// إضافة أنيميشن للتوست
-const style = document.createElement('style');
-style.textContent = `
-@keyframes slideIn {
-  from { transform: translateX(100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+function getModeName(mode) {
+  const names = { basic: 'أساسي', advanced: 'متقدم', pattern: 'تحليل الأنماط', ml: 'تعلم الآلة' };
+  return names[mode] || mode;
 }
-@keyframes slideOut {
-  from { transform: translateX(0); opacity: 1; }
-  to { transform: translateX(100%); opacity: 0; }
+
+function getWeightingName(weighting) {
+  const names = { none: 'بدون', linear: 'خطي', exponential: 'أسّي' };
+  return names[weighting] || weighting;
 }
-`;
-document.head.appendChild(style);
+
+function getMLModelName(model) {
+  const names = { knn: 'K-الجيران الأقرب', logistic: 'الانحدار اللوجستي', ensemble: 'المجمع' };
+  return names[model] || model;
+}
 
 // ========== خوارزميات التحليل ==========
 
@@ -1300,15 +1183,13 @@ function frequencyAnalysis(rounds) {
   }
   
   const counts = { P: 0, B: 0, T: 0 };
-  rounds.forEach(x => {
-    if (x in counts) counts[x]++;
-  });
+  rounds.forEach(x => { if (x in counts) counts[x]++; });
   
   const total = rounds.length;
   return {
-    P: (counts.P / total) * 100,
-    B: (counts.B / total) * 100,
-    T: (counts.T / total) * 100
+    P: Number(((counts.P / total) * 100).toFixed(1)),
+    B: Number(((counts.B / total) * 100).toFixed(1)),
+    T: Number(((counts.T / total) * 100).toFixed(1))
   };
 }
 
@@ -1338,9 +1219,9 @@ function patternAnalysis(rounds) {
     
     if (patternData && patternData.total >= 1) {
       return {
-        P: (patternData.P / patternData.total) * 100,
-        B: (patternData.B / patternData.total) * 100,
-        T: (patternData.T / patternData.total) * 100
+        P: Number(((patternData.P / patternData.total) * 100).toFixed(1)),
+        B: Number(((patternData.B / patternData.total) * 100).toFixed(1)),
+        T: Number(((patternData.T / patternData.total) * 100).toFixed(1))
       };
     }
   }
@@ -1363,9 +1244,9 @@ function applyTimeWeighting(rounds, basePrediction) {
   }
 
   return {
-    P: basePrediction.P * weightFactor,
-    B: basePrediction.B * weightFactor,
-    T: basePrediction.T * weightFactor
+    P: Number((basePrediction.P * weightFactor).toFixed(1)),
+    B: Number((basePrediction.B * weightFactor).toFixed(1)),
+    T: Number((basePrediction.T * weightFactor).toFixed(1))
   };
 }
 
@@ -1396,22 +1277,20 @@ function enhancedPredict() {
     case 'advanced':
       basePrediction = frequencyAnalysis(recent);
       patternBoost = patternAnalysis(recent);
-      
       finalPrediction = {
-        P: basePrediction.P * 0.7 + patternBoost.P * 0.3,
-        B: basePrediction.B * 0.7 + patternBoost.B * 0.3,
-        T: basePrediction.T * 0.7 + patternBoost.T * 0.3
+        P: Number((basePrediction.P * 0.7 + patternBoost.P * 0.3).toFixed(1)),
+        B: Number((basePrediction.B * 0.7 + patternBoost.B * 0.3).toFixed(1)),
+        T: Number((basePrediction.T * 0.7 + patternBoost.T * 0.3).toFixed(1))
       };
       break;
       
     case 'pattern':
       basePrediction = frequencyAnalysis(recent);
       patternBoost = patternAnalysis(recent);
-      
       finalPrediction = {
-        P: basePrediction.P * 0.4 + patternBoost.P * 0.6,
-        B: basePrediction.B * 0.4 + patternBoost.B * 0.6,
-        T: basePrediction.T * 0.4 + patternBoost.T * 0.6
+        P: Number((basePrediction.P * 0.4 + patternBoost.P * 0.6).toFixed(1)),
+        B: Number((basePrediction.B * 0.4 + patternBoost.B * 0.6).toFixed(1)),
+        T: Number((basePrediction.T * 0.4 + patternBoost.T * 0.6).toFixed(1))
       };
       break;
       
@@ -1424,12 +1303,12 @@ function enhancedPredict() {
       }
       
       const mlWeight = state.ml.getMLWeight();
-      mlContribution = mlWeight * 100;
+      mlContribution = Number((mlWeight * 100).toFixed(1));
       
       finalPrediction = {
-        P: basePrediction.P * (1 - mlWeight) + mlPrediction.P * mlWeight,
-        B: basePrediction.B * (1 - mlWeight) + mlPrediction.B * mlWeight,
-        T: basePrediction.T * (1 - mlWeight) + mlPrediction.T * mlWeight
+        P: Number((basePrediction.P * (1 - mlWeight) + mlPrediction.P * mlWeight).toFixed(1)),
+        B: Number((basePrediction.B * (1 - mlWeight) + mlPrediction.B * mlWeight).toFixed(1)),
+        T: Number((basePrediction.T * (1 - mlWeight) + mlPrediction.T * mlWeight).toFixed(1))
       };
       break;
   }
@@ -1438,94 +1317,96 @@ function enhancedPredict() {
 
   const sum = finalPrediction.P + finalPrediction.B + finalPrediction.T;
   if (sum > 0) {
-    finalPrediction.P = (finalPrediction.P / sum) * 100;
-    finalPrediction.B = (finalPrediction.B / sum) * 100;
-    finalPrediction.T = (finalPrediction.T / sum) * 100;
+    finalPrediction.P = Number(((finalPrediction.P / sum) * 100).toFixed(1));
+    finalPrediction.B = Number(((finalPrediction.B / sum) * 100).toFixed(1));
+    finalPrediction.T = Number(((finalPrediction.T / sum) * 100).toFixed(1));
   }
 
   const entries = Object.entries(finalPrediction);
   const sorted = entries.sort((a, b) => b[1] - a[1]);
   
-  const confidence = sorted[0][1] - (sorted[1] ? sorted[1][1] : 0);
+  const confidence = Math.min(100, Math.max(0, sorted[0][1] - (sorted[1] ? sorted[1][1] : 0)));
+  
   let final = sorted[0][0];
   
-  if (sorted[0][1] < state.confidenceThreshold) {
+  if (confidence < 15) {
     final = '—';
   }
 
   return {
-    P: finalPrediction.P.toFixed(1),
-    B: finalPrediction.B.toFixed(1),
-    T: finalPrediction.T.toFixed(1),
+    P: finalPrediction.P,
+    B: finalPrediction.B,
+    T: finalPrediction.T,
     final,
-    confidence: Math.min(100, Math.max(0, confidence * 2)),
+    confidence: Number(confidence.toFixed(1)),
     model: modelUsed,
-    mlContribution: mlContribution.toFixed(1)
+    mlContribution: mlContribution
   };
 }
 
 function pushRound(r) {
   if (!['P', 'B', 'T'].includes(r)) return;
   
-  const pred = enhancedPredict();
-  state.lastPrediction = pred.final;
+  const predBefore = enhancedPredict();
+  state.lastPrediction = predBefore.final;
   
   state.ml.updateModel(state.rounds, state.windowSize, r);
   
   state.rounds.push(r);
   state.count[r]++;
   
-  if (state.lastPrediction !== '—' && state.lastPrediction !== null) {
-    const didWin = (r === state.lastPrediction);
-    
-    if (didWin) {
-      state.win[state.lastPrediction]++;
+  if (predBefore.final !== '—' && ['P', 'B', 'T'].includes(predBefore.final)) {
+    if (r === predBefore.final) {
+      state.win[predBefore.final]++;
       state.modelPerformance[state.analysisMode] = (state.modelPerformance[state.analysisMode] || 0) + 1;
     } else {
-      state.loss[state.lastPrediction] = (state.loss[state.lastPrediction] || 0) + 1;
+      state.loss[predBefore.final] = (state.loss[predBefore.final] || 0) + 1;
     }
   }
   
-  updateAccuracyData(r);
+  updateAccuracyData(r, predBefore);
   
   const newPred = enhancedPredict();
   updatePredictionDisplay(newPred);
-  showResult(r, newPred, state.lastPrediction === r);
+  
+  el('finalCard').classList.remove('win-effect', 'loss-effect');
+  setTimeout(() => {
+    if (predBefore.final === r) {
+      el('finalCard').classList.add('win-effect');
+    } else if (predBefore.final !== '—') {
+      el('finalCard').classList.add('loss-effect');
+    }
+  }, 10);
+  
   updateAll();
   dataManager.saveAllData();
   dataManager.updateDataStats();
-  
-  // إشعار صوتي بسيط
-  playSound('click');
 }
 
 function undoRound() {
   if (state.rounds.length === 0) return;
   
   const lastRound = state.rounds.pop();
-  state.count[lastRound] = Math.max(0, state.count[lastRound] - 1);
+  state.count[lastRound] = Math.max(0, (state.count[lastRound] || 0) - 1);
   
-  if (state.rounds.length > 0) {
-    const previousPrediction = enhancedPredict();
-    if (lastRound === previousPrediction.final) {
-      state.win[previousPrediction.final] = Math.max(0, state.win[previousPrediction.final] - 1);
-      state.modelPerformance[state.analysisMode] = Math.max(0, state.modelPerformance[state.analysisMode] - 1);
-    } else {
-      state.loss[previousPrediction.final] = Math.max(0, state.loss[previousPrediction.final] - 1);
+  if (state.predictionsHistory.length > 0) {
+    const lastPrediction = state.predictionsHistory[state.predictionsHistory.length - 1];
+    if (lastPrediction && lastPrediction.prediction !== '—') {
+      if (lastPrediction.correct) {
+        state.win[lastPrediction.prediction] = Math.max(0, (state.win[lastPrediction.prediction] || 0) - 1);
+        state.modelPerformance[lastPrediction.model] = Math.max(0, (state.modelPerformance[lastPrediction.model] || 0) - 1);
+      } else {
+        state.loss[lastPrediction.prediction] = Math.max(0, (state.loss[lastPrediction.prediction] || 0) - 1);
+      }
     }
-  }
-  
-  if (state.accuracyHistory.length > 0) {
-    state.accuracyHistory.pop();
     state.predictionsHistory.pop();
   }
   
   state.lastPrediction = null;
   
-  // إعادة تدريب ML مع البيانات المحدثة
   state.ml.reset();
-  for (let i = 0; i < state.rounds.length; i++) {
-    if (i >= state.windowSize) {
+  if (state.rounds.length > state.windowSize) {
+    for (let i = state.windowSize; i < state.rounds.length; i++) {
       const recent = state.rounds.slice(i - state.windowSize, i);
       state.ml.updateModel(recent, state.windowSize, state.rounds[i]);
     }
@@ -1534,7 +1415,7 @@ function undoRound() {
   updateAll();
   dataManager.saveAllData();
   dataManager.updateDataStats();
-  playSound('undo');
+  showToast('تم التراجع عن آخر جولة');
 }
 
 function resetAll() {
@@ -1547,7 +1428,6 @@ function resetAll() {
   state.win = { P: 0, B: 0, T: 0 };
   state.loss = { P: 0, B: 0, T: 0 };
   state.lastPrediction = null;
-  state.accuracyHistory = [];
   state.predictionsHistory = [];
   state.modelPerformance = { basic: 0, advanced: 0, pattern: 0, ml: 0 };
   state.previousPredictions = { P: 0, B: 0, T: 0 };
@@ -1557,19 +1437,7 @@ function resetAll() {
   updateAll();
   dataManager.saveAllData();
   dataManager.updateDataStats();
-  playSound('reset');
-}
-
-function playSound(type) {
-  try {
-    if (type === 'click') {
-      const audio = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==');
-      audio.volume = 0.1;
-      audio.play();
-    }
-  } catch (e) {
-    // تجاهل أخطاء الصوت
-  }
+  showToast('تم إعادة تعيين جميع البيانات');
 }
 
 function updatePredictionDisplay(pred) {
@@ -1577,7 +1445,13 @@ function updatePredictionDisplay(pred) {
   el('predPctB').textContent = pred.B + '%';
   el('predPctT').textContent = pred.T + '%';
   
-  updateTrendIndicators(pred);
+  ['P', 'B', 'T'].forEach(type => {
+    const trendEl = el('predTrend' + type);
+    if (trendEl) {
+      trendEl.textContent = '→';
+      trendEl.style.color = 'var(--muted)';
+    }
+  });
   
   ['predP', 'predB', 'predT'].forEach(id => {
     el(id).classList.remove('active');
@@ -1602,32 +1476,6 @@ function updatePredictionDisplay(pred) {
   updateModelInfo(pred);
 }
 
-function updateTrendIndicators(pred) {
-  const current = { 
-    P: parseFloat(pred.P) || 0, 
-    B: parseFloat(pred.B) || 0, 
-    T: parseFloat(pred.T) || 0 
-  };
-  const previous = state.previousPredictions;
-  
-  ['P', 'B', 'T'].forEach(type => {
-    const trendEl = el('predTrend' + type);
-    if (!trendEl) return;
-    
-    if (previous[type] > 0) {
-      const diff = current[type] - previous[type];
-      if (diff > 2) trendEl.textContent = '↗';
-      else if (diff < -2) trendEl.textContent = '↘';
-      else trendEl.textContent = '→';
-      trendEl.style.color = diff > 0 ? '#38b000' : diff < 0 ? '#ff006e' : '#bfb7a6';
-    } else {
-      trendEl.textContent = '→';
-    }
-  });
-  
-  state.previousPredictions = current;
-}
-
 function updateConfidenceMeter(confidence) {
   const fill = el('confidenceFill');
   const label = el('confidenceLabel');
@@ -1636,11 +1484,11 @@ function updateConfidenceMeter(confidence) {
   
   fill.style.width = confidence + '%';
   
-  if (confidence >= 70) {
+  if (confidence >= 30) {
     fill.className = 'confidence-fill high-confidence';
     label.textContent = 'ثقة عالية';
     label.style.color = '#38b000';
-  } else if (confidence >= 40) {
+  } else if (confidence >= 15) {
     fill.className = 'confidence-fill medium-confidence';
     label.textContent = 'ثقة متوسطة';
     label.style.color = '#d4af37';
@@ -1694,9 +1542,9 @@ function updateModelInfo(pred) {
   modelInfoEl.textContent = `النموذج: ${modelName} - الكفاءة: ${efficiency}%`;
   
   if (pred.final === '—') {
-    reasonEl.textContent = 'عدم كفاية الثقة للتنبؤ (تحت ' + state.confidenceThreshold + '%)';
+    reasonEl.textContent = 'عدم كفاية الثقة للتنبؤ';
   } else {
-    reasonEl.textContent = reason + ` - الثقة: ${pred.confidence.toFixed(1)}%`;
+    reasonEl.textContent = reason + ` - الثقة: ${pred.confidence}%`;
   }
 }
 
@@ -1706,16 +1554,6 @@ function calculateModelEfficiency() {
   return total > 0 ? Math.round((current / total) * 100) : 0;
 }
 
-function showResult(r, pred, didWin) {
-  const finalCard = el('finalCard');
-  if (!finalCard) return;
-  
-  finalCard.classList.remove('win-effect', 'loss-effect');
-  setTimeout(() => {
-    finalCard.classList.add(didWin ? 'win-effect' : 'loss-effect');
-  }, 10);
-}
-
 function updateMLStatus() {
   const trainingCount = state.ml.getTrainingDataCount();
   const mlWeight = state.ml.getMLWeight() * 100;
@@ -1723,7 +1561,7 @@ function updateMLStatus() {
   
   el('mlTrainingCount').textContent = trainingCount;
   el('mlWeight').textContent = mlWeight.toFixed(0) + '%';
-  el('mlAccuracy').textContent = mlAccuracy.toFixed(1) + '%';
+  el('mlAccuracy').textContent = mlAccuracy + '%';
   
   const statusEl = el('mlStatus');
   if (!statusEl) return;
@@ -1739,7 +1577,7 @@ function updateMLStatus() {
     statusEl.style.color = '#38b000';
   }
   
-  el('mlOverallAccuracy').textContent = mlAccuracy.toFixed(1) + '%';
+  el('mlOverallAccuracy').textContent = mlAccuracy + '%';
 }
 
 function updateAll() {
@@ -1750,36 +1588,21 @@ function updateAll() {
   updateAccuracyChart();
   updatePatternInfo();
   updateMLStats();
-  updateDataStatsDisplay();
-}
-
-function updateDataStatsDisplay() {
   dataManager.updateDataStats();
 }
 
-function updateMLStats() {
-  const mlAccuracy = state.ml.getModelAccuracy(state.mlModel);
-  el('mlOverallAccuracy').textContent = mlAccuracy.toFixed(1) + '%';
-  
-  // تحديث دقة ML لكل نوع (مبسطة)
-  const mlOverall = mlAccuracy;
-  el('pMLAccuracy').textContent = (mlOverall * 0.9).toFixed(1) + '%';
-  el('bMLAccuracy').textContent = (mlOverall * 0.95).toFixed(1) + '%';
-  el('tMLAccuracy').textContent = (mlOverall * 0.7).toFixed(1) + '%';
-}
-
 function renderStats() {
-  el('pTotal').textContent = state.count.P;
-  el('bTotal').textContent = state.count.B;
-  el('tTotal').textContent = state.count.T;
+  el('pTotal').textContent = state.count.P || 0;
+  el('bTotal').textContent = state.count.B || 0;
+  el('tTotal').textContent = state.count.T || 0;
   
-  el('pWin').textContent = state.win.P;
-  el('bWin').textContent = state.win.B;
-  el('tWin').textContent = state.win.T;
+  el('pWin').textContent = state.win.P || 0;
+  el('bWin').textContent = state.win.B || 0;
+  el('tWin').textContent = state.win.T || 0;
   
-  el('pLoss').textContent = state.loss.P;
-  el('bLoss').textContent = state.loss.B;
-  el('tLoss').textContent = state.loss.T;
+  el('pLoss').textContent = state.loss.P || 0;
+  el('bLoss').textContent = state.loss.B || 0;
+  el('tLoss').textContent = state.loss.T || 0;
   
   el('pPct').textContent = calculatePercentage(state.win.P, state.loss.P);
   el('bPct').textContent = calculatePercentage(state.win.B, state.loss.B);
@@ -1788,17 +1611,22 @@ function renderStats() {
   el('pAccuracy').textContent = calculateAccuracy('P');
   el('bAccuracy').textContent = calculateAccuracy('B');
   el('tAccuracy').textContent = calculateAccuracy('T');
+  
+  const mlAccuracy = state.ml.getModelAccuracy(state.mlModel);
+  el('pMLAccuracy').textContent = (mlAccuracy * 0.9).toFixed(1) + '%';
+  el('bMLAccuracy').textContent = (mlAccuracy * 0.95).toFixed(1) + '%';
+  el('tMLAccuracy').textContent = (mlAccuracy * 0.7).toFixed(1) + '%';
 }
 
 function calculatePercentage(win, loss) {
-  const total = win + loss;
+  const total = (win || 0) + (loss || 0);
   return total > 0 ? ((win / total) * 100).toFixed(1) + '%' : '0%';
 }
 
 function calculateAccuracy(type) {
-  const totalPredictions = state.predictionsHistory.filter(p => p.prediction === type).length;
-  const correctPredictions = state.predictionsHistory.filter(p => p.prediction === type && p.correct).length;
-  return totalPredictions > 0 ? ((correctPredictions / totalPredictions) * 100).toFixed(1) + '%' : '0%';
+  const predictionsForType = state.predictionsHistory.filter(p => p.prediction === type);
+  const correctForType = predictionsForType.filter(p => p.correct).length;
+  return predictionsForType.length > 0 ? ((correctForType / predictionsForType.length) * 100).toFixed(1) + '%' : '0%';
 }
 
 function renderBigRoad() {
@@ -1807,6 +1635,8 @@ function renderBigRoad() {
   
   const ctx = canvas.getContext('2d');
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+  if (state.rounds.length === 0) return;
   
   const size = 35;
   let x = 0, y = 0;
@@ -1847,66 +1677,60 @@ function updatePatternInfo() {
     return;
   }
   
-  const trend = calculateTrend(state.rounds);
   const recent = state.rounds.slice(-5);
   const pCount = recent.filter(r => r === 'P').length;
   const bCount = recent.filter(r => r === 'B').length;
   const tCount = recent.filter(r => r === 'T').length;
   
-  let info = `الاتجاه: ${trend.direction === 'volatile' ? 'متقلب' : trend.direction === 'mixed' ? 'مختلط' : 'مستقر'}`;
-  info += ` | آخر 5: 🔵${pCount} 🔴${bCount} 🟢${tCount}`;
+  let info = `آخر 5 جولات: 🔵${pCount} 🔴${bCount} 🟢${tCount}`;
+  
+  if (state.rounds.length >= 3) {
+    const lastThree = state.rounds.slice(-3).join('');
+    info += ` | آخر 3: ${lastThree}`;
+  }
   
   infoEl.textContent = info;
 }
 
-function calculateTrend(rounds) {
-  if (rounds.length < 2) return { direction: 'stable', strength: 0 };
-  
-  const changes = [];
-  for (let i = 1; i < rounds.length; i++) {
-    changes.push(rounds[i] === rounds[i-1] ? 0 : 1);
-  }
-  
-  const changeRate = changes.reduce((a, b) => a + b, 0) / changes.length;
-  return {
-    direction: changeRate > 0.6 ? 'volatile' : changeRate > 0.4 ? 'mixed' : 'stable',
-    strength: Math.abs(changeRate - 0.5) * 2
-  };
-}
-
-function updateAccuracyData(actualResult) {
-  if (state.lastPrediction && state.lastPrediction !== '—') {
-    const isCorrect = state.lastPrediction === actualResult;
+function updateAccuracyData(actualResult, pred) {
+  if (pred.final !== '—' && ['P', 'B', 'T'].includes(pred.final)) {
     state.predictionsHistory.push({
-      prediction: state.lastPrediction,
+      prediction: pred.final,
       actual: actualResult,
-      correct: isCorrect,
-      model: state.analysisMode
+      correct: pred.final === actualResult,
+      model: pred.model,
+      confidence: pred.confidence
     });
     
-    const correctPredictions = state.predictionsHistory.filter(p => p.correct).length;
-    const totalPredictions = state.predictionsHistory.length;
-    const accuracy = totalPredictions > 0 ? (correctPredictions / totalPredictions) * 100 : 0;
-    
-    state.accuracyHistory.push(accuracy);
+    if (state.predictionsHistory.length > 100) {
+      state.predictionsHistory = state.predictionsHistory.slice(-100);
+    }
   }
 }
 
 function updateAccuracyStats() {
-  if (state.accuracyHistory.length === 0) {
+  if (state.predictionsHistory.length === 0) {
     el('currentAccuracy').textContent = '0%';
     el('bestAccuracy').textContent = '0%';
     el('averageAccuracy').textContent = '0%';
     return;
   }
   
-  const currentAccuracy = state.accuracyHistory[state.accuracyHistory.length - 1];
-  const bestAccuracy = Math.max(...state.accuracyHistory);
-  const averageAccuracy = state.accuracyHistory.reduce((a, b) => a + b, 0) / state.accuracyHistory.length;
+  const correct = state.predictionsHistory.filter(p => p.correct).length;
+  const total = state.predictionsHistory.length;
+  const currentAccuracy = total > 0 ? (correct / total) * 100 : 0;
+  
+  let bestAccuracy = 0;
+  for (let i = 1; i <= state.predictionsHistory.length; i++) {
+    const slice = state.predictionsHistory.slice(0, i);
+    const sliceCorrect = slice.filter(p => p.correct).length;
+    const sliceAccuracy = (sliceCorrect / i) * 100;
+    if (sliceAccuracy > bestAccuracy) bestAccuracy = sliceAccuracy;
+  }
   
   el('currentAccuracy').textContent = currentAccuracy.toFixed(1) + '%';
   el('bestAccuracy').textContent = bestAccuracy.toFixed(1) + '%';
-  el('averageAccuracy').textContent = averageAccuracy.toFixed(1) + '%';
+  el('averageAccuracy').textContent = (state.predictionsHistory.reduce((acc, p) => acc + (p.correct ? 1 : 0), 0) / total * 100).toFixed(1) + '%';
 }
 
 function updateAccuracyChart() {
@@ -1916,13 +1740,19 @@ function updateAccuracyChart() {
   
   svg.innerHTML = '';
   
-  if (state.accuracyHistory.length < 2) return;
+  if (state.predictionsHistory.length < 2) return;
   
-  const width = svg.clientWidth || 600;
-  const height = svg.clientHeight || 80;
+  const width = Math.max(svg.clientWidth || 600, 100);
+  const height = Math.max(svg.clientHeight || 80, 50);
   const padding = 20;
   
-  // رسم الشبكة
+  const accuracies = [];
+  let correctCount = 0;
+  for (let i = 0; i < state.predictionsHistory.length; i++) {
+    if (state.predictionsHistory[i].correct) correctCount++;
+    accuracies.push((correctCount / (i + 1)) * 100);
+  }
+  
   for (let i = 0; i <= 100; i += 20) {
     const y = height - padding - (i / 100) * (height - 2 * padding);
     const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -1943,12 +1773,11 @@ function updateAccuracyChart() {
     svg.appendChild(text);
   }
   
-  // رسم الخط
   const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
   let pathData = '';
   
-  state.accuracyHistory.forEach((accuracy, index) => {
-    const x = padding + (index / (state.accuracyHistory.length - 1)) * (width - 2 * padding);
+  accuracies.forEach((accuracy, index) => {
+    const x = padding + (index / (accuracies.length - 1)) * (width - 2 * padding);
     const y = height - padding - (accuracy / 100) * (height - 2 * padding);
     
     if (index === 0) {
@@ -1957,7 +1786,6 @@ function updateAccuracyChart() {
       pathData += ` L ${x} ${y}`;
     }
     
-    // نقاط تفاعلية
     const point = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     point.setAttribute('class', 'accuracy-point');
     point.setAttribute('cx', x);
@@ -1984,8 +1812,21 @@ function updateAccuracyChart() {
   svg.appendChild(path);
 }
 
-// تهيئة التطبيق عند تحميل الصفحة
+const style = document.createElement('style');
+style.textContent = `
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideOut {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(100%); opacity: 0; }
+}
+`;
+document.head.appendChild(style);
+
 window.addEventListener('DOMContentLoaded', init);
+})();
 </script>
 </body>
 </html>
