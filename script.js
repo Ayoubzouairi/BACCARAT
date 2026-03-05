@@ -3,59 +3,57 @@
 // ===== إدارة الترجمة =====
 const translations = {
     ar: {
-        // عام
-        subtitle: 'نظام تنبؤ بسيط وفعال',
+        subtitle: 'نظام تنبؤ متعدد الأنماط',
         rounds: 'جولة',
         
-        // العناوين
         windowTitle: '📊 نافذة التحليل',
         inputTitle: '🎯 إدخال النتائج',
         statsTitle: '📈 الإحصاءات',
         confidenceTitle: '⚡ مؤشر الثقة',
         predTitle: '🔮 توقع الجولة القادمة',
-        predSub: 'نمط أساسي - تحليل تردد بسيط',
+        predSub: 'نمط أساسي + تحليل أنماط',
         accuracyTitle: '📊 دقة التوقعات',
         
-        // التسميات
         windowLabel: 'عدد الجولات المحللة:',
-        windowDesc: 'تحليل آخر 8 جولات بنمط أساسي',
+        windowDesc: 'تحليل آخر 5 جولات بأنماط متقدمة',
         statsTeam: 'الجهة',
         statsTotal: 'المجموع',
         statsWin: 'فوز',
         statsPct: 'نسبة %',
         
-        // الأزرار
         btnP: '🔵 لاعب',
         btnB: '🔴 مصرفي',
         btnT: '🟢 تعادل',
         btnUndo: '↩️ تراجع',
         btnReset: '🔄 إعادة تعيين',
         
-        // النتائج
         player: 'لاعب',
         banker: 'مصرفي',
         tie: 'تعادل',
         
-        // مؤشر الثقة
         confidenceLow: 'منخفضة',
         confidenceMedium: 'متوسطة',
         confidenceHigh: 'عالية',
         
-        // دقة التوقعات
         currentAcc: 'الحالية',
         bestAcc: 'أفضل',
         avgAcc: 'المتوسط',
         
-        // أسباب التنبؤ
-        reason: 'تحليل تردد آخر 8 جولات',
+        reason: 'تحليل تردد + أنماط',
         result: 'التوقع:',
         
-        // أخطاء
+        // تحليل الأنماط
+        patternTitle: '📐 تحليل الأنماط',
+        patternDetectedLabel: 'النمط المكتشف:',
+        patternConfidenceLabel: 'ثقة النمط:',
+        patternPredictionLabel: 'توقع النمط:',
+        patternNone: 'لا يوجد نمط',
+        
         errorWindow: 'حدث خطأ في النافذة'
     },
     
     en: {
-        subtitle: 'Simple & Effective Prediction System',
+        subtitle: 'Multi-Pattern Prediction System',
         rounds: 'Rounds',
         
         windowTitle: '📊 Analysis Window',
@@ -63,11 +61,11 @@ const translations = {
         statsTitle: '📈 Statistics',
         confidenceTitle: '⚡ Confidence Meter',
         predTitle: '🔮 Next Round Prediction',
-        predSub: 'Basic Mode - Simple Frequency Analysis',
+        predSub: 'Basic Mode + Pattern Analysis',
         accuracyTitle: '📊 Prediction Accuracy',
         
         windowLabel: 'Rounds analyzed:',
-        windowDesc: 'Analyzing last 8 rounds in basic mode',
+        windowDesc: 'Analyzing last 5 rounds with advanced patterns',
         statsTeam: 'Team',
         statsTotal: 'Total',
         statsWin: 'Win',
@@ -91,14 +89,20 @@ const translations = {
         bestAcc: 'Best',
         avgAcc: 'Average',
         
-        reason: 'Analyzing last 8 rounds frequency',
+        reason: 'Frequency + Pattern Analysis',
         result: 'Prediction:',
+        
+        patternTitle: '📐 Pattern Analysis',
+        patternDetectedLabel: 'Detected Pattern:',
+        patternConfidenceLabel: 'Pattern Confidence:',
+        patternPredictionLabel: 'Pattern Prediction:',
+        patternNone: 'No pattern',
         
         errorWindow: 'Window error'
     },
     
     fr: {
-        subtitle: 'Système de Prédiction Simple et Efficace',
+        subtitle: 'Système de Prédiction Multi-patrons',
         rounds: 'Tours',
         
         windowTitle: '📊 Fenêtre d\'Analyse',
@@ -106,11 +110,11 @@ const translations = {
         statsTitle: '📈 Statistiques',
         confidenceTitle: '⚡ Niveau de Confiance',
         predTitle: '🔮 Prédiction Prochain Tour',
-        predSub: 'Mode Basique - Analyse de Fréquence Simple',
+        predSub: 'Mode Basique + Analyse de motifs',
         accuracyTitle: '📊 Précision des Prédictions',
         
         windowLabel: 'Tours analysés:',
-        windowDesc: 'Analyse des 8 derniers tours en mode basique',
+        windowDesc: 'Analyse des 5 derniers tours avec motifs avancés',
         statsTeam: 'Équipe',
         statsTotal: 'Total',
         statsWin: 'Gain',
@@ -134,8 +138,14 @@ const translations = {
         bestAcc: 'Meilleure',
         avgAcc: 'Moyenne',
         
-        reason: 'Analyse de fréquence des 8 derniers tours',
+        reason: 'Fréquence + Analyse de motifs',
         result: 'Prédiction:',
+        
+        patternTitle: '📐 Analyse de motifs',
+        patternDetectedLabel: 'Motif détecté:',
+        patternConfidenceLabel: 'Confiance du motif:',
+        patternPredictionLabel: 'Prédiction du motif:',
+        patternNone: 'Aucun motif',
         
         errorWindow: 'Erreur de fenêtre'
     }
@@ -144,7 +154,7 @@ const translations = {
 // ===== الحالة العامة =====
 const state = {
     rounds: [],
-    windowSize: 8,
+    windowSize: 5, // تغيير من 8 إلى 5
     count: { P: 0, B: 0, T: 0 },
     win: { P: 0, B: 0, T: 0 },
     loss: { P: 0, B: 0, T: 0 },
@@ -153,7 +163,10 @@ const state = {
     predictionsHistory: [],
     previousPredictions: { P: 33.3, B: 33.3, T: 33.4 },
     currentLang: 'ar',
-    confidenceThreshold: 45
+    confidenceThreshold: 45,
+    // متغيرات تحليل الأنماط
+    lastPattern: null,
+    patternConfidence: 0
 };
 
 // ===== الوظائف المساعدة =====
@@ -166,7 +179,6 @@ function setLanguage(lang) {
     state.currentLang = lang;
     const t = translations[lang];
     
-    // تحديث أزرار اللغة
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.remove('active');
     });
@@ -207,14 +219,24 @@ function setLanguage(lang) {
     el('bestAccLabel').textContent = t.bestAcc;
     el('avgAccLabel').textContent = t.avgAcc;
     
-    // تحديث مؤشر الثقة
-    updateConfidenceLabel();
+    // تحديث عناصر تحليل الأنماط
+    const patternTitle = el('patternTitle');
+    if (patternTitle) patternTitle.textContent = t.patternTitle;
     
-    // تحديث عداد الجولات
+    const patternDetectedLabel = el('patternDetectedLabel');
+    if (patternDetectedLabel) patternDetectedLabel.textContent = t.patternDetectedLabel;
+    
+    const patternConfidenceLabel = el('patternConfidenceLabel');
+    if (patternConfidenceLabel) patternConfidenceLabel.textContent = t.patternConfidenceLabel;
+    
+    const patternPredictionLabel = el('patternPredictionLabel');
+    if (patternPredictionLabel) patternPredictionLabel.textContent = t.patternPredictionLabel;
+    
+    updateConfidenceLabel();
     updateRoundsCount();
 }
 
-// ===== تحليل التردد (النمط الأساسي فقط) =====
+// ===== تحليل التردد =====
 function frequencyAnalysis(rounds) {
     if (!rounds || !rounds.length) return { P: 33.3, B: 33.3, T: 33.4 };
     
@@ -229,7 +251,78 @@ function frequencyAnalysis(rounds) {
     };
 }
 
-// ===== التنبؤ (نمط أساسي فقط) =====
+// ===== تحليل الأنماط (اكتشاف النمط المتكرر) =====
+function detectPatterns(rounds) {
+    if (rounds.length < 3) return { pattern: null, next: null, confidence: 0 };
+    
+    // نأخذ آخر 5 جولات كحد أقصى للتحليل
+    const recent = rounds.slice(-5);
+    
+    // محاولة اكتشاف أنماط بطول 2 أو 3
+    let bestPattern = null;
+    let bestNext = null;
+    let bestConfidence = 0;
+    
+    // البحث عن أنماط ثنائية (مثل P B P B)
+    for (let len = 2; len <= 3; len++) {
+        if (recent.length < len * 2) continue;
+        
+        const pattern = recent.slice(0, len);
+        let matches = 0;
+        let total = 0;
+        
+        for (let i = len; i < recent.length - len + 1; i += len) {
+            const segment = recent.slice(i, i + len);
+            if (segment.length === len) {
+                total++;
+                let match = true;
+                for (let j = 0; j < len; j++) {
+                    if (segment[j] !== pattern[j]) {
+                        match = false;
+                        break;
+                    }
+                }
+                if (match) matches++;
+            }
+        }
+        
+        if (total > 0) {
+            const confidence = (matches / total) * 100;
+            if (confidence > bestConfidence && confidence > 50) {
+                bestConfidence = confidence;
+                bestPattern = pattern.join(' → ');
+                // توقع العنصر التالي بناءً على النمط
+                const nextIndex = recent.length % len;
+                bestNext = pattern[nextIndex];
+            }
+        }
+    }
+    
+    // إذا لم نجد نمطاً واضحاً، نبحث عن تكرار بسيط (آخر نتيجتين)
+    if (!bestPattern && recent.length >= 2) {
+        const lastTwo = recent.slice(-2);
+        if (lastTwo[0] === lastTwo[1]) {
+            // إذا تكررت النتيجة، نتوقع نفسها
+            bestPattern = `${lastTwo[0]} → ${lastTwo[0]}`;
+            bestNext = lastTwo[0];
+            bestConfidence = 70; // ثقة عالية في التكرار
+        } else {
+            // إذا اختلفت، نتوقع عكسها (تبادل)
+            const opposite = lastTwo[0] === 'P' ? 'B' : lastTwo[0] === 'B' ? 'P' : 'T';
+            bestPattern = `${lastTwo[0]} → ${lastTwo[1]}`;
+            bestNext = opposite;
+            bestConfidence = 60; // ثقة متوسطة في التبادل
+        }
+    }
+    
+    return {
+        pattern: bestPattern,
+        next: bestNext,
+        confidence: bestConfidence
+    };
+}
+
+// ===== التنبؤ الموحد (تردد + أنماط) =====
 function predict() {
     const n = Math.min(state.windowSize, state.rounds.length);
     const recent = state.rounds.slice(-n);
@@ -238,38 +331,59 @@ function predict() {
         return {
             P: 33.3, B: 33.3, T: 33.4,
             final: '—',
-            confidence: 0
+            confidence: 0,
+            pattern: null,
+            patternNext: null,
+            patternConfidence: 0
         };
     }
     
-    const prediction = frequencyAnalysis(recent);
-    
-    // تطبيع النسب
-    const sum = prediction.P + prediction.B + prediction.T;
-    const normalized = {
-        P: (prediction.P / sum) * 100,
-        B: (prediction.B / sum) * 100,
-        T: (prediction.T / sum) * 100
+    // تحليل التردد
+    const freq = frequencyAnalysis(recent);
+    const sum = freq.P + freq.B + freq.T;
+    const normalizedFreq = {
+        P: (freq.P / sum) * 100,
+        B: (freq.B / sum) * 100,
+        T: (freq.T / sum) * 100
     };
     
-    // تحديد النتيجة المتوقعة
-    const entries = Object.entries(normalized);
-    const sorted = entries.sort((a, b) => b[1] - a[1]);
+    const freqEntries = Object.entries(normalizedFreq);
+    const sortedFreq = freqEntries.sort((a, b) => b[1] - a[1]);
+    const freqPrediction = sortedFreq[0][0];
+    const freqConfidence = sortedFreq[0][1] - (sortedFreq[1] ? sortedFreq[1][1] : 0);
     
-    // حساب الثقة
-    const confidence = sorted[0][1] - (sorted[1] ? sorted[1][1] : 0);
-    let final = sorted[0][0];
+    // تحليل الأنماط
+    const patternResult = detectPatterns(state.rounds);
+    const patternPrediction = patternResult.next;
+    const patternConfidence = patternResult.confidence;
     
-    if (sorted[0][1] < state.confidenceThreshold) {
-        final = '—';
+    // دمج التوقعين (نعطي الأولوية للنمط إذا كانت ثقته أعلى من التردد)
+    let finalPrediction = freqPrediction;
+    let finalConfidence = freqConfidence * 2; // تحويل إلى مقياس 100
+    
+    if (patternPrediction && patternConfidence > finalConfidence) {
+        finalPrediction = patternPrediction;
+        finalConfidence = patternConfidence;
     }
     
+    // إذا كانت الثقة منخفضة جداً، نعرض "—"
+    if (finalConfidence < state.confidenceThreshold) {
+        finalPrediction = '—';
+    }
+    
+    // تخزين آخر نمط للعرض
+    state.lastPattern = patternResult.pattern;
+    state.patternConfidence = patternConfidence;
+    
     return {
-        P: normalized.P.toFixed(1),
-        B: normalized.B.toFixed(1),
-        T: normalized.T.toFixed(1),
-        final,
-        confidence: Math.min(100, Math.max(0, confidence * 2))
+        P: normalizedFreq.P.toFixed(1),
+        B: normalizedFreq.B.toFixed(1),
+        T: normalizedFreq.T.toFixed(1),
+        final: finalPrediction,
+        confidence: Math.min(100, Math.max(0, finalConfidence)),
+        pattern: patternResult.pattern,
+        patternNext: patternPrediction,
+        patternConfidence: patternConfidence
     };
 }
 
@@ -283,7 +397,6 @@ function pushRound(r) {
     state.rounds.push(r);
     state.count[r]++;
     
-    // تحديث الإحصاءات
     if (state.lastPrediction !== '—' && state.lastPrediction !== null) {
         if (r === state.lastPrediction) {
             state.win[state.lastPrediction]++;
@@ -292,13 +405,8 @@ function pushRound(r) {
         }
     }
     
-    // تحديث سجل الدقة
     updateAccuracyData(r);
-    
-    // تحديث الواجهة
     updateAll();
-    
-    // تأثير بصري
     showResult(r, pred.final === r);
 }
 
@@ -309,7 +417,6 @@ function undoRound() {
     const lastRound = state.rounds.pop();
     state.count[lastRound] = Math.max(0, state.count[lastRound] - 1);
     
-    // تحديث الإحصاءات
     if (state.lastPrediction && state.lastPrediction !== '—') {
         if (lastRound === state.lastPrediction) {
             state.win[state.lastPrediction] = Math.max(0, state.win[state.lastPrediction] - 1);
@@ -318,15 +425,12 @@ function undoRound() {
         }
     }
     
-    // تحديث سجل الدقة
     if (state.accuracyHistory.length > 0) {
         state.accuracyHistory.pop();
         state.predictionsHistory.pop();
     }
     
     state.lastPrediction = null;
-    
-    // تحديث الواجهة
     updateAll();
 }
 
@@ -350,6 +454,8 @@ function resetAll() {
     state.accuracyHistory = [];
     state.predictionsHistory = [];
     state.previousPredictions = { P: 33.3, B: 33.3, T: 33.4 };
+    state.lastPattern = null;
+    state.patternConfidence = 0;
     
     updateAll();
 }
@@ -414,11 +520,9 @@ function renderBigRoad() {
     for (let i = 0; i < state.rounds.length; i++) {
         const r = state.rounds[i];
         
-        // لون الخلفية
         ctx.fillStyle = r === 'P' ? '#3498db' : r === 'B' ? '#e74c3c' : '#2ecc71';
         ctx.fillRect(x * size, y * size, size - 2, size - 2);
         
-        // رقم الجولة
         ctx.fillStyle = '#ffffff';
         ctx.font = 'bold 14px Inter';
         ctx.textAlign = 'center';
@@ -442,7 +546,6 @@ function updatePredictionDisplay() {
     el('predPctB').textContent = pred.B + '%';
     el('predPctT').textContent = pred.T + '%';
     
-    // تحديث البطاقة النشطة
     ['predP', 'predB', 'predT'].forEach(id => {
         el(id).classList.remove('active');
     });
@@ -452,17 +555,36 @@ function updatePredictionDisplay() {
         if (activeEl) activeEl.classList.add('active');
     }
     
-    // تحديث النتيجة النهائية
     const finalText = pred.final === 'P' ? translations[state.currentLang].player :
                      pred.final === 'B' ? translations[state.currentLang].banker :
                      pred.final === 'T' ? translations[state.currentLang].tie : '—';
     el('finalCard').textContent = finalText;
     
-    // تحديث الثقة
+    // تحديث معلومات الأنماط
+    const patternDetected = el('patternDetected');
+    const patternConfidence = el('patternConfidence');
+    const patternPrediction = el('patternPrediction');
+    
+    if (patternDetected) {
+        patternDetected.textContent = pred.pattern || translations[state.currentLang].patternNone;
+    }
+    if (patternConfidence) {
+        patternConfidence.textContent = (pred.patternConfidence || 0).toFixed(0) + '%';
+    }
+    if (patternPrediction) {
+        let patternNextText = '—';
+        if (pred.patternNext) {
+            patternNextText = pred.patternNext === 'P' ? translations[state.currentLang].player :
+                             pred.patternNext === 'B' ? translations[state.currentLang].banker :
+                             pred.patternNext === 'T' ? translations[state.currentLang].tie : '—';
+        }
+        patternPrediction.textContent = patternNextText;
+    }
+    
     updateConfidenceValue(pred.confidence);
 }
 
-// ===== تحديث مؤشر الثقة =====
+// ===== مؤشر الثقة =====
 function updateConfidenceMeter() {
     const pred = predict();
     updateConfidenceValue(pred.confidence);
@@ -547,14 +669,12 @@ function toggleTheme() {
 
 // ===== التهيئة =====
 function init() {
-    console.log('Initializing Baccarat...');
+    console.log('Initializing Baccarat with Pattern Analysis...');
     
-    // تعيين الوضع الافتراضي
     if (!document.documentElement.hasAttribute('data-theme')) {
         document.documentElement.setAttribute('data-theme', 'dark');
     }
     
-    // ربط الأزرار
     el('btnP').onclick = () => pushRound('P');
     el('btnB').onclick = () => pushRound('B');
     el('btnT').onclick = () => pushRound('T');
@@ -562,19 +682,14 @@ function init() {
     el('btnReset').onclick = resetAll;
     el('themeToggle').onclick = toggleTheme;
     
-    // ربط أزرار اللغة
     el('langAr').onclick = () => setLanguage('ar');
     el('langEn').onclick = () => setLanguage('en');
     el('langFr').onclick = () => setLanguage('fr');
     
-    // تعيين اللغة الافتراضية
     setLanguage('ar');
-    
-    // تحديث الواجهة
     updateAll();
     
     console.log('Initialization complete');
 }
 
-// بدء التشغيل
 window.addEventListener('DOMContentLoaded', init);
