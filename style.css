@@ -1,40 +1,567 @@
-/* 
- * AYOUB BACCARAT PRO - النسخة الكاملة 
- * Author: Ayoub
- * Version: 3.0
- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
-
-/* ========== متغيرات CSS ========== */
+/* ===== المتغيرات ===== */
 :root {
     --gold: #d4af37;
     --gold-2: #b8871d;
-    --bg-dark: #070606;
-    --card: #0f0e10;
-    --muted: #bfb7a6;
-    --player: #2d7ef7;
-    --banker: #e03b3b;
-    --tie: #28a745;
+    --bg-dark: #0a0a0a;
+    --bg-light: #f8f9fa;
+    --card-dark: #1a1a1a;
+    --card-light: #ffffff;
+    --text-dark: #ffffff;
+    --text-light: #2c3e50;
+    --muted-dark: #95a5a6;
+    --muted-light: #7f8c8d;
+    --player: #3498db;
+    --banker: #e74c3c;
+    --tie: #2ecc71;
+    --border-radius: 16px;
+    --transition: all 0.3s ease;
 }
 
+/* الوضع الليلي (افتراضي) */
+:root {
+    --bg: var(--bg-dark);
+    --card-bg: var(--card-dark);
+    --text: var(--text-dark);
+    --muted: var(--muted-dark);
+    --border: rgba(212, 175, 55, 0.2);
+}
+
+/* الوضع النهاري */
 :root[data-theme="light"] {
-    --gold: #d4af37;
-    --gold-2: #b8871d;
-    --bg-dark: #f5f5f5;
-    --card: #ffffff;
-    --muted: #666666;
-    --player: #2d7ef7;
-    --banker: #e03b3b;
-    --tie: #28a745;
+    --bg: var(--bg-light);
+    --card-bg: var(--card-light);
+    --text: var(--text-light);
+    --muted: var(--muted-light);
+    --border: rgba(0, 0, 0, 0.1);
 }
 
-/* ========== القواعد العامة ========== */
+/* ===== القواعد العامة ===== */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, var(--bg), #1a1a1a);
+    color: var(--text);
+    padding: 20px;
+    min-height: 100vh;
+    transition: var(--transition);
+}
+
+:root[data-theme="light"] body {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+.app {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ===== البطاقات ===== */
+.card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border);
+    margin-bottom: 15px;
+    transition: var(--transition);
+}
+
+:root[data-theme="light"] .card {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== التخطيط ===== */
+.layout {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.left {
+    width: 350px;
+    min-width: 300px;
+    flex: 1;
+}
+
+.right {
+    flex: 2;
+    min-width: 300px;
+}
+
+/* ===== الرأس ===== */
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--gold), #f1c40f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.badge-basic {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* ===== أزرار اللغة ===== */
+.language-selector {
+    display: flex;
+    gap: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px;
+    border-radius: 30px;
+}
+
+.lang-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.3rem;
+    padding: 8px 12px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: var(--transition);
+    opacity: 0.6;
+}
+
+.lang-btn.active {
+    background: rgba(255, 255, 255, 0.2);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.lang-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* ===== الأزرار ===== */
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn.gold {
+    background: linear-gradient(135deg, var(--gold), var(--gold-2));
+    color: #000;
+    font-weight: 700;
+}
+
+.btn.player {
+    background: linear-gradient(135deg, var(--player), #2980b9);
+    color: white;
+    flex: 1;
+}
+
+.btn.banker {
+    background: linear-gradient(135deg, var(--banker), #c0392b);
+    color: white;
+    flex: 1;
+}
+
+.btn.tie {
+    background: linear-gradient(135deg, var(--tie), #27ae60);
+    color: white;
+    flex: 1;
+}
+
+.undo-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text);
+    border: 1px solid var(--border);
+    width: 100%;
+}
+
+.theme-toggle {
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(15deg);
+}
+
+/* ===== عناصر التحكم ===== */
+.controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ===== معلومات مبسطة ===== */
+.info-box {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-label {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.info-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold);
+}
+
+/* ===== الجدول ===== */
+.stat-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.stat-table th,
+.stat-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.stat-table th {
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.player {
+    color: var(--player);
+    font-weight: 600;
+}
+
+.banker {
+    color: var(--banker);
+    font-weight: 600;
+}
+
+.tie {
+    color: var(--tie);
+    font-weight: 600;
+}
+
+/* ===== مؤشر الثقة ===== */
+.confidence-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.confidence-label {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.confidence-value {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--gold);
+}
+
+.confidence-meter {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.confidence-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #e74c3c, #f1c40f, #2ecc71);
+    transition: width 0.3s ease;
+}
+
+/* ===== بطاقات التوقع ===== */
+.prediction-cards {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.pred-card {
+    flex: 1;
+    min-width: 100px;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.pred-card.player {
+    background: linear-gradient(135deg, var(--player), #2980b9);
+}
+
+.pred-card.banker {
+    background: linear-gradient(135deg, var(--banker), #c0392b);
+}
+
+.pred-card.tie {
+    background: linear-gradient(135deg, var(--tie), #27ae60);
+}
+
+.pred-card.active {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 3px var(--gold);
+}
+
+.pred-emoji {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.pred-label {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.pred-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* ===== وسائل الإيضاح ===== */
+.color-legend {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.color-legend span {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.legend-player {
+    background: linear-gradient(135deg, var(--player), #2980b9);
+    color: white;
+}
+
+.legend-banker {
+    background: linear-gradient(135deg, var(--banker), #c0392b);
+    color: white;
+}
+
+.legend-tie {
+    background: linear-gradient(135deg, var(--tie), #27ae60);
+    color: white;
+}
+
+/* ===== اللوحة ===== */
+canvas {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.2);
+    margin: 15px 0;
+}
+
+/* ===== نتيجة التحليل ===== */
+.analysis-result {
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+}
+
+.result-label {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.final {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 10px 0;
+    color: var(--gold);
+}
+
+/* ===== إحصاءات الدقة ===== */
+.accuracy-stats {
+    display: flex;
+    gap: 20px;
+    justify-content: space-around;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.accuracy-stats > div {
+    flex: 1;
+    min-width: 100px;
+}
+
+.accuracy-label {
+    color: var(--muted);
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+}
+
+.accuracy-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold);
+}
+
+/* ===== التذييل ===== */
+.foot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.credits {
+    color: var(--muted);
+    font-size: 0.9rem;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.separator {
+    opacity: 0.5;
+}
+
+/* ===== التأثيرات ===== */
+.win-effect {
+    animation: winPulse 0.5s ease;
+}
+
+.loss-effect {
+    animation: lossShake 0.5s ease;
+}
+
+@keyframes winPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes lossShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* ===== التجاوب ===== */
+@media (max-width: 768px) {
+    .layout {
+        flex-direction: column;
+    }
+    
+    .left, .right {
+        width: 100%;
+    }
+    
+    .prediction-cards {
+        flex-direction: column;
+    }
+    
+    .pred-card {
+        width: 100%;
+    }
+    
+    .controls {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .card {
+        padding: 15px;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
+    }
+    
+    .final {
+        font-size: 2rem;
+    }
+}}
 
 body {
     font-family: 'Inter', sans-serif;
