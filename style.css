@@ -484,16 +484,143 @@ canvas {
     text-shadow: 0 0 20px rgba(212,175,55,0.7);
 }
 
-.ai-badge {
-    display: inline-block;
-    background: linear-gradient(135deg, #6c5ce7, #a463f5);
-    color: white;
-    padding: 5px 18px;
-    border-radius: 30px;
-    font-size: 0.85rem;
+/* ===== إعدادات k-NN ===== */
+.knn-settings {
+    background: rgba(108, 92, 231, 0.05);
+    border: 1px solid #6c5ce7;
+}
+
+.setting-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding: 5px 0;
+}
+
+.setting-label {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.setting-input {
+    width: 80px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px;
+    border-radius: 8px;
+    text-align: center;
     font-weight: 600;
-    margin-top: 8px;
-    box-shadow: 0 4px 12px rgba(108,92,231,0.6);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    margin-left: 10px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background: linear-gradient(90deg, #6c5ce7, #a463f5);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* ===== تفاصيل الخوارزميات ===== */
+.algo-details {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 10px 0;
+    flex-wrap: wrap;
+}
+
+.algo-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: rgba(255,255,255,0.1);
+}
+
+.algo-badge.freq {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+}
+
+.algo-badge.markov {
+    background: linear-gradient(135deg, #e67e22, #d35400);
+    color: white;
+}
+
+.algo-badge.knn {
+    background: linear-gradient(135deg, #6c5ce7, #4834d4);
+    color: white;
+}
+
+.algo-badge.knn.disabled {
+    opacity: 0.5;
+    background: #7f8c8d;
+}
+
+/* ===== شبكة دقة الخوارزميات ===== */
+.accuracy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.accuracy-item {
+    background: rgba(255,255,255,0.05);
+    padding: 12px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.accuracy-item .accuracy-label {
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+}
+
+.accuracy-item .accuracy-value {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--gold);
 }
 
 /* ===== إحصاءات الدقة ===== */
