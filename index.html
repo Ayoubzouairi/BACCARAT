@@ -3,223 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AYOUB BACCARAT PRO - النسخة الكاملة مع الحفظ التلقائي</title>
+    <title>AYOUB BACCARAT - النسخة المبسطة</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="app">
+        <!-- رأس الصفحة مع أيقونات اللغة والوضع -->
         <header class="top card">
             <div class="brand">
-                <div class="logo">AYOUB BACCARAT PRO <span class="model-badge badge-ml">نسخة كاملة</span></div>
-                <div class="subtitle">نظام تنبؤ ذكي مع خوارزميات تعلم آلة وحفظ تلقائي 🧠💾🚀</div>
+                <div class="logo">🎴 AYOUB BACCARAT <span class="badge-basic">أساسي 5%</span></div>
+                <div class="subtitle" id="subtitle">نظام تنبؤ بسيط وفعال</div>
             </div>
             <div class="controls">
-                <button id="themeToggle" class="theme-toggle" title="تبديل الوضع">🌚</button>
-                <button id="btnReset" class="btn gold">إعادة تعيين</button>
+                <!-- أيقونات اللغة -->
+                <div class="language-selector">
+                    <button class="lang-btn active" data-lang="ar" id="langAr">🇸🇦</button>
+                    <button class="lang-btn" data-lang="en" id="langEn">🇬🇧</button>
+                    <button class="lang-btn" data-lang="fr" id="langFr">🇫🇷</button>
+                </div>
+                <!-- زر تبديل الوضع الليلي/النهاري -->
+                <button id="themeToggle" class="theme-toggle" title="تبديل الوضع">🌙</button>
+                <button id="btnReset" class="btn gold">🔄 إعادة تعيين</button>
             </div>
         </header>
 
         <main class="layout">
+            <!-- القائمة الجانبية -->
             <aside class="left">
-                <!-- نافذة التحليل -->
+                <!-- نافذة التحليل (ثابتة 8) -->
                 <div class="panel card">
-                    <label class="input-label">نافذة التحليل (5 - 15)</label>
-                    <div class="input-group">
-                        <input id="windowSize" type="number" min="5" max="15" value="8">
-                        <button id="applyWindow" class="btn gold">تطبيق</button>
+                    <div class="section-title" id="windowTitle">📊 نافذة التحليل</div>
+                    <div class="info-box">
+                        <span class="info-label" id="windowLabel">عدد الجولات المحللة:</span>
+                        <span class="info-value" id="windowValue">8</span>
                     </div>
-                    <div class="muted small">يحلل آخر 5-15 جولة باستخدام خوارزميات متقدمة</div>
+                    <div class="muted small" id="windowDesc">تحليل آخر 8 جولات بنمط أساسي</div>
                 </div>
 
-                <!-- إعدادات التنبؤ المتقدم -->
+                <!-- إدخال النتائج (الأزرار الرئيسية) -->
                 <div class="panel card">
-                    <div class="section-title">إعدادات التنبؤ المتقدم</div>
-                    <div class="advanced-controls">
-                        <div class="control-group">
-                            <label for="analysisMode">نمط التحليل:</label>
-                            <select id="analysisMode">
-                                <option value="basic">أساسي <span class="model-badge badge-basic">+5%</span></option>
-                                <option value="advanced" selected>متقدم <span class="model-badge badge-advanced">+15%</span></option>
-                                <option value="pattern">تحليل الأنماط <span class="model-badge badge-pattern">+25%</span></option>
-                                <option value="ml">تعلم الآلة <span class="model-badge badge-ml">+35%</span></option>
-                            </select>
-                        </div>
-                        <div class="control-group">
-                            <label for="confidenceSensitivity">حساسية الثقة:</label>
-                            <div class="slider-container">
-                                <input type="range" id="confidenceSensitivity" class="slider" min="30" max="60" value="45">
-                                <div class="muted small" id="sensitivityValue">45%</div>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label for="timeWeighting">المرجحة الزمنية:</label>
-                            <select id="timeWeighting">
-                                <option value="none">بدون</option>
-                                <option value="linear" selected>خطي</option>
-                                <option value="exponential">أسّي</option>
-                            </select>
-                        </div>
+                    <div class="section-title" id="inputTitle">🎯 إدخال النتائج</div>
+                    <div class="row">
+                        <button class="btn player" id="btnP">🔵 لاعب</button>
+                        <button class="btn banker" id="btnB">🔴 مصرفي</button>
+                        <button class="btn tie" id="btnT">🟢 تعادل</button>
+                    </div>
+                    <div class="row">
+                        <button class="btn undo-btn" id="btnUndo">↩️ تراجع</button>
                     </div>
                 </div>
 
-                <!-- قسم تعلم الآلة -->
-                <div class="panel card ml-info-panel">
-                    <div class="section-title">⚙️ تعلم الآلة</div>
-                    <div class="row">
-                        <label class="switch">
-                            <input type="checkbox" id="mlToggle" checked>
-                            <span class="slider"></span>
-                        </label>
-                        <span>تفعيل تعلم الآلة</span>
-                    </div>
-                    <div class="row">
-                        <select id="mlModelSelect" style="flex:1; margin-top: 5px;">
-                            <option value="knn">K-الجيران الأقرب</option>
-                            <option value="logistic">الانحدار اللوجستي</option>
-                            <option value="ensemble" selected>المجمع (جميع النماذج)</option>
-                        </select>
-                    </div>
-                    <div class="row">
-                        <div id="mlStatus" class="muted small">
-                            <span class="ml-training-indicator ml-training"></span> 
-                            النموذج يتعلم من البيانات...
-                        </div>
-                    </div>
-                    <div class="pattern-info">
-                        <span id="mlTrainingCount">0</span> عينة تدريب • 
-                        <span id="mlAccuracy">0%</span> دقة • 
-                        <span id="mlWeight">30%</span> تأثير
-                    </div>
-                </div>
-
-                <!-- إدخال النتائج -->
-                <div class="panel card">
-                    <div class="section-title">إدخال النتائج</div>
-                    <div class="row">
-                        <button class="btn player" id="btnP">لاعب 🔵</button>
-                        <button class="btn banker" id="btnB">مصرفي 🔴</button>
-                        <button class="btn tie" id="btnT">تعادل 🟢</button>
-                    </div>
-                    <div class="row">
-                        <button class="btn" id="btnUndo" style="flex:1; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2)">تراجع</button>
-                    </div>
-                    <div class="muted small" style="margin-top: 8px; text-align: center;">
-                        أدخل نتيجة كل جولة بالضغط على الزر المناسب
-                    </div>
-                </div>
-
-                <!-- الإحصاءات -->
+                <!-- الإحصاءات المبسطة -->
                 <div class="panel card stats">
-                    <div class="section-title">الإحصاءات المتقدمة</div>
+                    <div class="section-title" id="statsTitle">📈 الإحصاءات</div>
                     <table class="stat-table">
                         <thead>
-                            <tr><th>الجهة</th><th>المجموع</th><th>فوز</th><th>خسارة</th><th>نسبة %</th><th>دقة</th><th>ML دقة</th></tr>
+                            <tr>
+                                <th id="statsTeam">الجهة</th>
+                                <th id="statsTotal">المجموع</th>
+                                <th id="statsWin">فوز</th>
+                                <th id="statsPct">نسبة %</th>
+                            </tr>
                         </thead>
                         <tbody>
-                            <tr><td class="player">لاعب</td><td id="pTotal">0</td><td id="pWin">0</td><td id="pLoss">0</td><td id="pPct">0%</td><td id="pAccuracy">0%</td><td id="pMLAccuracy">0%</td></tr>
-                            <tr><td class="banker">مصرفي</td><td id="bTotal">0</td><td id="bWin">0</td><td id="bLoss">0</td><td id="bPct">0%</td><td id="bAccuracy">0%</td><td id="bMLAccuracy">0%</td></tr>
-                            <tr><td class="tie">تعادل</td><td id="tTotal">0</td><td id="tWin">0</td><td id="tLoss">0</td><td id="tPct">0%</td><td id="tAccuracy">0%</td><td id="tMLAccuracy">0%</td></tr>
+                            <tr>
+                                <td class="player">🔵 لاعب</td>
+                                <td id="pTotal">0</td>
+                                <td id="pWin">0</td>
+                                <td id="pPct">0%</td>
+                            </tr>
+                            <tr>
+                                <td class="banker">🔴 مصرفي</td>
+                                <td id="bTotal">0</td>
+                                <td id="bWin">0</td>
+                                <td id="bPct">0%</td>
+                            </tr>
+                            <tr>
+                                <td class="tie">🟢 تعادل</td>
+                                <td id="tTotal">0</td>
+                                <td id="tWin">0</td>
+                                <td id="tPct">0%</td>
+                            </tr>
                         </tbody>
                     </table>
-                    <div class="pattern-info" id="patternInfo">لا توجد أنماط مكتشفة بعد</div>
                 </div>
 
-                <!-- مؤشر الثقة -->
+                <!-- مؤشر الثقة المبسط -->
                 <div class="panel card">
-                    <div class="section-title">مؤشر الثقة</div>
-                    <div class="muted small" id="confidenceLabel">ثقة منخفضة</div>
+                    <div class="section-title" id="confidenceTitle">⚡ مؤشر الثقة</div>
+                    <div class="confidence-display">
+                        <span class="confidence-label" id="confidenceLabel">منخفضة</span>
+                        <span class="confidence-value" id="confidenceValue">0%</span>
+                    </div>
                     <div class="confidence-meter">
                         <div class="confidence-fill" id="confidenceFill" style="width: 0%"></div>
                     </div>
-                    <div class="pattern-info" id="modelInfo">النموذج: أساسي</div>
                 </div>
             </aside>
 
+            <!-- الجزء الرئيسي -->
             <section class="right">
-                <!-- بطاقة التوقع الرئيسية -->
+                <!-- بطاقة التوقع -->
                 <div class="card prediction">
                     <div class="pred-head">
-                        <div class="pred-title">توقع الجولة القادمة <span id="predModel" class="model-badge badge-basic">أساسي</span></div>
-                        <div class="pred-sub">نظام تنبؤ متعدد النماذج مع خوارزميات تعلم آلة</div>
+                        <div class="pred-title" id="predTitle">🔮 توقع الجولة القادمة</div>
+                        <div class="pred-sub" id="predSub">نمط أساسي - تحليل تردد بسيط</div>
                     </div>
 
                     <div class="color-legend">
-                        <span style="background:linear-gradient(135deg, #3a86ff, #2667cc);">🔵 لاعب</span>
-                        <span style="background:linear-gradient(135deg, #ff006e, #cc0058);">🔴 مصرفي</span>
-                        <span style="background:linear-gradient(135deg, #38b000, #2c8a00);">🟢 تعادل</span>
+                        <span class="legend-player">🔵 لاعب</span>
+                        <span class="legend-banker">🔴 مصرفي</span>
+                        <span class="legend-tie">🟢 تعادل</span>
                     </div>
                     
                     <canvas id="bigRoad" width="800" height="450"></canvas>
 
                     <div class="prediction-cards">
                         <div class="pred-card player" id="predP">
-                            <div>لاعب</div>
-                            <div id="predPctP">0%</div>
-                            <div class="muted small" id="predTrendP">→</div>
+                            <div class="pred-emoji">🔵</div>
+                            <div class="pred-label" id="predLabelP">لاعب</div>
+                            <div class="pred-value" id="predPctP">33%</div>
                         </div>
                         <div class="pred-card banker" id="predB">
-                            <div>مصرفي</div>
-                            <div id="predPctB">0%</div>
-                            <div class="muted small" id="predTrendB">→</div>
+                            <div class="pred-emoji">🔴</div>
+                            <div class="pred-label" id="predLabelB">مصرفي</div>
+                            <div class="pred-value" id="predPctB">33%</div>
                         </div>
                         <div class="pred-card tie" id="predT">
-                            <div>تعادل</div>
-                            <div id="predPctT">0%</div>
-                            <div class="muted small" id="predTrendT">→</div>
+                            <div class="pred-emoji">🟢</div>
+                            <div class="pred-label" id="predLabelT">تعادل</div>
+                            <div class="pred-value" id="predPctT">34%</div>
                         </div>
                     </div>
 
                     <div class="analysis-result">
-                        <div class="muted">التوقع الحالي:</div>
+                        <div class="result-label" id="resultLabel">التوقع:</div>
                         <div class="final" id="finalCard">—</div>
-                        <div class="muted small" id="predictionReason">بانتظار بيانات كافية للتحليل</div>
-                        <div class="muted small" id="mlContribution" style="margin-top: 5px; color: #9d4edd;"></div>
+                        <div class="muted small" id="predictionReason">تحليل تردد آخر 8 جولات</div>
                     </div>
                 </div>
 
-                <!-- منحنى دقة التوقعات -->
+                <!-- دقة التوقعات -->
                 <div class="panel card accuracy-panel">
-                    <div class="section-title">منحنى دقة التوقعات المتقدم</div>
+                    <div class="section-title" id="accuracyTitle">📊 دقة التوقعات</div>
                     <div class="accuracy-stats">
                         <div>
-                            <div class="accuracy-label">الدقة الحالية</div>
+                            <div class="accuracy-label" id="currentAccLabel">الحالية</div>
                             <div class="accuracy-value" id="currentAccuracy">0%</div>
                         </div>
                         <div>
-                            <div class="accuracy-label">أفضل دقة</div>
+                            <div class="accuracy-label" id="bestAccLabel">أفضل</div>
                             <div class="accuracy-value" id="bestAccuracy">0%</div>
                         </div>
                         <div>
-                            <div class="accuracy-label">متوسط الدقة</div>
+                            <div class="accuracy-label" id="avgAccLabel">المتوسط</div>
                             <div class="accuracy-value" id="averageAccuracy">0%</div>
                         </div>
-                        <div>
-                            <div class="accuracy-label">دقة ML</div>
-                            <div class="accuracy-value" id="mlOverallAccuracy">0%</div>
-                        </div>
                     </div>
-                    <div class="accuracy-chart-container">
-                        <svg id="accuracyChart" width="100%" height="100%"></svg>
-                        <div id="accuracyTooltip" class="accuracy-tooltip"></div>
-                    </div>
-                    <div class="muted small">تتبع دقة توقعاتك مع تحليل أداء النماذج المختلفة</div>
                 </div>
             </section>
         </main>
 
         <footer class="foot card">
-            <div style="flex: 1;">
-                <div>تصميم: Ayoub • النسخة الكاملة مع الحفظ التلقائي</div>
-                <div class="credits small">نظام متعدد النماذج • تعلم آلة • تحليل الأنماط • حفظ تلقائي • مؤشرات متقدمة</div>
-            </div>
-            <div class="data-controls">
-                <button id="btnExport" class="btn" style="background: rgba(59, 130, 246, 0.2); border: 1px solid #3a86ff;">📥 تصدير</button>
-                <button id="btnImport" class="btn" style="background: rgba(16, 185, 129, 0.2); border: 1px solid #10b981;">📤 استيراد</button>
-                <button id="btnClearData" class="btn" style="background: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444;">🗑️ مسح</button>
-            </div>
-            <div class="muted small" style="text-align: center; width: 100%; margin-top: 10px;">
-                <span id="autoSaveStatus">💾 الحفظ التلقائي مفعل</span> • 
-                <span id="dataStats">0 جولة • 0 عينة تدريب</span>
+            <div class="credits">
+                <span>© AYOUB BACCARAT</span>
+                <span class="separator">•</span>
+                <span id="roundsCount">0 جولة</span>
             </div>
         </footer>
     </div>
