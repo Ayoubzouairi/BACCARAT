@@ -3,34 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AYOUB BACCARAT - النسخة المطورة</title>
+    <title>AYOUB BACCARAT - نظام تنبؤ متطور</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="app">
-        <!-- رأس الصفحة مع أيقونات اللغة والوضع -->
+        <!-- رأس الصفحة -->
         <header class="top card">
             <div class="brand">
-                <div class="logo">🎴 AYOUB BACCARAT <span class="badge-basic">احترافي 5%</span></div>
-                <div class="subtitle" id="subtitle">نظام تنبؤ متعدد الأنماط</div>
+                <div class="logo">🎴 AYOUB BACCARAT <span class="badge-basic">احترافي</span></div>
+                <div class="subtitle" id="subtitle">نظام تنبؤ بتحليل الأنماط</div>
             </div>
             <div class="controls">
-                <!-- أيقونات اللغة -->
+                <!-- أزرار اللغة -->
                 <div class="language-selector">
                     <button class="lang-btn active" data-lang="ar" id="langAr">🇸🇦</button>
                     <button class="lang-btn" data-lang="en" id="langEn">🇬🇧</button>
                     <button class="lang-btn" data-lang="fr" id="langFr">🇫🇷</button>
                 </div>
-                <!-- زر تبديل الوضع الليلي/النهاري -->
+                <!-- زر الوضع الليلي/النهاري -->
                 <button id="themeToggle" class="theme-toggle" title="تبديل الوضع">🌙</button>
                 <button id="btnReset" class="btn gold">🔄 إعادة تعيين</button>
             </div>
         </header>
 
         <main class="layout">
-            <!-- القائمة الجانبية -->
+            <!-- القائمة الجانبية اليسرى -->
             <aside class="left">
-                <!-- نافذة التحليل (ثابتة 5) -->
+                <!-- نافذة التحليل -->
                 <div class="panel card">
                     <div class="section-title" id="windowTitle">📊 نافذة التحليل</div>
                     <div class="info-box">
@@ -40,7 +40,7 @@
                     <div class="muted small" id="windowDesc">تحليل آخر 5 جولات بأنماط متقدمة</div>
                 </div>
 
-                <!-- إدخال النتائج (الأزرار الرئيسية) -->
+                <!-- أزرار إدخال النتائج -->
                 <div class="panel card">
                     <div class="section-title" id="inputTitle">🎯 إدخال النتائج</div>
                     <div class="row">
@@ -53,7 +53,7 @@
                     </div>
                 </div>
 
-                <!-- الإحصاءات المبسطة -->
+                <!-- جدول الإحصاءات -->
                 <div class="panel card stats">
                     <div class="section-title" id="statsTitle">📈 الإحصاءات</div>
                     <table class="stat-table">
@@ -88,7 +88,7 @@
                     </table>
                 </div>
 
-                <!-- مؤشر الثقة المبسط -->
+                <!-- مؤشر الثقة -->
                 <div class="panel card">
                     <div class="section-title" id="confidenceTitle">⚡ مؤشر الثقة</div>
                     <div class="confidence-display">
@@ -101,24 +101,28 @@
                 </div>
             </aside>
 
-            <!-- الجزء الرئيسي -->
+            <!-- الجزء الرئيسي الأيمن -->
             <section class="right">
-                <!-- بطاقة التوقع -->
+                <!-- بطاقة التوقع والرسم -->
                 <div class="card prediction">
                     <div class="pred-head">
                         <div class="pred-title" id="predTitle">🔮 توقع الجولة القادمة</div>
-                        <div class="pred-sub" id="predSub">نمط أساسي + تحليل أنماط</div>
+                        <div class="pred-sub" id="predSub">تردد + أنماط</div>
                     </div>
 
+                    <!-- وسائل الإيضاح -->
                     <div class="color-legend">
                         <span class="legend-player">🔵 لاعب</span>
                         <span class="legend-banker">🔴 مصرفي</span>
                         <span class="legend-tie">🟢 تعادل</span>
                     </div>
                     
-                    <canvas id="bigRoad" width="800" height="450"></canvas>
+                    <!-- لوحة الرسم (Big Road) -->
+                    <div class="canvas-container">
+                        <canvas id="bigRoad" width="800" height="400"></canvas>
+                    </div>
 
-                    <!-- بطاقات النسب (التردد) -->
+                    <!-- بطاقات نسب التوقع (التردد) -->
                     <div class="prediction-cards">
                         <div class="pred-card player" id="predP">
                             <div class="pred-emoji">🔵</div>
@@ -137,14 +141,14 @@
                         </div>
                     </div>
 
-                    <!-- نتيجة التنبؤ النهائية -->
+                    <!-- النتيجة النهائية -->
                     <div class="analysis-result">
-                        <div class="result-label" id="resultLabel">التوقع:</div>
+                        <div class="result-label" id="resultLabel">التوقع النهائي:</div>
                         <div class="final" id="finalCard">—</div>
-                        <div class="muted small" id="predictionReason">تحليل تردد + أنماط</div>
+                        <div class="muted small" id="predictionReason">تحليل التردد + الأنماط</div>
                     </div>
 
-                    <!-- قسم تحليل الأنماط الجديد -->
+                    <!-- قسم تحليل الأنماط -->
                     <div class="pattern-analysis card" style="margin-top: 15px;">
                         <div class="section-title" id="patternTitle">📐 تحليل الأنماط</div>
                         <div class="pattern-details">
@@ -185,6 +189,7 @@
             </section>
         </main>
 
+        <!-- التذييل -->
         <footer class="foot card">
             <div class="credits">
                 <span>© AYOUB BACCARAT</span>
