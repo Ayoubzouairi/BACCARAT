@@ -3,7 +3,7 @@
 // ===== إدارة الترجمة =====
 const translations = {
     ar: {
-        subtitle: 'نظام تنبؤ متعدد الأنماط',
+        subtitle: 'نظام تنبؤ بتحليل الأنماط',
         rounds: 'جولة',
         
         windowTitle: '📊 نافذة التحليل',
@@ -11,7 +11,7 @@ const translations = {
         statsTitle: '📈 الإحصاءات',
         confidenceTitle: '⚡ مؤشر الثقة',
         predTitle: '🔮 توقع الجولة القادمة',
-        predSub: 'نمط أساسي + تحليل أنماط',
+        predSub: 'تردد + أنماط',
         accuracyTitle: '📊 دقة التوقعات',
         
         windowLabel: 'عدد الجولات المحللة:',
@@ -39,10 +39,9 @@ const translations = {
         bestAcc: 'أفضل',
         avgAcc: 'المتوسط',
         
-        reason: 'تحليل تردد + أنماط',
-        result: 'التوقع:',
+        reason: 'تحليل التردد + الأنماط',
+        result: 'التوقع النهائي:',
         
-        // تحليل الأنماط
         patternTitle: '📐 تحليل الأنماط',
         patternDetectedLabel: 'النمط المكتشف:',
         patternConfidenceLabel: 'ثقة النمط:',
@@ -53,7 +52,7 @@ const translations = {
     },
     
     en: {
-        subtitle: 'Multi-Pattern Prediction System',
+        subtitle: 'Pattern Analysis Prediction System',
         rounds: 'Rounds',
         
         windowTitle: '📊 Analysis Window',
@@ -61,7 +60,7 @@ const translations = {
         statsTitle: '📈 Statistics',
         confidenceTitle: '⚡ Confidence Meter',
         predTitle: '🔮 Next Round Prediction',
-        predSub: 'Basic Mode + Pattern Analysis',
+        predSub: 'Frequency + Patterns',
         accuracyTitle: '📊 Prediction Accuracy',
         
         windowLabel: 'Rounds analyzed:',
@@ -90,7 +89,7 @@ const translations = {
         avgAcc: 'Average',
         
         reason: 'Frequency + Pattern Analysis',
-        result: 'Prediction:',
+        result: 'Final Prediction:',
         
         patternTitle: '📐 Pattern Analysis',
         patternDetectedLabel: 'Detected Pattern:',
@@ -102,7 +101,7 @@ const translations = {
     },
     
     fr: {
-        subtitle: 'Système de Prédiction Multi-patrons',
+        subtitle: 'Système de Prédiction par Analyse de Motifs',
         rounds: 'Tours',
         
         windowTitle: '📊 Fenêtre d\'Analyse',
@@ -110,7 +109,7 @@ const translations = {
         statsTitle: '📈 Statistiques',
         confidenceTitle: '⚡ Niveau de Confiance',
         predTitle: '🔮 Prédiction Prochain Tour',
-        predSub: 'Mode Basique + Analyse de motifs',
+        predSub: 'Fréquence + Motifs',
         accuracyTitle: '📊 Précision des Prédictions',
         
         windowLabel: 'Tours analysés:',
@@ -139,7 +138,7 @@ const translations = {
         avgAcc: 'Moyenne',
         
         reason: 'Fréquence + Analyse de motifs',
-        result: 'Prédiction:',
+        result: 'Prédiction finale:',
         
         patternTitle: '📐 Analyse de motifs',
         patternDetectedLabel: 'Motif détecté:',
@@ -154,7 +153,7 @@ const translations = {
 // ===== الحالة العامة =====
 const state = {
     rounds: [],
-    windowSize: 5, // تغيير من 8 إلى 5
+    windowSize: 5,
     count: { P: 0, B: 0, T: 0 },
     win: { P: 0, B: 0, T: 0 },
     loss: { P: 0, B: 0, T: 0 },
@@ -164,7 +163,6 @@ const state = {
     previousPredictions: { P: 33.3, B: 33.3, T: 33.4 },
     currentLang: 'ar',
     confidenceThreshold: 45,
-    // متغيرات تحليل الأنماط
     lastPattern: null,
     patternConfidence: 0
 };
@@ -184,7 +182,7 @@ function setLanguage(lang) {
     });
     el(`lang${lang.charAt(0).toUpperCase() + lang.slice(1)}`).classList.add('active');
     
-    // تحديث النصوص
+    // تحديث النصوص العامة
     el('subtitle').textContent = t.subtitle;
     el('windowTitle').textContent = t.windowTitle;
     el('inputTitle').textContent = t.inputTitle;
@@ -305,13 +303,13 @@ function detectPatterns(rounds) {
             // إذا تكررت النتيجة، نتوقع نفسها
             bestPattern = `${lastTwo[0]} → ${lastTwo[0]}`;
             bestNext = lastTwo[0];
-            bestConfidence = 70; // ثقة عالية في التكرار
+            bestConfidence = 70;
         } else {
             // إذا اختلفت، نتوقع عكسها (تبادل)
             const opposite = lastTwo[0] === 'P' ? 'B' : lastTwo[0] === 'B' ? 'P' : 'T';
             bestPattern = `${lastTwo[0]} → ${lastTwo[1]}`;
             bestNext = opposite;
-            bestConfidence = 60; // ثقة متوسطة في التبادل
+            bestConfidence = 60;
         }
     }
     
@@ -357,16 +355,16 @@ function predict() {
     const patternPrediction = patternResult.next;
     const patternConfidence = patternResult.confidence;
     
-    // دمج التوقعين (نعطي الأولوية للنمط إذا كانت ثقته أعلى من التردد)
+    // دمج التوقعين (نعطي الأولوية للنمط إذا كانت ثقته أعلى)
     let finalPrediction = freqPrediction;
-    let finalConfidence = freqConfidence * 2; // تحويل إلى مقياس 100
+    let finalConfidence = freqConfidence * 2;
     
     if (patternPrediction && patternConfidence > finalConfidence) {
         finalPrediction = patternPrediction;
         finalConfidence = patternConfidence;
     }
     
-    // إذا كانت الثقة منخفضة جداً، نعرض "—"
+    // إذا كانت الثقة منخفضة جداً
     if (finalConfidence < state.confidenceThreshold) {
         finalPrediction = '—';
     }
@@ -387,6 +385,62 @@ function predict() {
     };
 }
 
+// ===== رسم اللوحة (Big Road) بشكل منظم =====
+function renderBigRoad() {
+    const canvas = el('bigRoad');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    const cellSize = 40;
+    const rounds = state.rounds;
+    
+    if (rounds.length === 0) return;
+    
+    // بناء الأعمدة: كل عمود يمثل سلسلة متتالية من نفس النتيجة
+    let columns = [];
+    let currentColumn = [];
+    let lastResult = null;
+    
+    for (let i = 0; i < rounds.length; i++) {
+        const r = rounds[i];
+        if (lastResult === null) {
+            currentColumn = [r];
+            columns.push(currentColumn);
+        } else {
+            if (r === lastResult) {
+                currentColumn.push(r);
+            } else {
+                currentColumn = [r];
+                columns.push(currentColumn);
+            }
+        }
+        lastResult = r;
+    }
+    
+    // رسم الأعمدة
+    for (let col = 0; col < columns.length; col++) {
+        const column = columns[col];
+        const x = col * cellSize;
+        for (let row = 0; row < column.length; row++) {
+            const r = column[row];
+            const y = row * cellSize;
+            
+            // اختيار اللون
+            ctx.fillStyle = r === 'P' ? '#3498db' : r === 'B' ? '#e74c3c' : '#2ecc71';
+            ctx.fillRect(x, y, cellSize - 2, cellSize - 2);
+            
+            // كتابة الحرف P/B/T داخل المربع
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 16px Inter';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(r, x + cellSize / 2, y + cellSize / 2);
+        }
+    }
+}
+
 // ===== إضافة جولة جديدة =====
 function pushRound(r) {
     if (!['P', 'B', 'T'].includes(r)) return;
@@ -397,6 +451,7 @@ function pushRound(r) {
     state.rounds.push(r);
     state.count[r]++;
     
+    // تحديث الإحصاءات
     if (state.lastPrediction !== '—' && state.lastPrediction !== null) {
         if (r === state.lastPrediction) {
             state.win[state.lastPrediction]++;
@@ -405,8 +460,13 @@ function pushRound(r) {
         }
     }
     
+    // تحديث سجل الدقة
     updateAccuracyData(r);
+    
+    // تحديث الواجهة
     updateAll();
+    
+    // تأثير بصري
     showResult(r, pred.final === r);
 }
 
@@ -505,39 +565,6 @@ function calculatePercentage(win, loss) {
     return total > 0 ? ((win / total) * 100).toFixed(1) + '%' : '0%';
 }
 
-// ===== رسم اللوحة =====
-function renderBigRoad() {
-    const canvas = el('bigRoad');
-    if (!canvas) return;
-    
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    const size = 35;
-    let x = 0, y = 0;
-    const maxCols = Math.floor(canvas.width / size);
-    
-    for (let i = 0; i < state.rounds.length; i++) {
-        const r = state.rounds[i];
-        
-        ctx.fillStyle = r === 'P' ? '#3498db' : r === 'B' ? '#e74c3c' : '#2ecc71';
-        ctx.fillRect(x * size, y * size, size - 2, size - 2);
-        
-        ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 14px Inter';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText((i + 1).toString(), x * size + size / 2, y * size + size / 2);
-        
-        y++;
-        if (y * size >= canvas.height) {
-            y = 0;
-            x++;
-            if (x >= maxCols) break;
-        }
-    }
-}
-
 // ===== تحديث عرض التنبؤ =====
 function updatePredictionDisplay() {
     const pred = predict();
@@ -584,7 +611,7 @@ function updatePredictionDisplay() {
     updateConfidenceValue(pred.confidence);
 }
 
-// ===== مؤشر الثقة =====
+// ===== تحديث مؤشر الثقة =====
 function updateConfidenceMeter() {
     const pred = predict();
     updateConfidenceValue(pred.confidence);
