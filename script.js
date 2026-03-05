@@ -3,7 +3,7 @@
 // ===== إدارة الترجمة =====
 const translations = {
     ar: {
-        subtitle: 'نظام تنبؤ ذكي بسلاسل ماركوف',
+        subtitle: 'نظام تنبؤ هجين: تردد + ماركوف + k-NN',
         rounds: 'جولة',
         
         windowTitle: '📊 نافذة التحليل',
@@ -11,11 +11,11 @@ const translations = {
         statsTitle: '📈 الإحصاءات',
         confidenceTitle: '⚡ مؤشر الثقة',
         predTitle: '🔮 توقع الجولة القادمة',
-        predSub: 'تردد + ماركوف (AI)',
+        predSub: 'تردد + ماركوف + k-NN',
         accuracyTitle: '📊 دقة التوقعات',
         
         windowLabel: 'عدد الجولات المحللة:',
-        windowDesc: 'تحليل آخر 5 جولات + خوارزمية ماركوف',
+        windowDesc: 'تحليل آخر 5 جولات + خوارزميات متعددة',
         statsTeam: 'الجهة',
         statsTotal: 'المجموع',
         statsWin: 'فوز',
@@ -39,14 +39,19 @@ const translations = {
         bestAcc: 'أفضل',
         avgAcc: 'المتوسط',
         
-        reason: 'تردد + نموذج ماركوف',
+        reason: 'تردد + ماركوف + k-NN',
         result: 'التوقع النهائي:',
+        
+        knnEnabled: 'تفعيل k-NN',
+        knnK: 'عدد الجيران (k)',
+        knnM: 'طول النمط (m)',
+        knnWeight: 'وزن k-NN',
         
         errorWindow: 'حدث خطأ في النافذة'
     },
     
     en: {
-        subtitle: 'Smart Markov Chain Prediction',
+        subtitle: 'Hybrid Prediction: Frequency + Markov + k-NN',
         rounds: 'Rounds',
         
         windowTitle: '📊 Analysis Window',
@@ -54,11 +59,11 @@ const translations = {
         statsTitle: '📈 Statistics',
         confidenceTitle: '⚡ Confidence Meter',
         predTitle: '🔮 Next Round Prediction',
-        predSub: 'Frequency + Markov (AI)',
+        predSub: 'Freq + Markov + k-NN',
         accuracyTitle: '📊 Prediction Accuracy',
         
         windowLabel: 'Rounds analyzed:',
-        windowDesc: 'Last 5 rounds + Markov algorithm',
+        windowDesc: 'Last 5 rounds + multiple algorithms',
         statsTeam: 'Team',
         statsTotal: 'Total',
         statsWin: 'Win',
@@ -82,14 +87,19 @@ const translations = {
         bestAcc: 'Best',
         avgAcc: 'Average',
         
-        reason: 'Frequency + Markov Model',
+        reason: 'Frequency + Markov + k-NN',
         result: 'Final Prediction:',
+        
+        knnEnabled: 'Enable k-NN',
+        knnK: 'Number of neighbors (k)',
+        knnM: 'Pattern length (m)',
+        knnWeight: 'k-NN weight',
         
         errorWindow: 'Window error'
     },
     
     fr: {
-        subtitle: 'Prédiction intelligente par chaîne de Markov',
+        subtitle: 'Prédiction hybride: Fréquence + Markov + k-NN',
         rounds: 'Tours',
         
         windowTitle: '📊 Fenêtre d\'Analyse',
@@ -97,11 +107,11 @@ const translations = {
         statsTitle: '📈 Statistiques',
         confidenceTitle: '⚡ Niveau de Confiance',
         predTitle: '🔮 Prédiction Prochain Tour',
-        predSub: 'Fréquence + Markov (IA)',
+        predSub: 'Fréq + Markov + k-NN',
         accuracyTitle: '📊 Précision des Prédictions',
         
         windowLabel: 'Tours analysés:',
-        windowDesc: '5 derniers tours + algorithme de Markov',
+        windowDesc: '5 derniers tours + algorithmes multiples',
         statsTeam: 'Équipe',
         statsTotal: 'Total',
         statsWin: 'Gain',
@@ -125,8 +135,13 @@ const translations = {
         bestAcc: 'Meilleure',
         avgAcc: 'Moyenne',
         
-        reason: 'Fréquence + Modèle de Markov',
+        reason: 'Fréquence + Markov + k-NN',
         result: 'Prédiction finale:',
+        
+        knnEnabled: 'Activer k-NN',
+        knnK: 'Nombre de voisins (k)',
+        knnM: 'Longueur du motif (m)',
+        knnWeight: 'Poids k-NN',
         
         errorWindow: 'Erreur de fenêtre'
     }
@@ -142,26 +157,27 @@ const state = {
     lastPrediction: null,
     accuracyHistory: [],
     predictionsHistory: [],
-    previousPredictions: { P: 33.3, B: 33.3, T: 33.4 },
+    // إحصائيات لكل خوارزمية
+    algoStats: {
+        freq: { correct: 0, total: 0 },
+        markov: { correct: 0, total: 0 },
+        knn: { correct: 0, total: 0 },
+        ensemble: { correct: 0, total: 0 }
+    },
     currentLang: 'ar',
     confidenceThreshold: 45,
-    // مصفوفات الانتقال لسلاسل ماركوف (رتبة 1 و 2)
-    transition1: { // من نتيجة إلى أخرى
-        P: { P: 0, B: 0, T: 0 },
-        B: { P: 0, B: 0, T: 0 },
-        T: { P: 0, B: 0, T: 0 }
+    // مصفوفات ماركوف
+    transition1: { P: { P: 0, B: 0, T: 0 }, B: { P: 0, B: 0, T: 0 }, T: { P: 0, B: 0, T: 0 } },
+    transition2: {
+        'P,P': { P: 0, B: 0, T: 0 }, 'P,B': { P: 0, B: 0, T: 0 }, 'P,T': { P: 0, B: 0, T: 0 },
+        'B,P': { P: 0, B: 0, T: 0 }, 'B,B': { P: 0, B: 0, T: 0 }, 'B,T': { P: 0, B: 0, T: 0 },
+        'T,P': { P: 0, B: 0, T: 0 }, 'T,B': { P: 0, B: 0, T: 0 }, 'T,T': { P: 0, B: 0, T: 0 }
     },
-    transition2: { // من زوج نتائج إلى نتيجة تالية
-        'P,P': { P: 0, B: 0, T: 0 },
-        'P,B': { P: 0, B: 0, T: 0 },
-        'P,T': { P: 0, B: 0, T: 0 },
-        'B,P': { P: 0, B: 0, T: 0 },
-        'B,B': { P: 0, B: 0, T: 0 },
-        'B,T': { P: 0, B: 0, T: 0 },
-        'T,P': { P: 0, B: 0, T: 0 },
-        'T,B': { P: 0, B: 0, T: 0 },
-        'T,T': { P: 0, B: 0, T: 0 }
-    }
+    // إعدادات k-NN
+    knnEnabled: true,
+    kValue: 5,
+    mValue: 3,
+    knnWeight: 30 // نسبة مئوية
 };
 
 // ===== الوظائف المساعدة =====
@@ -179,6 +195,7 @@ function setLanguage(lang) {
     });
     el(`lang${lang.charAt(0).toUpperCase() + lang.slice(1)}`).classList.add('active');
     
+    // تحديث النصوص العامة
     el('subtitle').textContent = t.subtitle;
     el('windowTitle').textContent = t.windowTitle;
     el('inputTitle').textContent = t.inputTitle;
@@ -213,15 +230,79 @@ function setLanguage(lang) {
     el('bestAccLabel').textContent = t.bestAcc;
     el('avgAccLabel').textContent = t.avgAcc;
     
+    // تحديث تسميات إعدادات k-NN
+    const knnEnabledLabel = document.querySelector('label[for="knnEnabled"]');
+    if (knnEnabledLabel) knnEnabledLabel.textContent = t.knnEnabled;
+    
     updateConfidenceLabel();
     updateRoundsCount();
 }
 
-// ===== تحديث مصفوفات ماركوف عند إضافة جولة جديدة =====
+// ===== تحديث إعدادات k-NN من الواجهة =====
+function updateKNNSettings() {
+    state.knnEnabled = el('knnEnabled').checked;
+    state.kValue = parseInt(el('kValue').value) || 5;
+    state.mValue = parseInt(el('mValue').value) || 3;
+    state.knnWeight = parseInt(el('knnWeight').value) || 30;
+    
+    // تحديث واجهة badge
+    const knnBadge = el('knnBadge');
+    if (knnBadge) {
+        if (state.knnEnabled) {
+            knnBadge.classList.remove('disabled');
+            knnBadge.textContent = '🧠 k-NN (مفعل)';
+        } else {
+            knnBadge.classList.add('disabled');
+            knnBadge.textContent = '🧠 k-NN (معطل)';
+        }
+    }
+}
+
+// ===== خوارزمية الجيران الأقرب (k-NN) =====
+function knnPrediction() {
+    if (!state.knnEnabled || state.rounds.length < state.mValue + 1) {
+        return null; // لا يمكن التنبؤ
+    }
+    
+    const m = state.mValue;
+    const k = state.kValue;
+    
+    // النمط الحالي (آخر m جولة)
+    const currentPattern = state.rounds.slice(-m);
+    
+    // البحث عن أنماط مطابقة في التاريخ (باستثناء آخر m جولة لأنها غير مكتملة)
+    const matches = [];
+    for (let i = 0; i <= state.rounds.length - m - 1; i++) {
+        const pattern = state.rounds.slice(i, i + m);
+        if (pattern.every((val, idx) => val === currentPattern[idx])) {
+            // النتيجة التالية بعد هذا النمط
+            const next = state.rounds[i + m];
+            matches.push(next);
+        }
+    }
+    
+    if (matches.length === 0) return null;
+    
+    // أخذ آخر k نتيجة (الأحدث) أو كلها إذا كان عددها أقل
+    const recentMatches = matches.slice(-k);
+    
+    // حساب التكرارات
+    const counts = { P: 0, B: 0, T: 0 };
+    recentMatches.forEach(r => counts[r]++);
+    
+    const total = recentMatches.length;
+    return {
+        P: (counts.P / total) * 100,
+        B: (counts.B / total) * 100,
+        T: (counts.T / total) * 100
+    };
+}
+
+// ===== تحديث نماذج ماركوف عند إضافة جولة جديدة =====
 function updateMarkovModels(newRound) {
     const rounds = state.rounds;
     const len = rounds.length;
-    if (len < 2) return; // لا يمكن تحديث الانتقالات إلا بعد وجود جولتين
+    if (len < 2) return;
     
     // تحديث transition1 (من الجولة قبل الأخيرة إلى الأخيرة)
     const prev = rounds[len - 2];
@@ -242,9 +323,9 @@ function markovPrediction() {
     const rounds = state.rounds;
     const len = rounds.length;
     
-    if (len === 0) return null; // لا بيانات
+    if (len === 0) return null;
     
-    // الاحتمالات من الرتبة 1 (إذا توفرت)
+    // الاحتمالات من الرتبة 1
     let prob1 = null;
     if (len >= 1) {
         const last = rounds[len - 1];
@@ -259,7 +340,7 @@ function markovPrediction() {
         }
     }
     
-    // الاحتمالات من الرتبة 2 (إذا توفرت)
+    // الاحتمالات من الرتبة 2
     let prob2 = null;
     if (len >= 2) {
         const lastTwo = rounds.slice(-2);
@@ -277,9 +358,9 @@ function markovPrediction() {
         }
     }
     
-    // دمج الاحتمالات (وزن أكبر للرتبة 2 إذا وجدت)
+    // دمج الاحتمالات (أولوية للرتبة 2)
     if (prob2) {
-        return prob2; // نستخدم الرتبة 2 لأنها أكثر دقة
+        return prob2;
     } else if (prob1) {
         return prob1;
     } else {
@@ -302,7 +383,7 @@ function frequencyAnalysis(rounds) {
     };
 }
 
-// ===== التنبؤ الموحد (تردد + ماركوف) =====
+// ===== التنبؤ الموحد =====
 function predict() {
     const n = Math.min(state.windowSize, state.rounds.length);
     const recent = state.rounds.slice(-n);
@@ -311,48 +392,102 @@ function predict() {
         return {
             P: 33.3, B: 33.3, T: 33.4,
             final: '—',
-            confidence: 0
+            confidence: 0,
+            probs: { P:33.3, B:33.3, T:33.4 }
         };
     }
     
-    // تحليل التردد
+    // 1. تحليل التردد
     const freq = frequencyAnalysis(recent);
-    const sum = freq.P + freq.B + freq.T;
-    const normalizedFreq = {
-        P: (freq.P / sum) * 100,
-        B: (freq.B / sum) * 100,
-        T: (freq.T / sum) * 100
+    const sumFreq = freq.P + freq.B + freq.T;
+    const normFreq = {
+        P: (freq.P / sumFreq) * 100,
+        B: (freq.B / sumFreq) * 100,
+        T: (freq.T / sumFreq) * 100
     };
     
-    // تنبؤ ماركوف
+    // 2. تنبؤ ماركوف
     const markovProbs = markovPrediction();
-    let combined = { ...normalizedFreq };
+    const markov = markovProbs ? {
+        P: markovProbs.P * 100,
+        B: markovProbs.B * 100,
+        T: markovProbs.T * 100
+    } : null;
     
-    if (markovProbs) {
-        // دمج بنسبة 60% ماركوف + 40% تردد
-        combined = {
-            P: 0.6 * markovProbs.P * 100 + 0.4 * normalizedFreq.P,
-            B: 0.6 * markovProbs.B * 100 + 0.4 * normalizedFreq.B,
-            T: 0.6 * markovProbs.T * 100 + 0.4 * normalizedFreq.T
-        };
+    // 3. تنبؤ k-NN
+    const knnProbs = knnPrediction();
+    
+    // دمج النتائج حسب الأوزان
+    let combined = { P: 0, B: 0, T: 0 };
+    let totalWeight = 0;
+    
+    // وزن التردد (30%)
+    const freqWeight = 30;
+    combined.P += normFreq.P * freqWeight;
+    combined.B += normFreq.B * freqWeight;
+    combined.T += normFreq.T * freqWeight;
+    totalWeight += freqWeight;
+    
+    // وزن ماركوف (40%)
+    if (markov) {
+        const markovWeight = 40;
+        combined.P += markov.P * markovWeight;
+        combined.B += markov.B * markovWeight;
+        combined.T += markov.T * markovWeight;
+        totalWeight += markovWeight;
+    } else {
+        // إذا لم يتوفر ماركوف، نوزع وزنه على التردد
+        combined.P += normFreq.P * 40;
+        combined.B += normFreq.B * 40;
+        combined.T += normFreq.T * 40;
+        totalWeight += 40;
     }
     
-    // تطبيع المجموع إلى 100%
-    const total = combined.P + combined.B + combined.T;
+    // وزن k-NN (قابل للتعديل)
+    if (knnProbs && state.knnEnabled) {
+        const knnWeight = state.knnWeight;
+        combined.P += knnProbs.P * knnWeight;
+        combined.B += knnProbs.B * knnWeight;
+        combined.T += knnProbs.T * knnWeight;
+        totalWeight += knnWeight;
+    } else {
+        // إذا لم يتوفر k-NN، نوزع وزنه على التردد وماركوف
+        const extraWeight = state.knnWeight;
+        combined.P += normFreq.P * (extraWeight * 0.4) + (markov ? markov.P * extraWeight * 0.6 : normFreq.P * extraWeight);
+        combined.B += normFreq.B * (extraWeight * 0.4) + (markov ? markov.B * extraWeight * 0.6 : normFreq.B * extraWeight);
+        combined.T += normFreq.T * (extraWeight * 0.4) + (markov ? markov.T * extraWeight * 0.6 : normFreq.T * extraWeight);
+        totalWeight += extraWeight;
+    }
+    
+    // تطبيع النسب
+    if (totalWeight > 0) {
+        combined.P /= totalWeight;
+        combined.B /= totalWeight;
+        combined.T /= totalWeight;
+    }
+    
+    // إعادة تطبيع المجموع إلى 100%
+    const sumCombined = combined.P + combined.B + combined.T;
     combined = {
-        P: (combined.P / total) * 100,
-        B: (combined.B / total) * 100,
-        T: (combined.T / total) * 100
+        P: (combined.P / sumCombined) * 100,
+        B: (combined.B / sumCombined) * 100,
+        T: (combined.T / sumCombined) * 100
     };
     
-    // تحديد النتيجة المتوقعة (أعلى نسبة)
+    // تحديد النتيجة المتوقعة
     const entries = Object.entries(combined);
     const sorted = entries.sort((a, b) => b[1] - a[1]);
     const finalPrediction = sorted[0][0];
     const confidence = sorted[0][1] - (sorted[1] ? sorted[1][1] : 0);
+    const finalConfidence = Math.min(100, Math.max(0, confidence * 2));
     
-    // تحويل الثقة إلى مقياس 100 مع حد أدنى
-    let finalConfidence = Math.min(100, Math.max(0, confidence * 1.8));
+    // تخزين احتمالات كل خوارزمية للتقييم
+    state.lastAlgoProbs = {
+        freq: normFreq,
+        markov: markov,
+        knn: knnProbs,
+        ensemble: combined
+    };
     
     if (finalConfidence < state.confidenceThreshold) {
         return {
@@ -360,7 +495,8 @@ function predict() {
             B: combined.B.toFixed(1),
             T: combined.T.toFixed(1),
             final: '—',
-            confidence: finalConfidence
+            confidence: finalConfidence,
+            probs: combined
         };
     }
     
@@ -369,8 +505,48 @@ function predict() {
         B: combined.B.toFixed(1),
         T: combined.T.toFixed(1),
         final: finalPrediction,
-        confidence: finalConfidence
+        confidence: finalConfidence,
+        probs: combined
     };
+}
+
+// ===== تحديث إحصائيات الخوارزميات =====
+function updateAlgoStats(actualResult) {
+    const last = state.lastAlgoProbs;
+    if (!last) return;
+    
+    // دالة مساعدة لتحديث إحصاءات خوارزمية معينة
+    const updateStat = (algo, probs) => {
+        if (!probs) return;
+        const entries = Object.entries(probs);
+        const sorted = entries.sort((a, b) => b[1] - a[1]);
+        const prediction = sorted[0][0];
+        const isCorrect = prediction === actualResult;
+        state.algoStats[algo].total++;
+        if (isCorrect) state.algoStats[algo].correct++;
+    };
+    
+    updateStat('freq', last.freq);
+    updateStat('markov', last.markov);
+    updateStat('knn', last.knn);
+    
+    // توقع المجمّع (من الدالة predict)
+    if (state.lastPrediction && state.lastPrediction !== '—') {
+        state.algoStats.ensemble.total++;
+        if (state.lastPrediction === actualResult) state.algoStats.ensemble.correct++;
+    }
+    
+    // تحديث العرض
+    el('freqAccuracy').textContent = getAlgoAccuracy('freq');
+    el('markovAccuracy').textContent = getAlgoAccuracy('markov');
+    el('knnAccuracy').textContent = getAlgoAccuracy('knn');
+    el('ensembleAccuracy').textContent = getAlgoAccuracy('ensemble');
+}
+
+function getAlgoAccuracy(algo) {
+    const stats = state.algoStats[algo];
+    if (!stats || stats.total === 0) return '0%';
+    return ((stats.correct / stats.total) * 100).toFixed(1) + '%';
 }
 
 // ===== رسم اللوحة (Big Road) بشكل منظم =====
@@ -431,13 +607,15 @@ function renderBigRoad() {
 function pushRound(r) {
     if (!['P', 'B', 'T'].includes(r)) return;
     
+    // تحديث إعدادات k-NN قبل التوقع
+    updateKNNSettings();
+    
     const pred = predict();
     state.lastPrediction = pred.final;
     
     state.rounds.push(r);
     state.count[r]++;
     
-    // تحديث نماذج ماركوف
     updateMarkovModels(r);
     
     if (state.lastPrediction !== '—' && state.lastPrediction !== null) {
@@ -448,7 +626,12 @@ function pushRound(r) {
         }
     }
     
+    // تحديث إحصائيات الخوارزميات
+    updateAlgoStats(r);
+    
+    // تحديث سجل الدقة الكلي
     updateAccuracyData(r);
+    
     updateAll();
     showResult(r, pred.final === r);
 }
@@ -460,8 +643,17 @@ function undoRound() {
     const lastRound = state.rounds.pop();
     state.count[lastRound] = Math.max(0, state.count[lastRound] - 1);
     
-    // ملاحظة: لا يمكن التراجع عن تحديث نماذج ماركوف بسهولة، لذلك نعيد بناءها من الصفر
+    // إعادة بناء نماذج ماركوف
     rebuildMarkovModels();
+    
+    // تحديث إحصائيات الخوارزميات (لا يمكن التراجع بسهولة، نعيد تعيينها)
+    // يمكن إعادة تعيين الإحصائيات أو تركها كما هي، لكن الأسهل إعادة تعيينها
+    state.algoStats = {
+        freq: { correct: 0, total: 0 },
+        markov: { correct: 0, total: 0 },
+        knn: { correct: 0, total: 0 },
+        ensemble: { correct: 0, total: 0 }
+    };
     
     if (state.lastPrediction && state.lastPrediction !== '—') {
         if (lastRound === state.lastPrediction) {
@@ -480,9 +672,8 @@ function undoRound() {
     updateAll();
 }
 
-// ===== إعادة بناء نماذج ماركوف من الجولات الحالية =====
+// ===== إعادة بناء نماذج ماركوف =====
 function rebuildMarkovModels() {
-    // إعادة تعيين المصفوفات
     state.transition1 = { P: { P: 0, B: 0, T: 0 }, B: { P: 0, B: 0, T: 0 }, T: { P: 0, B: 0, T: 0 } };
     state.transition2 = {
         'P,P': { P: 0, B: 0, T: 0 }, 'P,B': { P: 0, B: 0, T: 0 }, 'P,T': { P: 0, B: 0, T: 0 },
@@ -526,7 +717,13 @@ function resetAll() {
     state.predictionsHistory = [];
     state.previousPredictions = { P: 33.3, B: 33.3, T: 33.4 };
     
-    // إعادة تعيين نماذج ماركوف
+    state.algoStats = {
+        freq: { correct: 0, total: 0 },
+        markov: { correct: 0, total: 0 },
+        knn: { correct: 0, total: 0 },
+        ensemble: { correct: 0, total: 0 }
+    };
+    
     rebuildMarkovModels();
     
     updateAll();
@@ -687,7 +884,7 @@ function toggleTheme() {
 
 // ===== التهيئة =====
 function init() {
-    console.log('Initializing Baccarat with AI Markov Model...');
+    console.log('Initializing Baccarat with k-NN...');
     
     if (!document.documentElement.hasAttribute('data-theme')) {
         document.documentElement.setAttribute('data-theme', 'dark');
@@ -704,7 +901,14 @@ function init() {
     el('langEn').onclick = () => setLanguage('en');
     el('langFr').onclick = () => setLanguage('fr');
     
+    // ربط أحداث إعدادات k-NN
+    el('knnEnabled').onchange = updateKNNSettings;
+    el('kValue').onchange = updateKNNSettings;
+    el('mValue').onchange = updateKNNSettings;
+    el('knnWeight').onchange = updateKNNSettings;
+    
     setLanguage('ar');
+    updateKNNSettings();
     updateAll();
     
     console.log('Initialization complete');
