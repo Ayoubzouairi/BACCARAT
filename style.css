@@ -114,7 +114,7 @@ body {
 }
 
 .badge-basic {
-    background: linear-gradient(135deg, #3498db, #2980b9);
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
     color: white;
     padding: 4px 12px;
     border-radius: 20px;
@@ -346,6 +346,26 @@ body {
     transition: width 0.3s ease;
 }
 
+/* ===== حاوية اللوحة مع تمرير أفقي ===== */
+.canvas-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin: 15px 0;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+}
+
+canvas {
+    display: block;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+}
+
+:root[data-theme="light"] canvas {
+    background: rgba(0, 0, 0, 0.05);
+}
+
 /* ===== بطاقات التوقع ===== */
 .prediction-cards {
     display: flex;
@@ -425,15 +445,6 @@ body {
 .legend-tie {
     background: linear-gradient(135deg, var(--tie), #27ae60);
     color: white;
-}
-
-/* ===== اللوحة ===== */
-canvas {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    background: rgba(0, 0, 0, 0.2);
-    margin: 15px 0;
 }
 
 /* ===== نتيجة التحليل ===== */
@@ -554,7 +565,7 @@ canvas {
     75% { transform: translateX(5px); }
 }
 
-/* ===== التجاوب ===== */
+/* ===== التجاوب مع الشاشات ===== */
 @media (max-width: 768px) {
     .layout {
         flex-direction: column;
