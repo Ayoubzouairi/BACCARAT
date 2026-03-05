@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AYOUB BACCARAT - نظام تنبؤ متطور</title>
+    <title>AYOUB BACCARAT - AI Predictive System</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,8 +11,8 @@
         <!-- رأس الصفحة -->
         <header class="top card">
             <div class="brand">
-                <div class="logo">🎴 AYOUB BACCARAT <span class="badge-basic">احترافي</span></div>
-                <div class="subtitle" id="subtitle">نظام تنبؤ بتحليل الأنماط</div>
+                <div class="logo">🎴 AYOUB BACCARAT <span class="badge-ai">AI 5%</span></div>
+                <div class="subtitle" id="subtitle">نظام تنبؤ ذكي بسلاسل ماركوف</div>
             </div>
             <div class="controls">
                 <!-- أزرار اللغة -->
@@ -37,7 +37,7 @@
                         <span class="info-label" id="windowLabel">عدد الجولات المحللة:</span>
                         <span class="info-value" id="windowValue">5</span>
                     </div>
-                    <div class="muted small" id="windowDesc">تحليل آخر 5 جولات بأنماط متقدمة</div>
+                    <div class="muted small" id="windowDesc">تحليل آخر 5 جولات + خوارزمية ماركوف</div>
                 </div>
 
                 <!-- أزرار إدخال النتائج -->
@@ -107,7 +107,7 @@
                 <div class="card prediction">
                     <div class="pred-head">
                         <div class="pred-title" id="predTitle">🔮 توقع الجولة القادمة</div>
-                        <div class="pred-sub" id="predSub">تردد + أنماط</div>
+                        <div class="pred-sub" id="predSub">تردد + ماركوف (AI)</div>
                     </div>
 
                     <!-- وسائل الإيضاح -->
@@ -122,7 +122,7 @@
                         <canvas id="bigRoad" width="800" height="400"></canvas>
                     </div>
 
-                    <!-- بطاقات نسب التوقع (التردد) -->
+                    <!-- بطاقات نسب التوقع -->
                     <div class="prediction-cards">
                         <div class="pred-card player" id="predP">
                             <div class="pred-emoji">🔵</div>
@@ -141,30 +141,12 @@
                         </div>
                     </div>
 
-                    <!-- النتيجة النهائية -->
+                    <!-- النتيجة النهائية مع شرح المصدر -->
                     <div class="analysis-result">
                         <div class="result-label" id="resultLabel">التوقع النهائي:</div>
                         <div class="final" id="finalCard">—</div>
-                        <div class="muted small" id="predictionReason">تحليل التردد + الأنماط</div>
-                    </div>
-
-                    <!-- قسم تحليل الأنماط -->
-                    <div class="pattern-analysis card" style="margin-top: 15px;">
-                        <div class="section-title" id="patternTitle">📐 تحليل الأنماط</div>
-                        <div class="pattern-details">
-                            <div class="pattern-item">
-                                <span class="pattern-label" id="patternDetectedLabel">النمط المكتشف:</span>
-                                <span class="pattern-value" id="patternDetected">—</span>
-                            </div>
-                            <div class="pattern-item">
-                                <span class="pattern-label" id="patternConfidenceLabel">ثقة النمط:</span>
-                                <span class="pattern-value" id="patternConfidence">0%</span>
-                            </div>
-                            <div class="pattern-item">
-                                <span class="pattern-label" id="patternPredictionLabel">توقع النمط:</span>
-                                <span class="pattern-value" id="patternPrediction">—</span>
-                            </div>
-                        </div>
+                        <div class="muted small" id="predictionReason">تردد + نموذج ماركوف</div>
+                        <div class="ai-badge">🤖 AI Markov Model</div>
                     </div>
                 </div>
 
