@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AYOUB BACCARAT - AI Predictive System</title>
+    <title>AYOUB BACCARAT - AI Predictive System with k-NN</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,8 +11,8 @@
         <!-- رأس الصفحة -->
         <header class="top card">
             <div class="brand">
-                <div class="logo">🎴 AYOUB BACCARAT <span class="badge-ai">AI 5%</span></div>
-                <div class="subtitle" id="subtitle">نظام تنبؤ ذكي بسلاسل ماركوف</div>
+                <div class="logo">🎴 AYOUB BACCARAT <span class="badge-ai">AI + kNN</span></div>
+                <div class="subtitle" id="subtitle">نظام تنبؤ هجين: تردد + ماركوف + k-NN</div>
             </div>
             <div class="controls">
                 <!-- أزرار اللغة -->
@@ -37,7 +37,7 @@
                         <span class="info-label" id="windowLabel">عدد الجولات المحللة:</span>
                         <span class="info-value" id="windowValue">5</span>
                     </div>
-                    <div class="muted small" id="windowDesc">تحليل آخر 5 جولات + خوارزمية ماركوف</div>
+                    <div class="muted small" id="windowDesc">تحليل آخر 5 جولات + خوارزميات متعددة</div>
                 </div>
 
                 <!-- أزرار إدخال النتائج -->
@@ -51,6 +51,31 @@
                     <div class="row">
                         <button class="btn undo-btn" id="btnUndo">↩️ تراجع</button>
                     </div>
+                </div>
+
+                <!-- إعدادات k-NN -->
+                <div class="panel card knn-settings">
+                    <div class="section-title">🧠 إعدادات الجيران الأقرب (k-NN)</div>
+                    <div class="setting-item">
+                        <label class="switch">
+                            <input type="checkbox" id="knnEnabled" checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <span id="knnEnabledLabel">تفعيل k-NN</span>
+                    </div>
+                    <div class="setting-item">
+                        <span class="setting-label">عدد الجيران (k):</span>
+                        <input type="number" id="kValue" min="1" max="15" value="5" step="1" class="setting-input">
+                    </div>
+                    <div class="setting-item">
+                        <span class="setting-label">طول النمط (m):</span>
+                        <input type="number" id="mValue" min="1" max="7" value="3" step="1" class="setting-input">
+                    </div>
+                    <div class="setting-item">
+                        <span class="setting-label">وزن k-NN (%):</span>
+                        <input type="number" id="knnWeight" min="0" max="100" value="30" step="5" class="setting-input">
+                    </div>
+                    <div class="muted small">وزن تلقائي: ماركوف 40%، تردد 30%</div>
                 </div>
 
                 <!-- جدول الإحصاءات -->
@@ -107,7 +132,7 @@
                 <div class="card prediction">
                     <div class="pred-head">
                         <div class="pred-title" id="predTitle">🔮 توقع الجولة القادمة</div>
-                        <div class="pred-sub" id="predSub">تردد + ماركوف (AI)</div>
+                        <div class="pred-sub" id="predSub">تردد + ماركوف + k-NN</div>
                     </div>
 
                     <!-- وسائل الإيضاح -->
@@ -141,19 +166,41 @@
                         </div>
                     </div>
 
-                    <!-- النتيجة النهائية مع شرح المصدر -->
+                    <!-- النتيجة النهائية مع تفاصيل الخوارزميات -->
                     <div class="analysis-result">
                         <div class="result-label" id="resultLabel">التوقع النهائي:</div>
                         <div class="final" id="finalCard">—</div>
-                        <div class="muted small" id="predictionReason">تردد + نموذج ماركوف</div>
-                        <div class="ai-badge">🤖 AI Markov Model</div>
+                        <div class="algo-details">
+                            <span class="algo-badge freq">📊 تردد</span>
+                            <span class="algo-badge markov">🔄 ماركوف</span>
+                            <span class="algo-badge knn" id="knnBadge">🧠 k-NN (مفعل)</span>
+                        </div>
+                        <div class="muted small" id="predictionReason">تردد + ماركوف + k-NN</div>
                     </div>
                 </div>
 
-                <!-- دقة التوقعات -->
+                <!-- دقة التوقعات لكل خوارزمية -->
                 <div class="panel card accuracy-panel">
                     <div class="section-title" id="accuracyTitle">📊 دقة التوقعات</div>
-                    <div class="accuracy-stats">
+                    <div class="accuracy-grid">
+                        <div class="accuracy-item">
+                            <div class="accuracy-label">📊 تردد</div>
+                            <div class="accuracy-value" id="freqAccuracy">0%</div>
+                        </div>
+                        <div class="accuracy-item">
+                            <div class="accuracy-label">🔄 ماركوف</div>
+                            <div class="accuracy-value" id="markovAccuracy">0%</div>
+                        </div>
+                        <div class="accuracy-item">
+                            <div class="accuracy-label">🧠 k-NN</div>
+                            <div class="accuracy-value" id="knnAccuracy">0%</div>
+                        </div>
+                        <div class="accuracy-item">
+                            <div class="accuracy-label">✨ المجمّع</div>
+                            <div class="accuracy-value" id="ensembleAccuracy">0%</div>
+                        </div>
+                    </div>
+                    <div class="accuracy-stats" style="margin-top: 15px;">
                         <div>
                             <div class="accuracy-label" id="currentAccLabel">الحالية</div>
                             <div class="accuracy-value" id="currentAccuracy">0%</div>
