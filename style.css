@@ -1,0 +1,827 @@
+/* 
+ * AYOUB BACCARAT PRO - النسخة الكاملة 
+ * Author: Ayoub
+ * Version: 3.0
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+/* ========== متغيرات CSS ========== */
+:root {
+    --gold: #d4af37;
+    --gold-2: #b8871d;
+    --bg-dark: #070606;
+    --card: #0f0e10;
+    --muted: #bfb7a6;
+    --player: #2d7ef7;
+    --banker: #e03b3b;
+    --tie: #28a745;
+}
+
+:root[data-theme="light"] {
+    --gold: #d4af37;
+    --gold-2: #b8871d;
+    --bg-dark: #f5f5f5;
+    --card: #ffffff;
+    --muted: #666666;
+    --player: #2d7ef7;
+    --banker: #e03b3b;
+    --tie: #28a745;
+}
+
+/* ========== القواعد العامة ========== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    background: linear-gradient(180deg, var(--bg-dark), #0b0b0b);
+    color: #fff;
+    padding: 18px;
+    transition: background 0.3s, color 0.3s;
+    min-height: 100vh;
+}
+
+:root[data-theme="light"] body {
+    color: #333;
+}
+
+.app {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* ========== التخطيط ========== */
+.layout {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.left {
+    width: 360px;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.right {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 300px;
+}
+
+/* ========== البطاقات والعناصر ========== */
+.card {
+    background: linear-gradient(180deg, var(--card), #0b0b0b);
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(212, 175, 55, 0.08);
+    margin-bottom: 10px;
+}
+
+:root[data-theme="light"] .card {
+    background: linear-gradient(180deg, var(--card), #f0f0f0);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--gold), #fff3b0);
+    color: #000;
+    padding: 8px 12px;
+    border-radius: 12px;
+    display: inline-block;
+    font-size: 1.2rem;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+.controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.panel {
+    padding: 10px;
+}
+
+.row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 8px;
+}
+
+/* ========== النماذج والحقول ========== */
+input[type=number],
+select {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 10px;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    width: 100%;
+}
+
+:root[data-theme="light"] input[type=number],
+:root[data-theme="light"] select {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    color: #333;
+}
+
+.input-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.input-group input {
+    flex: 1;
+}
+
+.input-label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: block;
+}
+
+/* ========== الأزرار ========== */
+.btn {
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s;
+    text-align: center;
+    min-width: 70px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn.gold {
+    background: linear-gradient(90deg, var(--gold), var(--gold-2));
+    color: #000;
+    font-weight: 700;
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+}
+
+/* ألوان الأزرار في الوضع الليلي */
+.btn.player {
+    background: linear-gradient(135deg, #3a86ff, #2667cc);
+    color: white;
+    border: 2px solid #3a86ff;
+}
+
+.btn.banker {
+    background: linear-gradient(135deg, #ff006e, #cc0058);
+    color: white;
+    border: 2px solid #ff006e;
+}
+
+.btn.tie {
+    background: linear-gradient(135deg, #38b000, #2c8a00);
+    color: white;
+    border: 2px solid #38b000;
+}
+
+/* ألوان الأزرار في الوضع النهاري */
+:root[data-theme="light"] .btn.player {
+    background: linear-gradient(135deg, #2d7ef7, #1a67d8);
+    color: white;
+}
+
+:root[data-theme="light"] .btn.banker {
+    background: linear-gradient(135deg, #e03b3b, #c53232);
+    color: white;
+}
+
+:root[data-theme="light"] .btn.tie {
+    background: linear-gradient(135deg, #28a745, #218838);
+    color: white;
+}
+
+:root[data-theme="light"] .btn {
+    background: rgba(0, 0, 0, 0.1);
+    color: #333;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* أزرار التحكم في البيانات */
+.data-controls {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.data-controls .btn {
+    padding: 6px 10px;
+    font-size: 12px;
+    flex: 1;
+    min-width: 100px;
+}
+
+/* ========== شارات النماذج ========== */
+.model-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+.badge-basic {
+    background: #3a86ff;
+    color: white;
+}
+
+.badge-advanced {
+    background: #ff006e;
+    color: white;
+}
+
+.badge-pattern {
+    background: #38b000;
+    color: white;
+}
+
+.badge-ml {
+    background: #9d4edd;
+    color: white;
+}
+
+/* ========== التحكمات المتقدمة ========== */
+.advanced-controls {
+    background: rgba(212, 175, 55, 0.05);
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 8px;
+}
+
+.control-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.control-group:last-child {
+    margin-bottom: 0;
+}
+
+.slider-container {
+    flex: 1;
+    margin-left: 10px;
+    min-width: 150px;
+}
+
+.slider {
+    width: 100%;
+}
+
+/* ========== أنماط تعلم الآلة ========== */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.switch .slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+.switch input:checked + .slider {
+    background: linear-gradient(90deg, #9d4edd, #7b2cbf);
+}
+
+.switch input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.ml-training-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.ml-training {
+    background: #38b000;
+    animation: pulse 1.5s infinite;
+}
+
+.ml-not-trained {
+    background: #ff006e;
+}
+
+.ml-info-panel {
+    background: rgba(157, 78, 221, 0.05);
+    border-left: 3px solid #9d4edd;
+}
+
+/* ========== الجداول والإحصاءات ========== */
+.stat-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.stat-table th,
+.stat-table td {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 6px;
+    text-align: center;
+}
+
+:root[data-theme="light"] .stat-table th,
+:root[data-theme="light"] .stat-table td {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.stat-table th {
+    background: rgba(212, 175, 55, 0.1);
+    font-weight: 600;
+}
+
+.player {
+    color: #3a86ff;
+    font-weight: 700;
+}
+
+.banker {
+    color: #ff006e;
+    font-weight: 700;
+}
+
+.tie {
+    color: #38b000;
+    font-weight: 700;
+}
+
+/* ========== التنبؤ والثقة ========== */
+.pred-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.final {
+    font-size: 22px;
+    font-weight: 800;
+    text-align: center;
+    padding: 12px;
+    background: linear-gradient(90deg, rgba(212, 175, 55, 0.06), transparent);
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+:root[data-theme="light"] .final {
+    background: linear-gradient(90deg, rgba(212, 175, 55, 0.1), transparent);
+}
+
+.prediction-cards {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 10px 0;
+    flex-wrap: wrap;
+}
+
+.pred-card {
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 80px;
+    font-weight: 600;
+    flex: 1;
+}
+
+.pred-card.player {
+    background: linear-gradient(135deg, #3a86ff, #2667cc);
+    color: white;
+}
+
+.pred-card.banker {
+    background: linear-gradient(135deg, #ff006e, #cc0058);
+    color: white;
+}
+
+.pred-card.tie {
+    background: linear-gradient(135deg, #38b000, #2c8a00);
+    color: white;
+}
+
+.pred-card.active {
+    transform: scale(1.05);
+    border: 2px solid var(--gold);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+.confidence-meter {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    margin-top: 4px;
+    overflow: hidden;
+}
+
+.confidence-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #38b000, #ff006e);
+    border-radius: 3px;
+    transition: width 0.3s;
+}
+
+.high-confidence {
+    background: linear-gradient(90deg, #38b000, #d4af37);
+}
+
+.medium-confidence {
+    background: linear-gradient(90deg, #d4af37, #ff006e);
+}
+
+.color-legend {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 10px;
+    font-size: 14px;
+    flex-wrap: wrap;
+}
+
+.color-legend span {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+/* ========== الرسوم البيانية ========== */
+canvas {
+    border-radius: 10px;
+    background: #0f0e10;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 450px;
+}
+
+:root[data-theme="light"] canvas {
+    background: #f0f0f0;
+}
+
+.accuracy-panel {
+    margin-top: 12px;
+}
+
+.accuracy-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.accuracy-stats>div {
+    flex: 1;
+    min-width: 120px;
+}
+
+.accuracy-value {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.accuracy-label {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.accuracy-chart-container {
+    position: relative;
+    height: 80px;
+    margin-top: 8px;
+    width: 100%;
+}
+
+.accuracy-line {
+    stroke: var(--gold);
+    stroke-width: 2;
+    fill: none;
+}
+
+.accuracy-point {
+    fill: var(--gold);
+    r: 3;
+    transition: r 0.2s;
+}
+
+.accuracy-point:hover {
+    r: 5;
+}
+
+.accuracy-grid {
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-width: 1;
+}
+
+:root[data-theme="light"] .accuracy-grid {
+    stroke: rgba(0, 0, 0, 0.1);
+}
+
+.accuracy-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 100;
+}
+
+/* ========== التحسينات والأنماط الإضافية ========== */
+.small {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.muted {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.pattern-list {
+    list-style: none;
+    padding: 6px;
+    margin: 6px 0 0 0;
+    max-height: 200px;
+    overflow: auto;
+}
+
+.pattern-list li {
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+:root[data-theme="light"] .pattern-list li {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.02), transparent);
+}
+
+.section-title {
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--gold);
+    font-size: 1.1rem;
+}
+
+.analysis-result {
+    margin-top: 10px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    text-align: center;
+}
+
+:root[data-theme="light"] .analysis-result {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.win-effect {
+    animation: winPulse 0.5s ease-in-out;
+}
+
+.loss-effect {
+    animation: lossShake 0.5s ease-in-out;
+}
+
+.pattern-info {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+    line-height: 1.4;
+}
+
+.theme-toggle {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background 0.3s;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="light"] .theme-toggle:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 14px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.credits {
+    opacity: 0.85;
+    font-size: 12px;
+}
+
+/* ========== الرسوم المتحركة ========== */
+@keyframes winPulse {
+    0% {
+        transform: scale(1)
+    }
+    50% {
+        transform: scale(1.1)
+    }
+    100% {
+        transform: scale(1)
+    }
+}
+
+@keyframes lossShake {
+
+    0%,
+    100% {
+        transform: translateX(0)
+    }
+    25% {
+        transform: translateX(-5px)
+    }
+    75% {
+        transform: translateX(5px)
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* ========== التجاوب مع الشاشات ========== */
+@media (max-width: 768px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .left,
+    .right {
+        width: 100%;
+    }
+
+    .top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .accuracy-stats>div {
+        min-width: 100px;
+    }
+
+    .prediction-cards {
+        flex-direction: column;
+    }
+
+    .pred-card {
+        width: 100%;
+    }
+
+    .color-legend {
+        justify-content: flex-start;
+    }
+
+    .row {
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        flex: 1;
+        min-width: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .card {
+        padding: 8px;
+    }
+
+    .btn {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    .accuracy-stats {
+        flex-direction: column;
+    }
+
+    .accuracy-stats>div {
+        min-width: 100%;
+    }
+}
